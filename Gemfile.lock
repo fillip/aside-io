@@ -1,0 +1,67 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    akami (1.2.0)
+      gyoku (>= 0.4.0)
+      nokogiri (>= 1.4.0)
+    builder (3.1.3)
+    daemons (1.1.9)
+    eventmachine (1.0.0.rc.1)
+    facets (2.8.4)
+    gyoku (0.4.6)
+      builder (>= 2.1.2)
+    hpricot (0.8.6)
+    httpclient (2.6.0.1)
+    httpi (1.1.1)
+      rack
+    json (1.7.5)
+    logger-application (0.0.2)
+    nokogiri (1.5.5)
+    nori (1.1.3)
+    oauth (0.4.7)
+    pg (0.14.1)
+    rack (1.4.1)
+    rack-ssl-enforcer (0.2.6)
+    rack-timeout (0.4.2)
+    rforce (0.10)
+      builder (~> 3.0)
+      oauth (~> 0.4)
+    savon (1.2.0)
+      akami (~> 1.2.0)
+      builder (>= 2.1.2)
+      gyoku (~> 0.4.5)
+      httpi (~> 1.1.0)
+      nokogiri (>= 1.4.0)
+      nori (~> 1.1.0)
+      wasabi (~> 2.5.0)
+    sinatra (1.1.0)
+      rack (~> 1.1)
+      tilt (~> 1.1)
+    soap4r-ng (2.0.3)
+      httpclient (~> 2.6)
+      logger-application (~> 0.0.2)
+    thin (1.5.0)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
+    tilt (1.3.3)
+    wasabi (2.5.1)
+      httpi (~> 1.0)
+      nokogiri (>= 1.4.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  eventmachine (= 1.0.0.rc.1)
+  facets (= 2.8.4)
+  hpricot
+  json
+  pg
+  rack-ssl-enforcer
+  rack-timeout
+  rforce
+  savon
+  sinatra (= 1.1.0)
+  soap4r-ng
+  thin
