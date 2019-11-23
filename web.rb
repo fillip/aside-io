@@ -36,11 +36,6 @@ get '/login' do
 	File.open('d3vLogin.html', File::RDONLY)
 end
 
-# serve up terms page
-get '/terms' do
-	File.open('terms.html', File::RDONLY)
-end
-
 # serve up help page
 get '/help' do
 	File.open('help.html', File::RDONLY)
@@ -61,36 +56,12 @@ get '/shortcuts' do
 	File.open('shortcuts.html', File::RDONLY)
 end
 
-# serve up shortcuts page
-get '/shutdown' do
-	File.open('shutdown.html', File::RDONLY)
-end
-
 #oauth based login endpoint
 get '/auth' do
-	case params[:state]
-	
-	when 'a'
-		endpoint     = 'test'
-		clientId     = ENV['DEV_CID']
-		clientSecret = ENV['DEV_SEC']
-		redirectUri  = 'https://aside-dev.herokuapp.com/auth'
-	when 'b'
-		endpoint     = 'login'
-		clientId     = ENV['DEV_CID']
-		clientSecret = ENV['DEV_SEC']
-		redirectUri  = 'https://aside-dev.herokuapp.com/auth'
-	when 'c'
-		endpoint     = 'test'
-		clientId     = ENV['PROD_CID']
-		clientSecret = ENV['PROD_SEC']
-		redirectUri  = 'https://www.aside.io/auth'
-	else
-		endpoint     = 'login'
-		clientId     = ENV['PROD_CID']
-		clientSecret = ENV['PROD_SEC']
-		redirectUri  = 'https://www.aside.io/auth'
-	end
+    endpoint = params[:state]
+    clientId = ENV['CID']
+    clientSecret = ENV['SEC']
+    redirectUri = ENV['URL'] + '/auth'
 
 	resp = HTTPClient.new.post 'https://' + endpoint + '.salesforce.com/services/oauth2/token', 
 	                    	   { 'grant_type'    => 'authorization_code',
@@ -105,7 +76,8 @@ get '/auth' do
 		eightFromNow = Time.new + 28800
 		
 		if content['access_token']
-			version = '44.0'
+			ctrl = D3VController.new
+			version = ctrl.getVersionNumber
 			
 			if content['instance_url'] =~ /\.((na|cs|ap|eu)\d{1,2})\.my\.salesforce\.com/
 				baseUrl = 'https://' + $1 + '-api.salesforce.com/services/Soap'	
@@ -133,7 +105,7 @@ get '/auth' do
 			redirect '/'
 		elsif content['error']
 			ctrl = D3VController.new
-			ctrl.logAuthFault(request.ip, params[:state], content['error'], content['error_description'])
+			ctrl.logAuthFault(request.ip, '', content['error'], content['error_description'])
 			response.set_cookie('d3vlf1', :value => content['error'], :expires => eightFromNow)
 			response.set_cookie('d3vlf2', :value => content['error_description'], :expires => eightFromNow)
 		end
@@ -144,9 +116,12 @@ end
 
 #frontdoor login endpoint
 get '/frontdoor' do
-	pep = 'https://' + params[:ins] + '-api.salesforce.com/services/Soap/u/44.0/' + params[:oid]
-	aep = 'https://' + params[:ins] + '-api.salesforce.com/services/Soap/s/44.0'
-	mep = 'https://' + params[:ins] + '-api.salesforce.com/services/Soap/m/44.0/' + params[:oid]
+	ctrl = D3VController.new
+	version = ctrl.getVersionNumber
+
+	pep = 'https://' + params[:ins] + '-api.salesforce.com/services/Soap/u/' + version + '/' + params[:oid]
+	aep = 'https://' + params[:ins] + '-api.salesforce.com/services/Soap/s/' + version
+	mep = 'https://' + params[:ins] + '-api.salesforce.com/services/Soap/m/' + version + '/' + params[:oid]
 	
 	twentyFourHoursFromNow = Time.new + 86400
 	eightFromNow = Time.new + 28800
@@ -612,6 +587,10 @@ post '/checkDeployStatus' do
 	ctrl.checkDeployStatus(params[:id], params[:detail]).to_json
 end
 
+post '/vars' do
+	return '{ "cid" : "' + ENV['CID'] + '", "url" : "' + ENV['URL'] + '" }'
+end
+
 helpers do
 	def refresh(request, response, forClient)
 		if request.cookies['d3vrtk'] && request.cookies['d3vpep']
@@ -624,19 +603,11 @@ helpers do
 				endpoint = endpoint.match(/cs\d{1,2}/i) == nil ? 'login' : 'test'
 			end
 			
-			if request.base_url.index('aside.io') == nil
-				resp = HTTPClient.new.post 'https://' + endpoint + '.salesforce.com/services/oauth2/token', 
-				                    	   { 'grant_type'    => 'refresh_token',
-				                    	     'refresh_token' => request.cookies['d3vrtk'],
-				                             'client_id'     => ENV['DEV_CID'],
-				                             'client_secret' => ENV['DEV_SEC'] }			
-			else 
-				resp = HTTPClient.new.post 'https://' + endpoint + '.salesforce.com/services/oauth2/token', 
-				                    	   { 'grant_type'    => 'refresh_token',
-				                    	     'refresh_token' => request.cookies['d3vrtk'],
-				                             'client_id'     => ENV['PROD_CID'],
-				                             'client_secret' => ENV['PROD_SEC'] }	
-			end
+			resp = HTTPClient.new.post 'https://' + endpoint + '.salesforce.com/services/oauth2/token', 
+			                    	   { 'grant_type'    => 'refresh_token',
+			                    	     'refresh_token' => request.cookies['d3vrtk'],
+			                             'client_id'     => ENV['CID'],
+			                             'client_secret' => ENV['SEC'] }	
 		
 			if resp.body
 				content = JSON.parse(resp.body)

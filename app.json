@@ -1,0 +1,17 @@
+{
+	"name" : "ASIDE.IO",
+	"description" : "A Salesforce IDE - fast, free, and open source",
+	"env" : {
+		"SEC" : {
+			"description" : "Salesforce connected app client secret"
+		},
+		"CID" : {
+			"description" : "Salesforce connected app client id"
+		},
+		"URL" : {
+			"description" : "URL of where the instance of aside will be hosted.  E.g. https://www.aside.io"
+		}
+	},
+	"repository" : "https://github.com/fillip/aside-io",
+	"stack" : "heroku-18"
+}

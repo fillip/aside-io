@@ -4,6 +4,7 @@
  @author	  phil rymek
 */
 
+var D3V_URL;
 var SANDBOX                  = 'test';
 var PRODUCTION               = 'login';
 var LOGIN_FAIL               = 'failed to login';
@@ -14,7 +15,6 @@ var TEST_SECTION			 = 'test';
 var PUSH_SECTION			 = 'push';
 var CODE_SECTION			 = 'code';
 var TITLE_DELIMETER			 = ' | ';
-var D3V_URL                  = (document.location.href.indexOf('aside-dev') !== -1 ? 'https://aside-dev.herokuapp.com' : 'https://www.aside.io');
 var COOKIE_PRE               = 'd3v';
 var COOKIE_SID               = 'sid';
 var COOKIE_MEP               = 'mep';
@@ -85,9 +85,9 @@ var ALERT_DISPLAY_TIME_LONG  = 37500;
 var ALERT_FADE_TIME          = 2500;
 var HELP_FADE		         = 750;
 var INPUT_HEIGHT	         = 18
-var DEFAULT_VERSION          = '44.0';
+var DEFAULT_VERSION          = '-1.0';
 var MIN_VERSION              = 10;
-var MAX_VERSION              = 46;
+var MAX_VERSION              = -1;
 var TOKEN_COOKIE_DAYS		 = 30;
 var OPTION_SLIDE_TIME        = 1250;
 var ACTIVE_OFFSET            = 40;

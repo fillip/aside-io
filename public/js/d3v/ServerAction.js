@@ -349,9 +349,9 @@ var ServerAction = {
 				$("#reauther").contents();
 				var redirectUrl = $("#reauther").get(0).contentWindow.location.origin ||
 				                  $("#reauther").get(0).contentWindow.location.hostname;
+                var partialUrl = D3V_URL.replace('https://', '').replace('http://', '').replace('www.','');
 
-				if(redirectUrl.indexOf('aside.io') !== -1 || 
-				   redirectUrl.indexOf('aside-dev.herokuapp.com') !== -1 || redirectUrl.indexOf('aside-app.herokuapp.com') !== -1) {
+				if(partialUrl && partialUrl.length > 0 && redirectUrl.indexOf(partialUrl) !== -1) {
 					$("#reauther").remove();
 				    d3vUtil.handleSuccessfulReauthentication(onReauth, reasonEndpoint);
 				} else {

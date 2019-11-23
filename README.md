@@ -11,7 +11,7 @@ In order to use this code, you will either need to run it locally or as a heroku
 
 To run ASIDE locally you will need:
 
-* Ruby v.2.1.2
+* Ruby 2.5.7
 * Bundler
 * A Salesforce Org that you're admin in
 * A Heroku account
@@ -49,8 +49,8 @@ Getting an *API session id* is slightly more complicated.  You can obtain one by
 
 ```
 $ irb
-2.1.2 :001 > require './D3VController'
-2.1.2 :002 > ctrl = D3VController.new('<username>', '<password>', '<security token>', '<login endpoint>')
+2.5.7 :001 > require './D3VController'
+2.5.7 :002 > ctrl = D3VController.new('<username>', '<password>', '<security token>', '<login endpoint>')
 ```
 
 When the second command is successful it outputs a block of information which includes the session id.  The session id is found in the `@session_id` parameter.
@@ -71,7 +71,7 @@ When successful, you should be at ASIDE's main screen, same as if you had used t
 
 Once you have ASIDE running locally, getting it deployed to Heroku is simple.  First, tell Heroku which stack you want this app to use.
 ```
-heroku stack:set cedar-14
+heroku stack:set heroku-18
 ```
 Next install Bundler and ASIDE's dependencies.
 ```
@@ -80,9 +80,14 @@ bundle install
 ```
 Finally, push the code to Heroku.
 ```
+git commit -a -m "deploying aside"
 git push heroku master
 ```
-Now you should be able to access your instance of ASIDE hosted on heroku!
+Now you should be able to access your instance of ASIDE hosted on heroku!  Unfortunately the login buttons still won't work because you havent configured OAuth.  To do that, follow the steps in the next section.
+
+### Configuring OAuth
+
+Ya gotta write this bro.  Are all these instructions moot when im adding a deploy to heroku button?
 
 ## Built With
 

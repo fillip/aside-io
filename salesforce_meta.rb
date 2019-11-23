@@ -11,8 +11,8 @@ require 'rubygems'
 gem 'builder', '>= 2.0.0'
 require 'builder'
 
-gem 'facets', '>= 2.4'
-require 'facets/openhash'
+#gem 'facets', '>= 2.4'
+#require 'facets/openhash'
 
 require 'rforce/soap_response_rexml'
 begin; require 'rforce/soap_response_hpricot'; rescue LoadError; end
@@ -27,7 +27,7 @@ class SalesforceMeta
   SoapResponse = 
     parser(:SoapResponseExpat) ||
     parser(:SoapResponseHpricot) ||
-    SoapResponseRexml
+    parser(:SoapResponseRexml)
   
   Envelope = <<-HERE
 <?xml version="1.0" encoding="utf-8" ?>
@@ -143,187 +143,6 @@ class SalesforceMeta
     content = decode(response)
     SoapResponse.new(content).parse
   end
-
-  # deploys sObject fields required by d3v (due to a limitation in API this now is in two parts)
-  # namespace - to append to object names
-  def deployD3VFields2(namespace)
-    expanded = '<create xmlns="http://soap.sforce.com/2006/04/metadata">'                                     +
-    		     '<metadata xmlns:ns2="http://soap.sforce.com/2006/04/metadata" xsi:type="ns2:CustomField">'  +
-    		         '<fullName>' + namespace + 'Aside_Code_File__c.Filename__c</fullName>' 				  +
-    		         '<description>Same as name, but external id.</description>' 							  +
-    		         '<label>Filename</label>' 																  +
-    		         '<length>255</length>'   															  	  +
-    		         '<type>Text</type>' 															  		  +
-    		         '<required>true</required>' 															  +
-    		         '<unique>true</unique>' 																  + 
-    		         '<externalId>true</externalId>'														  +            		       
-    		     '</metadata>' 																				  +
-
-    		     '<metadata xmlns:ns2="http://soap.sforce.com/2006/04/metadata" xsi:type="ns2:CustomField">'  +
-    		         '<fullName>' + namespace + 'Aside_Code_Update__c.Filename__c</fullName>' 				  +
-    		         '<label>Filename</label>' 																  +
-    		         '<length>255</length>'   															  	  +
-    		         '<type>Text</type>' 															  		  +         		       
-    		     '</metadata>' 																				  +
-
-    		     '<metadata xmlns:ns2="http://soap.sforce.com/2006/04/metadata" xsi:type="ns2:CustomField">'  +
-    		         '<fullName>' + namespace + 'Aside_Code_Update__c.Push_Code__c</fullName>' 				  +
-    		         '<label>Push Code</label>' 															  +
-    		         '<length>64</length>'   															  	  +
-    		         '<type>Text</type>' 															  		  +         		       
-    		     '</metadata>' 																				  +
-
-    		     '<metadata xmlns:ns2="http://soap.sforce.com/2006/04/metadata" xsi:type="ns2:CustomField">'  +
-    		         '<fullName>' + namespace + 'Aside_Code_Update__c.Type__c</fullName>' 					  +
-    		         '<label>Type</label>' 																      +
-    		         '<type>Picklist</type>' 															      +
-    		         '<picklist>' 																			  +
-	    		         '<picklistValues>'              													  +
-	    		         	'<fullName>Class</fullName>' 													  +
-	    		         	'<default>true</default>' 														  +
-	    		         '</picklistValues>'             													  +	
-	    		         '<picklistValues>'              													  +
-	    		         	'<fullName>Component</fullName>' 												  +
-	    		         	'<default>false</default>' 														  +
-	    		         '</picklistValues>'             													  +	 
-	    		         '<picklistValues>'              													  +
-	    		         	'<fullName>Page</fullName>' 													  +
-	    		         	'<default>false</default>' 														  +
-	    		         '</picklistValues>'             													  +	    
-	    		         '<picklistValues>'              													  +
-	    		         	'<fullName>Trigger</fullName>'													  +
-	    		         	'<default>false</default>' 														  +
-	    		         '</picklistValues>'             													  +   	
-    		         '</picklist>'	       																	  +
-    		     '</metadata>' 																				  +
-    		     
-    		   '</create>'
-    		   
-    call_remote(expanded)  
-  end
-  
-  # deploys sObject fields required by d3v (part 1/2)
-  # namespace - to append to object names
-  def deployD3VFields(namespace)
-    expanded = '<create xmlns="http://soap.sforce.com/2006/04/metadata">'                                     +
-    		     '<metadata xmlns:ns2="http://soap.sforce.com/2006/04/metadata" xsi:type="ns2:CustomField">'  +
-    		         '<fullName>' + namespace + 'Aside_Code_File__c.Code_1__c</fullName>' 					  +
-    		         '<label>Code 1</label>' 																  +
-    		         '<length>32768</length>' 																  +
-    		         '<type>LongTextArea</type>' 															  +
-    		         '<visibleLines>30</visibleLines>' 														  +	                
-    		     '</metadata>' 																				  +
-
-    		     '<metadata xmlns:ns2="http://soap.sforce.com/2006/04/metadata" xsi:type="ns2:CustomField">'  +
-    		         '<fullName>' + namespace + 'Aside_Code_File__c.Code_2__c</fullName>' 					  +
-    		         '<label>Code 2</label>' 																  +
-    		         '<length>32768</length>'   															  +
-    		         '<type>LongTextArea</type>' 															  +
-    		         '<visibleLines>30</visibleLines>' 														  +   		           		       
-    		     '</metadata>' 																				  +
-
-    		     '<metadata xmlns:ns2="http://soap.sforce.com/2006/04/metadata" xsi:type="ns2:CustomField">'  +
-    		         '<fullName>' + namespace + 'Aside_Code_File__c.Code_3__c</fullName>' 					  +
-    		         '<label>Code 3</label>' 																  +
-    		         '<length>32768</length>'   															  +
-    		         '<type>LongTextArea</type>' 															  +
-    		         '<visibleLines>30</visibleLines>' 														  +   		           		       
-    		     '</metadata>' 																				  +
-
-    		     '<metadata xmlns:ns2="http://soap.sforce.com/2006/04/metadata" xsi:type="ns2:CustomField">'  +
-    		         '<fullName>' + namespace + 'Aside_Code_File__c.Code_4__c</fullName>' 					  +
-    		         '<label>Code 4</label>' 																  +
-    		         '<length>32768</length>'   															  +
-    		         '<type>LongTextArea</type>' 															  +
-    		         '<visibleLines>30</visibleLines>' 														  +   		           		       
-    		     '</metadata>' 																				  +
-
-    		     '<metadata xmlns:ns2="http://soap.sforce.com/2006/04/metadata" xsi:type="ns2:CustomField">'  +
-    		         '<fullName>' + namespace + 'Aside_Code_File__c.Type__c</fullName>' 					  +
-    		         '<label>Type</label>' 																      +
-    		         '<type>Picklist</type>' 															      +
-    		         '<picklist>' 																			  +
-	    		         '<picklistValues>'              													  +
-	    		         	'<fullName>Class</fullName>' 													  +
-	    		         	'<default>false</default>' 														  +
-	    		         '</picklistValues>'             													  +	
-	    		         '<picklistValues>'              													  +
-	    		         	'<fullName>Component</fullName>' 												  +
-	    		         	'<default>false</default>' 														  +
-	    		         '</picklistValues>'             													  +	 
-	    		         '<picklistValues>'              													  +
-	    		         	'<fullName>Page</fullName>' 													  +
-	    		         	'<default>false</default>' 														  +
-	    		         '</picklistValues>'             													  +	    
-	    		         '<picklistValues>'              													  +
-	    		         	'<fullName>Trigger</fullName>'													  +
-	    		         	'<default>false</default>' 														  +
-	    		         '</picklistValues>'             													  +   	
-    		         '</picklist>'	       																	  +
-    		     '</metadata>' 																			      +
-    		   '</create>'
-    		   
-    call_remote(expanded)  
-  end
-  
-  def checkStatus(idToCheck) 
-    expanded = '<checkStatus xmlns="http://soap.sforce.com/2006/04/metadata">'                                     +
-    		     '<asyncProcessId>' + idToCheck + '</asyncProcessId>' +
-    		   '</checkStatus>'
-    		   
-    call_remote(expanded)   
-  end
-  
-  # deploys sObjects required by d3v
-  def deployD3VObjects(needsUpdate)  
-  	  codeFileObj = '<metadata xmlns:ns2="http://soap.sforce.com/2006/04/metadata" xsi:type="ns2:CustomObject">' +
-	       '<sharingModel>ReadWrite</sharingModel>'                                                   +
-	       '<label>ASIDE Code File</label>'                                                           +
-	       '<deploymentStatus>Deployed</deploymentStatus>' 											  +
-	       '<fullName>Aside_Code_File__c</fullName>' 												  + 
-	       '<nameField>' 																			  +
-	         '<label>Name</label>' 														              +
-	         '<type>Text</type>' 																	  +
-	       '</nameField>' 																			  +
-	       '<pluralLabel>ASIDE Code Files</pluralLabel>' 											  +
-	       '<description>Meant to contain copies of your apex and visualforce code.  Version 1.1</description>' +	       
-	   '</metadata>'
-	  
-	 codeUpdateObj = '<metadata xmlns:ns2="http://soap.sforce.com/2006/04/metadata" xsi:type="ns2:CustomObject">' +
-	       '<sharingModel>ReadWrite</sharingModel>'                                                   +
-	       '<label>ASIDE Code Update</label>'                                                         +
-	       '<deploymentStatus>Deployed</deploymentStatus>' 											  +
-	       '<fullName>Aside_Code_Update__c</fullName>' 												  + 
-	       '<nameField>' 																			  +
-	         '<label>Name</label>' 														              +
-	         '<type>AutoNumber</type>' 													 			  +
-	         '<displayFormat>asideCU-{0000000}</displayFormat>'										  +
-	         '<startingNumber>0</startingNumber>'													  +
-	       '</nameField>' 																			  +
-	       '<pluralLabel>ASIDE Code Updates</pluralLabel>' 											  +
-	       '<description>Information about the last save of a file.  Version 1.1</description>' 	  +
-	   '</metadata>'	   
-  	
-  	expanded = ''
-    if needsUpdate
-      expanded = '<update xmlns="http://soap.sforce.com/2006/04/metadata">' +
-    			   '<UpdateMetadata xmlns:ns2="http://soap.sforce.com/2006/04/metadata">' +
-    			     '<currentName>Aside_Code_File__c</currentName>' +
-                      codeFileObj +
-                 '</UpdateMetadata>' +
-                 
-    			 #d3v Code Update definition
-    			 '<UpdateMetadata xmlns:ns2="http://soap.sforce.com/2006/04/metadata">' +
-    			     '<currentName>Aside_Code_Update__c</currentName>' +
-					 codeUpdateObj +
-			     '</UpdateMetadata>' +
-               '</update>'         
-    else
-      expanded = '<create xmlns="http://soap.sforce.com/2006/04/metadata">' + codeFileObj + codeUpdateObj + '</create>'     
-    end 
-    
-    call_remote(expanded)
-  end
   
   # performs a deploy operations when passed a base-64 encoded zip file along with deploy options
   # body              - the base 64 encoded zip file
@@ -380,11 +199,12 @@ class SalesforceMeta
   
   # perform a retrieve when passed the body of a package xml
   # body - body of package.xml i.e. <types> and its children
+  # versionNumber - version number that should be used for the retrieve
   # returns the status id which can be used to get the retrieve result
-  def retrieve(body)
+  def retrieve(body, versionNumber)
  	expanded =  '<retrieve xmlns="http://soap.sforce.com/2006/04/metadata">' +
  			 		'<retrieveRequest>'  + 
- 			 			'<apiVersion>36.0</apiVersion>' +	
+ 			 			'<apiVersion>'   + versionNumber + '</apiVersion>' +
  			 			'<unpackaged>'   +
  			 				body         + 
  			 			'</unpackaged>'  +

@@ -5,8 +5,9 @@
 */
 (function() {	
 
-	var D3V_URL = (document.location.href.indexOf('aside-dev') !== -1 ? 'https://aside-dev.herokuapp.com' : 'https://www.aside.io');
-
+	var D3V_URL;
+	var D3V_CID; 
+	
 	/**
 	 * @description log into salesforce
 	 * @param		orgType - test or login
@@ -16,22 +17,12 @@
 			return;
 		}
 		
-		if(isDevVersion()) {
-			window.open(
-				'https://' + orgType + '.salesforce.com/services/oauth2/authorize' +
-				'?response_type=code' +
-				'&client_id=3MVG9A2kN3Bn17hsGwcg_vs7vMv5CumLywdM2cVbcJBS9DVfdShKGnaJ2fq9eiYII7_tkvmRGeItas2jVRQmg' + 
-				'&redirect_uri=https%3A%2F%2Faside-dev.herokuapp.com%2Fauth' +
-				'&state=' + (orgType === 'test' ? 'a' : 'b'), '_self');		
-		} else {
-			window.open(
-				'https://' + orgType + '.salesforce.com/services/oauth2/authorize' +
-				'?response_type=code' +
-				'&client_id=3MVG9A2kN3Bn17hsGwcg_vs7vMprfDMZGgJ_TtBy_RiNykKQ881YW_7JxigQe9d6ZOjjLDLSXvHLICGWCGntf' +
-				'&redirect_uri=https%3A%2F%2Fwww.aside.io%2Fauth' +
-				'&state=' + (orgType === 'test' ? 'c' : 'd'), '_self');		
-		
-		}
+		window.open(
+			'https://' + orgType + '.salesforce.com/services/oauth2/authorize' +
+			'?response_type=code' +
+			'&client_id=' + D3V_CID + 
+			'&redirect_uri=' + encodeURIComponent(D3V_URL + '/auth') + 
+			'&state=' + orgType, '_self');
 	}
 
 	/**
@@ -78,20 +69,6 @@
 		}
 	}
 	
-	function isDevVersion() {
-		return document.location.href.indexOf('aside-dev.herokuapp.com') !== -1;
-	}
-	
-	function setFooterText() {
-		var $footer = $('span.copyright');
-		
-		if(isDevVersion()) {
-			$footer.html('ASIDE 1.0.0  |  stable build @ <a href="https://www.aside.io/">aside.io</a>');
-		} else {
-			$footer.html('ASIDE 1.0.0  |  dev build @ <a href="https://aside-dev.herokuapp.com/">aside-dev.herokuapp.com</a>');
-		}
-	} 
-	
 	function bindActions() {
 		$('a.sandbox').click(loginToD3VSandbox);
 		$('a.production').click(loginToD3VProduction);
@@ -135,9 +112,17 @@
 		}
 	}
 	
+	function setConstants() {
+		$.post('/vars', function(result) {
+			result = JSON.parse(result);
+			D3V_URL = result.url;
+			D3V_CID = result.cid;
+		});
+	}
+	
 	$(document).ready(function() {
 		cannotLogin = false;
-		setFooterText();
+		setConstants();
 		checkBrowserCompatibility();
 		bindActions();
 		recoverFromError();

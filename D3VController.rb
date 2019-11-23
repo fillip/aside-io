@@ -44,7 +44,7 @@ class D3VController
 	#    apexEndpoint - apex api endpoint associated with session
 	#    anything     - only used to differentiate between call 1 and 2
 	def initialize(*args)
-		@defaultVersion = '44.0'
+		@defaultVersion = getVersionNumber
 		
 		case args.size
 		when 4
@@ -70,7 +70,8 @@ class D3VController
 			sessionId    = sessionId == '{ success : false }' ? '' : sessionId
 			
 			@sfPartner = RForce::Binding.new(endpoint, sessionId)
-			@sfPartner.init_server(endpoint)
+			
+			@sfPartner.create_server(URI.parse(endpoint))
 			continueLogin(sessionId, metaEndpoint, apexEndpoint)
 		end
 	end
@@ -1341,22 +1342,6 @@ class D3VController
 		end
 	end
 	
-	# returns an instance of the metadata api
-	# version - specify the version of metadata api to generate
-	def getMetadataAPI(version)
-		metaUrl    = @sfMeta.instance_variable_get('@url')
-		currentUrl = metaUrl.scheme + '://' + metaUrl.host + metaUrl.path
-		urlMatch   = currentUrl.match(/\/services\/soap\/m\/(\d+\.\d)\//i)
-		currentUrl = currentUrl.gsub('/' + urlMatch[1] + '/', '/' + version + '/')
-		return SalesforceMeta.new(@sfMeta.instance_variable_get('@session_id'), currentUrl)	
-	end
-	
-	#used for debugging purposes only, allows you to check the status of the deployd3vobjects and fields calls
-	def checkStatus(idToCheck)
-		oldMeta = getMetadataAPI('29.0')
-    	oldMeta.checkStatus(idToCheck)	
-	end
-	
 	# reads files used for d3v install
 	def getFileContents(pathToFile)
 		file = File.open(pathToFile, "rb")
@@ -1449,7 +1434,7 @@ class D3VController
 	def retrieve(body)
 		if @successfulLogin
 			begin
-				@sfMeta.retrieve(body)
+				@sfMeta.retrieve(body, getVersionNumber)
     		rescue Exception => exception
 				logException('retrieve()', exception.message, exception.backtrace)
 				raise	    		
@@ -1739,6 +1724,7 @@ class D3VController
 				aside['org']      = info
 				aside['user']     = user
 				aside['objMap']   = objMap
+				aside['url']      = ENV['URL']
 				info['namespace'] = determineNamespace(endpoint, namespace, hasNamespaceCookie)
 				
 				return aside.to_json
@@ -2280,6 +2266,26 @@ class D3VController
 		end
 		
 		return status
+	end
+	
+	#Get the version number that should be used for the login process
+	def getVersionNumber
+		baseVersion = 45
+		baseYear = 2019
+		
+		now = Time.new
+		month = now.month
+		year = now.year
+		
+		offset = 0
+		if month >= 9
+			offset = 2
+		elsif month >= 4
+			offset = 1
+		end
+		
+		default = (((year - baseYear) * 3) + offset + baseVersion - 2) 
+		return default.to_s + '.0'
 	end
 
 	# parses the extended status field into to an object containing

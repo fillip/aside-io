@@ -1,15 +1,16 @@
 source 'https://rubygems.org'
-ruby "2.1.2"
+ruby "2.5.7"
 
-gem 'sinatra', '1.1.0'
-gem 'eventmachine', '1.0.0.rc.1'
+gem 'sinatra'
+gem 'eventmachine'
 gem 'thin'
 gem 'soap4r-ng'
 gem 'rforce'
-gem 'facets', '2.8.4'
+gem 'facets'
 gem 'hpricot'
 gem 'json'
 gem 'savon'
 gem 'pg'
 gem 'rack-ssl-enforcer'
 gem 'rack-timeout'
+gem 'httpclient'

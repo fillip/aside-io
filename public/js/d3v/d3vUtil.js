@@ -358,6 +358,7 @@ var d3vUtil = {
 			aside = JSON.parse(callbackData);
 			aside.classes = {};
 			aside.triggers = {};
+			D3V_URL = aside.url;
 			
 			//work-around for namespace bug
 			if(aside.org.namespace && (aside.org.namespace === 'false' || aside.org.namespace === 'true')) {
@@ -1221,6 +1222,7 @@ var d3vUtil = {
 	    $('div#code-content').show(); 
 	    ace.require("ace/ext/language_tools");
 	    
+	    d3vUtil.setMaxAndDefaultVersion();
 	    d3vUtil.initializeDiffEditor();
 	    
 	    editor = aceDiffer.getEditors().left;
@@ -3071,5 +3073,28 @@ var d3vUtil = {
 		setTimeout(function() {
 			d3vUtil.clearCookiesAndLogout();
 		}, ERROR_MESSAGE_PAUSE);
+	},
+	
+	/**
+	 * @description Calculates and sets the max and default api version
+	 **/
+	setMaxAndDefaultVersion : function() {
+	    var BASE_VERSION = 45;
+	    var BASE_YEAR = 2019;
+	    
+	    var now = new Date();
+	    var month = now.getMonth() + 1;
+	    var year = now.getFullYear();
+	    
+		var offset = 0;
+		if(month >= 9) {
+			offset = 2;
+		} else if(month >= 4) {
+			offset = 1;
+		}
+		
+		MAX_VERSION = ((year - BASE_YEAR) * 3) + offset + BASE_VERSION + 1;
+		DEFAULT_VERSION = (MAX_VERSION - 3) + '.0';
+		NEW_PACKAGE_MARKUP = '<?xml version="1.0" encoding="UTF-8"?>\n<Package xmlns="http://soap.sforce.com/2006/04/metadata">\n\t<types>\n\t\t<members></members>\n\t\t<name></name>\n\t</types>\n\t<version>' + DEFAULT_VERSION + '</version>\n</Package>';
 	}
 }
