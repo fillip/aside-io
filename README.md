@@ -5,7 +5,7 @@ ASIDE.IO is **A** **S**alesforce **IDE** that is fast, free, and easy to use. It
 
 ## Getting Started
 
-This is a guide for someone looking to contribute to or modify ASIDE.  If you want to spin up a new instance of ASIDE and aren't interested in it's source code, [read this instead](/new_instance).
+This is a guide for someone looking to contribute to or modify ASIDE.  If you want to spin up a new instance of ASIDE and aren't interested in it's source code, [read this instead](https://aside.io/new_instance).
 
 In order to use this code, you will either need to run it locally or as a heroku app.  The steps below describe both processes.
 
@@ -39,15 +39,15 @@ http://<my ip address>:5000/login
 
 ### Logging In
 
-You'll probably want to be able to get past the login page, and the usual login buttons aren't going to work for that, due to how the OAuth is configured.  However, you can use the "frontdoor" login endpoint to get in.  To use the frontdoor login, you will need the *org id* of the org you want to log into, your *user id*, the *instance name* (e.g. *na12*), the *endpoint type* (*login* for production/developer edition, *test* for sandboxes), and have an *api session id*.
+You'll probably want to be able to get past the login page, and the usual login buttons aren't going to work for that, due to how the OAuth is configured.  However, you can use the `"frontdoor" login endpoint` to get in.  To use the frontdoor login, you will need the `org id` of the org you want to log into, your `user id`, the `instance name` (e.g. *na12*), the `endpoint type` (`login` for production/developer edition, `test` for sandboxes), and have an `api session id`.
 
-The *org id* and *instance name* both appear on the "Company Information" screen (setup -> Company Information).
+The `org id` and `instance name` both appear on the "Company Information" screen (setup -> Company Information).
 
-Your *user id* is accessible from the url of your user detail page.
+Your `user id` is accessible from the url of your user detail page.
 
-The *endpoint type* is just a static string value.  "login" for production and developer edition orgs, and "test" otherwise.
+The `endpoint type` is just a static string value.  "login" for production and developer edition orgs, and "test" otherwise.
 
-Getting an *API session id* is slightly more complicated.  You can obtain one by logging into ASIDEs backend from `irb`.  Try the following series of commands.  The *\<login endpoint\>* should be something like https://login.salesforce.com or https://test.salesforce.com.
+Getting an `API session id` is slightly more complicated.  You can obtain one by logging into ASIDEs backend from `irb`.  Try the following series of commands.  The `login endpoint` should be something like https://login.salesforce.com or https://test.salesforce.com.
 
 ```
 $ irb
@@ -89,19 +89,19 @@ Now you should be able to access your instance of ASIDE hosted on heroku!  Unfor
 
 ### Configuring OAuth
 
-Before you can login, you will need to make some configuration changes within Salesforce and Heroku.  ASIDE's login works based on Salesforce's OAuth web server flow ([more info available here](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_web_server_oauth_flow.htm)), as such you will need to create a Connected App within a Salesforce organization for it to work.  Create the connected app with the following details:
+Before you can login from your new Heroku app, you will need to make some configuration changes within Salesforce and Heroku.  ASIDE's login works based on Salesforce's OAuth web server flow ([more info available here](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_web_server_oauth_flow.htm)), as such you will need to create a Connected App within a Salesforce organization for it to work.  Create the connected app with the following details:
 
 * `API (Enable OAuth Settings)` set to true
 * `Callback URL` is the URL of your heroku app with "/auth" added to the end.  E.g. if your heroku app is available at "https://my-aside.herokuapp.com" then the `Callback URL` is "https://my-aside.herokuapp.com/auth".
 * `Selected OAuth Scopes` set to "Full access (full)"
 
-After saving the Connected App, there will be two values available on the detail page: `Client Id` and `Client Secret`.  These values need to be set in the configuration of your Heroku application.  From the application dashboard in Heroku, choose your version of ASIDE and click the `Settings` tab.  Scroll down and click to `Reveal Config Vars`.  Add the following config vars:
+After saving the Connected App, there will be two values available on the detail page: `Client Id` and `Client Secret`.  These values need to be set in the configuration of your Heroku application.  From the application dashboard in Heroku, choose your application and click the `Settings` tab.  Scroll down and click to `Reveal Config Vars`.  Add the following config vars:
 
-* Key: `CID`; Value: <Salesforce Connected App `Client Id`>
-* Key: `SEC`; Value: <Salesforce Connected App `Client Secret`>
-* Key: `URL`; Value: <URL of your Heroku application.  E.g. https://my-aside.herokuapp.com>
+* Key: `CID`; Value: < Salesforce Connected App `Client Id` >
+* Key: `SEC`; Value: < Salesforce Connected App `Client Secret` >
+* Key: `URL`; Value: < URL of your Heroku application.  E.g. https://my-aside.herokuapp.com >
 
-Save these values and wait 10 minutes, then you should be able to login to your instance of ASIDE!  If you can't login double check your configuration or see the [help](/help)
+Save these values and wait 10 minutes, then you should be able to login to your instance of ASIDE!  If you can't login double check your configuration or see the [help](https://aside.io/help)
 
 ## Built With
 
