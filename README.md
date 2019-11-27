@@ -7,7 +7,7 @@ ASIDE.IO is **A** **S**alesforce **IDE** that is fast, free, and easy to use. It
 
 This is a guide for someone looking to contribute to or modify ASIDE.  If you want to spin up a new instance of ASIDE and aren't interested in it's source code, [read this instead](https://aside.io/new_instance).
 
-In order to use this code, you will either need to run it locally or as a heroku app.  The steps below describe both processes.
+In order to use this code, you will either need to run it locally or as a Heroku app.  The steps below describe both processes.
 
 ### Prerequisites
 
@@ -20,7 +20,7 @@ To run ASIDE locally you will need:
 
 ### Running Locally
 
-First, create a heroku app, visit [https://devcenter.heroku.com/articles/creating-apps](https://devcenter.heroku.com/articles/creating-apps) for instructions.
+First, create a Heroku app, visit [https://devcenter.heroku.com/articles/creating-apps](https://devcenter.heroku.com/articles/creating-apps) for instructions.
 ```
 $ mkdir aside-deploy-example
 $ cd aside-deploy-example
@@ -85,14 +85,14 @@ Finally, push the code to Heroku.
 git commit -a -m "deploying aside"
 git push heroku master
 ```
-Now you should be able to access your instance of ASIDE hosted on heroku!  Unfortunately the login buttons still won't work because you havent configured OAuth.  To do that, follow the steps in the next section.
+Now you should be able to access your instance of ASIDE hosted on Heroku!  Unfortunately the login buttons still won't work because you havent configured OAuth.  To do that, follow the steps in the next section.
 
 ### Configuring OAuth
 
-Before you can login from your new Heroku app, you will need to make some configuration changes within Salesforce and Heroku.  ASIDE's login works based on Salesforce's OAuth web server flow ([more info available here](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_web_server_oauth_flow.htm)), as such you will need to create a Connected App within a Salesforce organization for it to work.  Create the connected app with the following details:
+Before you can login from your new Heroku app, you will need to make some configuration changes within Salesforce and Heroku.  ASIDE's login works based on Salesforce's OAuth web server flow ([more info available here](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_web_server_oauth_flow.htm)), as such you will need to create a Connected App within a Salesforce organization for it to work.  Create the Connected App with the following details:
 
 * `API (Enable OAuth Settings)` set to true
-* `Callback URL` is the URL of your heroku app with "/auth" added to the end.  E.g. if your heroku app is available at "https://my-aside.herokuapp.com" then the `Callback URL` is "https://my-aside.herokuapp.com/auth".
+* `Callback URL` is the URL of your Heroku app with "/auth" added to the end.  E.g. if your Heroku app is available at "https://my-aside.herokuapp.com" then the `Callback URL` is "https://my-aside.herokuapp.com/auth".
 * `Selected OAuth Scopes` set to "Full access (full)"
 
 After saving the Connected App, there will be two values available on the detail page: `Client Id` and `Client Secret`.  These values need to be set in the configuration of your Heroku application.  From the application dashboard in Heroku, choose your application and click the `Settings` tab.  Scroll down and click to `Reveal Config Vars`.  Add the following config vars:
