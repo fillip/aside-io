@@ -131,9 +131,17 @@ table .text-link {
 	letter-spacing: 0.75;
 }
 
+.italic {
+	font-style: italic;
+}
+
 .bold {
 	font-weight: bold;
 	letter-spacing: 0.75;	
+}
+
+.no-bullets, .no-bullets ul {
+	list-style-type: none;
 }
 
 .term {

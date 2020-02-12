@@ -2983,7 +2983,7 @@ var d3vUtil = {
 		
 		var apiEndpoint = CookieUtil.readCookie('d3vaep');
 		apiEndpoint     = decodeURIComponent(apiEndpoint);
-		isProductionEnv = apiEndpoint.match(/cs\d{1,2}/gi) === null;
+		isProductionEnv = apiEndpoint.match(/cs\d{1,3}/gi) === null;
 		
 		return isProductionEnv;
 	},	

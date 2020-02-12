@@ -1,20 +1,6 @@
 {
 	"name" : "ASIDE.IO",
 	"description" : "A Salesforce IDE - fast, free, and open source",
-	"env" : {
-		"SEC" : {
-			"description" : "Salesforce connected app client secret.  This must be populated before OAuth will work, but is not required to deploy ASIDE.",
-			"required" : false
-		},
-		"CID" : {
-			"description" : "Salesforce connected app client id.  This must be populated before OAuth will work, but is not required to deploy ASIDE.",
-			"required" : false
-		},
-		"URL" : {
-			"description" : "URL of where the instance of ASIDE will be hosted (E.g. https://www.aside.io).  This must be populated before OAuth will work, but is not required to deploy ASIDE.",
-			"required" : false
-		}
-	},
 	"repository" : "https://github.com/fillip/aside-io",
 	"stack" : "heroku-18"
 }

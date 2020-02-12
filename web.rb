@@ -56,6 +56,11 @@ get '/shortcuts' do
 	File.open('shortcuts.html', File::RDONLY)
 end
 
+# serve up instance page
+get '/new_instance' do
+	File.open('instance.html', File::RDONLY)
+end
+
 #oauth based login endpoint
 get '/auth' do
     endpoint = params[:state]
@@ -79,7 +84,7 @@ get '/auth' do
 			ctrl = D3VController.new
 			version = ctrl.getVersionNumber
 			
-			if content['instance_url'] =~ /\.((na|cs|ap|eu)\d{1,2})\.my\.salesforce\.com/
+			if content['instance_url'] =~ /\.((na|cs|ap|eu)\d{1,3})\.my\.salesforce\.com/
 				baseUrl = 'https://' + $1 + '-api.salesforce.com/services/Soap'	
 			elsif content['instance_url'].index('.my.salesforce.com') || content['instance_url'].index('emea.salesforce.com') || content['instance_url'].index('ap.salesforce.com')
 				baseUrl = content['instance_url'] + '/services/Soap'
@@ -595,12 +600,12 @@ helpers do
 	def refresh(request, response, forClient)
 		if request.cookies['d3vrtk'] && request.cookies['d3vpep']
 			endpoint = request.cookies['d3vpep'].split('services/Soap')[0]
-			if endpoint =~ /\.((na|cs|ap|eu)\d{1,2})\.my\.salesforce\.com/
+			if endpoint =~ /\.((na|cs|ap|eu)\d{1,3})\.my\.salesforce\.com/
 				endpoint = 'test'
 			elsif endpoint.index('.my.salesforce.com') || endpoint.index('emea.salesforce.com') || endpoint.index('ap.salesforce.com')
 				endpoint = 'login'
 			else
-				endpoint = endpoint.match(/cs\d{1,2}/i) == nil ? 'login' : 'test'
+				endpoint = endpoint.match(/cs\d{1,3}/i) == nil ? 'login' : 'test'
 			end
 			
 			resp = HTTPClient.new.post 'https://' + endpoint + '.salesforce.com/services/oauth2/token', 
