@@ -7,6 +7,7 @@
 
 	var D3V_URL;
 	var D3V_CID; 
+	var D3V_GID;
 	
 	/**
 	 * @description log into salesforce
@@ -117,7 +118,22 @@
 			result = JSON.parse(result);
 			D3V_URL = result.url;
 			D3V_CID = result.cid;
+			D3V_GID = result.gid;
+			
+			setupGoogleAnalytics();
 		});
+	}
+	
+	function setupGoogleAnalytics() {
+		if(D3V_GID && D3V_GID.length) {
+		    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		    ga('create', D3V_GID, 'auto');
+		    ga('send', 'pageview');
+		}
 	}
 	
 	$(document).ready(function() {

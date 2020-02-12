@@ -138,8 +138,6 @@ var d3vPush = {
 					'<span class="bold-font dark-grey">Stack Trace</span>' +
 					'<div>' + d3vTest.addStackTraceLinks(failure.stackTrace) + '</div>' +
 				'</div>';
-				
-		$('div#deploy-status-popup-body span.stack-trace-link').unbind().click(d3vTest.stackTraceFileClickHandler);
 	},
 
 	/**

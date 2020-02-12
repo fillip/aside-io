@@ -593,7 +593,8 @@ post '/checkDeployStatus' do
 end
 
 post '/vars' do
-	return '{ "cid" : "' + ENV['CID'] + '", "url" : "' + ENV['URL'] + '" }'
+	return '{ "cid" : "' + ENV['CID'] + '", "url" : "' + ENV['URL'] + '", "gid" : "' + 
+		(ENV['GID'] ? ENV['GID'] : '') + '" }'
 end
 
 helpers do

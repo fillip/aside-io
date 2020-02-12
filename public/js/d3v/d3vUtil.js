@@ -340,6 +340,21 @@ var d3vUtil = {
 	},
 	
 	/**
+	 * @description Sets up google analytics if the GID heroku config var has been configured
+	 **/
+	setupGoogleAnalytics : function() {
+		if(aside.gid && aside.gid.length) {
+		    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		    ga('create', aside.gid, 'auto');
+		    ga('send', 'pageview');
+		}
+	},
+	
+	/**
 	 * @description Loads everything needed from the server to initialize aside, and does the initializing
 	 **/
 	loadASIDE : function() {
@@ -397,6 +412,7 @@ var d3vUtil = {
 	    	d3vSync.initializeVisibilityTracking();
 	    	d3vPush.updateOnloadFilterPicklist(true);
 	    	d3vCode.initializeLightning();
+	    	d3vUtil.setupGoogleAnalytics();
 	    	
 	    	gaLoggingReady = true;
 		});		
