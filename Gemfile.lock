@@ -23,7 +23,7 @@ GEM
     nori (2.6.0)
     oauth (0.5.4)
     pg (1.1.4)
-    rack (2.0.7)
+    rack (2.2.3)
     rack-protection (2.0.7)
       rack
     rack-ssl-enforcer (0.2.9)
