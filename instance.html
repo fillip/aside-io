@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<!-- 
+@author      Phil Rymek
+@date		 11/25/2019
+@description ASIDE.IO Deployment
+
+Copyright (c) 2020, salesforce.com, inc.
+All rights reserved.
+SPDX-License-Identifier: BSD-3-Clause
+For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
+ -->
+
+<html>
+	<head>
+		<link rel="shortcut icon" href="images/favicon.ico" />
+		<title>ASIDE.IO New Instance</title>
+			
+		<link href="css/help.css?v=1.0.2" rel="stylesheet" type="text/css" />
+		<script src="js/jquery/jquery.min.js?v=1.0.2"></script>
+		<script src="js/d3v/d3vHelp.js?v=1.0.2"></script>
+	</head>
+	<body>
+		<div class="main">
+			<div class="header">
+				<div class="header-top">
+	  				<h1>ASIDE.IO New Instance</h1>
+	  			</div>
+	  			
+	  			<div class="header-bottom">
+		  			<a class="nav-link" href="/about">[about]</a>
+		  			<a class="nav-link" href="/help">[help]</a>	
+		  			<a class="nav-link" href="/new_instance">[instance]</a>	
+		  			<a class="nav-link" href="/login">[login]</a>
+		  			<a class="nav-link" href="/shortcuts">[shortcuts]</a>
+		  			<a class="nav-link" href="/updates">[updates]</a>	
+		  			<span class="title-block"></span>
+		  		</div>
+			</div>
+			
+			<h2 id="current" class="mt4 title-item">Hosting Your Own Instance of ASIDE</h2>
+			<div class="mt4 text-block">
+				It's now possible to spin up your own instance of ASIDE in just a few steps. Follow the guide below 
+				to deploy a new version of the app and then configure the OAuth login.
+			</div>
+			
+			<h3 class="mt4 title-item">Prerequisites</h3>
+			<div class="mt4 text-block">
+				Before you can setup a new instance of ASIDE you're going to need a couple things:
+				<br />
+				<ul>
+					<li>
+						A Heroku account
+						<ul>
+							<li>
+								Sign up is free at: <a href="https://www.heroku.com" class="text-link" target="_blank">https://www.heroku.com</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						A Salesforce org that you are a system administrator in
+						<ul>
+							<li>
+								This org will be used to contain the <span class="important">Connected App</span> that 
+								facilitates the OAuth login ASIDE uses. 
+								This should probably be a <span class="term">developer edition</span> or 
+								<span class="term">production organization</span>, but any org will work. 
+								It's not necessarily the same org that you plan on logging into ASIDE with.  
+								It can be, but it does not need to be.
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			
+			<h3 class="mt4 title-item">Deploy the Heroku Application</h3>
+			<div class="mt4 text-block">
+				Click the button below to begin the deployment process for ASIDE.  It will open a new page 
+				which contains a form with a couple fields relating to the deployment.
+				<br/>
+				<a href="https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2Ffillip%2Faside-io" target="_blank">
+					<img src="https://www.herokucdn.com/deploy/button.png" class="mt3" />
+				</a>
+				<br/><br/>
+				Fill out the <span class="term">App name</span> field. The <span class="term">App name</span> will dictate 
+				what the URL is to access the application.  For example, if the <span class="term">App name</span> is 
+				<span class="important">"my-aside"</span> then the URL is <span class="important">"https://my-aside.herokuapp.com"</span>.  
+				Click the <span class="term">Deploy app</span> button.
+			</div>
+			
+			<h3 class="mt4 title-item">Create the Connected App</h3>
+			<div class="mt4 text-block">
+				From within Salesforce (and in the Lightning Experience UI), go to the setup menu.  Type <span class="term">App Manager</span> 
+				in the <span class="important">Quick Find</span> search, and click the <span class="term">App Manager</span> setup item.  
+				In the top right of the screen, you should see a button, <span class="important">New Connected App</span>.  Click the button to 
+				begin creating the <span class="important">Connected App</span>.
+				<br /><br />
+				From the <span class="important">New Connected App</span> screen, populate the first three required fields 
+				(<span class="term">Connected App Name</span>, <span class="term">API Name</span>, <span class="term">Contact Email)</span>; their 
+				values are not important.  Scroll down to the <span class="important">"API (Enable OAuth Settings)"</span> section and check the 
+				<span class="term">Enable OAuth Settings</span> checkbox.  A handful of additional fields should now be displaying in this section.
+				<br /><br />
+				Populate the required field <span class="term">Callback URL</span> with the URL to the instance of ASIDE you 
+				just deployed with <span class="important">"/auth"</span> added to the end.  For example, if your new instance of 
+				ASIDE is available at <span class="important">"https://my-aside.herokuapp.com"</span> then the 
+				<span class="term">Callback URL</span> is <span class="important">"https://my-aside.herokuapp.com/auth"</span>.
+				<br /><br />
+				The last field you have to fill out to finish configuring the <span class="important">Connected App</span> is the 
+				<span class="term">Selected OAuth Scopes</span> field.  Choose a value of <span class="important">"Full access (full)"</span> 
+				and click the save button to finish configuring the <span class="important">Connected App</span>.
+				<br /><br />
+				Now that you have created a <span class="important">Connected App</span> it has two fields which are populated by Salesforce 
+				on it's detail page: <span class="term">Consumer Key</span> and <span class="term">Consumer Secret</span>.  
+				Their values will be used to finish configuring the application in the next step.
+			</div>
+			
+			<h3 class="mt4 title-item">Add the Heroku Config Vars</h3>
+			<div class="mt4 text-block">
+				As a final step, you will need to populate the <span class="term">Config Vars</span> within Heroku in order for ASIDE's OAuth based 
+				login to work.  When logged into Heroku and viewing the application dashboard for the Heroku app you deployed earlier, 
+				click the <span class="important">Settings</span> tab.  Within the <span class="term">Config Vars</span> section click 
+				<span class="important">Reveal Config Vars</span>.  Add the three new <span class="term">Config Vars</span> detailed below.
+				<br />
+				<ul>
+					<li>
+						<span class="term">CID</span>
+						<ul>
+							<li>
+								This is the <span class="term">Consumer Key</span> from the 
+								<span class="important">Connected App</span> you created in Salesforce.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<span class="term">SEC</span>
+						<ul>
+							<li>
+								This is the <span class="term">Consumer Secret</span> from the 
+								<span class="important">Connected App</span> you created in Salesforce.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<span class="term">URL</span>
+						<ul>
+							<li>
+								This is the URL where the version of ASIDE is hosted at.  The <span class="term">App name</span> 
+								defined earlier will dictate what the URL is to access the application.  For example, if the 
+								<span class="term">App name</span> is <span class="important">"my-aside"</span> then the 
+								URL is <span class="important">"https://my-aside.herokuapp.com"</span>.
+							</li>
+						</ul>
+					</li>
+				</ul>
+				After adding these three <span class="term">Config Vars</span> you should be able to login to your new instance of ASIDE.
+			</div>
+			
+			<h2 class="mt4 title-item">All Done!</h3>
+			<div class="mt4 text-block">
+				You have now deployed your own copy of ASIDE and configured OAuth to work.  Your copy of ASIDE should be fully operational at 
+				this point.  If you still can't login, wait 10 minutes.  The <span class="important">Connected App</span> can sometimes take a bit to be available for use.
+				<span class="bold">Thanks for using ASIDE!</span>
+			</div>
+			
+			<h3 class="mt4 title-item">Frequently Asked Questions</h3>
+			<div class="mt4 text-block">
+				Below are some questions that might be on your mind after reading through this guide:
+				<br />
+				
+				<div class="mt4">
+					<span class="italic bold">Why can't I login?</span>
+				</div>
+				<div class="mt2">
+					It takes a while for for the <span class="important">Connected App</span> to be available for use sometimes.  Wait 10 minutes and try again.  
+					If that doesn't work, double check your configuration.  If that doesn't work, read the 
+					<a href="/help" class="text-link" target="_blank">help</a> for more info on login failures.
+				</div>
+				
+				<div class="mt4">
+					<span class="italic bold">Is this really free?</span>
+				</div>
+				<div class="mt2">
+					It's free as described in this guide.  By default the application will be configured to use the Heroku free tier.  
+					To obtain more performance to host more users you may need to leave the free tier.
+				</div>
+				
+				<div class="mt4">
+					<span class="italic bold">How do I setup SSL?</span>
+				</div>
+				<div class="mt2">
+					You can read more info about that 
+					<a href="https://devcenter.heroku.com/articles/ssl" target="_blank" class="text-link">here</a>. 
+				</div>
+				
+				<div class="mt4">
+					<span class="italic bold">How do I setup a custom domain?</span>
+				</div>
+				<div class="mt2">
+					Heroku has a knowledge article about this topic 
+					<a href="https://devcenter.heroku.com/articles/custom-domains" target="_blank" class="text-link">here</a>.  
+				</div>
+				
+				<div class="mt4">
+					<span class="italic bold">
+						Will my version of the application automatically update when the associated git repository is updated?
+					</span>
+				</div>
+				<div class="mt2">
+					Not by default.  However, you can configure the app in Heroku (from the <span class="term">Settings</span> tab 
+					in the Heroku application dashboard) to be directly connected to ASIDE's git repository and then 
+					enable automatic deploys to accomplish this.
+				</div>
+				
+				<div class="mt4">
+					<span class="italic bold">Can you tell me more about how the login for ASIDE works?</span>
+				</div>
+				<div class="mt2">
+					It uses the OAuth web server flow.  Salesforce has documentation on it 
+					<a href="https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_web_server_oauth_flow.htm" target="_blank" class="text-link">here</a>.  
+				</div>
+				
+				<div class="mt4">
+					<span class="italic bold">Does the Connected App really need an OAuth Scope of Full?</span>
+				</div>
+				<div class="mt2">
+					Probably not, but it's safest to leave it at that setting.  The definition of full access changes over time as 
+					Salesforce obtains new capabilities and permissions to go along with those capabilities.  When ASIDE was originally created it
+					needed full access but it probably does not need that much access now (e.g. looking at the scope list, it probably 
+					does not need access to wave and eclair data).
+				</div>
+				
+				<div class="mt4">
+					<span class="italic bold">Is there an easy way to hook up ASIDE to google analytics?</span>
+				</div>
+				<div class="mt2">
+					Indeed there is!  Within the heroku config vars setup add a fourth key, its name should be 
+					<span class="term">GID</span> and its value should be your google analytics tracking id.
+				</div>
+				
+				<div class="mt4">
+					<span class="italic bold">How does the posi-trac rear end on a Plymouth work?</span>
+				</div>
+				<div class="mt2">
+					It just does.
+				</div>
+			</div>
+		</div>	
+	</body>
+</html>

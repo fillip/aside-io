@@ -1,0 +1,305 @@
+/**
+ * @description ASIDE.IO Help, Updates, About, Shortcuts Stylesheet
+ **/
+
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    background: #eee;
+    font-size: 20px;
+}
+
+html, body, h1, h2, h3, div, span, table {
+	margin: 0;
+	padding: 0;
+}
+
+b {
+	color: #8f8f8f;
+}
+
+.main {
+	max-width: 900px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 50px;
+}
+
+h1 {
+	font-size: 2.5em;
+	font-weight: bold;
+	color: #eee;
+}
+
+h2 {
+	font-size: 1.75em;
+	color: #444;
+}
+
+h3 {
+	font-size: 1.4em;
+	color: #555;
+}
+
+.shortcuts {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: .9em;
+}
+
+.shortcuts tr:hover td {
+	background: #666;
+	color: white;
+}
+
+.shortcuts th {
+	background: #444;
+	color: #f6f6f6;
+	padding: 10px;
+	text-align: left;
+}
+
+.shortcuts td {
+	background: #f6f6f6;
+	color: #444;
+	padding: 10px;
+}
+
+.shortcuts td:first-child {
+	font-weight: bold;
+	width: 150px;
+	background: #ddd;
+}
+
+.scroller, .outline, .goes-next, .goes-prev {
+	float: right;
+}
+
+.nav-link {
+	color: #eee;
+	margin-right: 15px;
+	display: inline-block;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.nav-link:hover {
+	color: #999;
+}
+
+.header {
+  background: #444;
+  color: #eee;
+  position: relative;
+  z-index: 25;
+}
+
+.header-top {
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.header-bottom {
+    height: 60px;
+    line-height: 60px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.title-block {
+	font-size: 30px;
+	display: none;
+}
+
+.text-link {
+	color: #666;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+table .text-link {
+	color: #999 !important;
+}
+
+.text-link:hover {
+	color: #888;
+}
+
+.important {
+	text-decoration: underline;
+	letter-spacing: 0.75;
+}
+
+.italic {
+	font-style: italic;
+}
+
+.bold {
+	font-weight: bold;
+	letter-spacing: 0.75;	
+}
+
+.no-bullets, .no-bullets ul {
+	list-style-type: none;
+}
+
+.term {
+	border: 1px solid #aaa;
+    background: #ddd;
+    color: #222;
+    display: inline-block;
+    border-radius: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 18px;
+    line-height: 18px;
+    font-size: 14px;
+    font-family: courier;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.ml-term {
+	border: 1px solid #aaa;
+    background: #ddd;
+    color: #222;
+    display: inline-block;
+    border-radius: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 14px;
+    font-family: courier;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.text-block {
+	line-height: 1.5;
+    letter-spacing: .5;	
+}
+
+.mt0 {
+	margin-top: 200px;
+}
+
+.mt1 {
+	margin-top: 5px;
+}
+
+.mt2 {
+	margin-top: 10px;
+}
+
+.mt3 {
+	margin-top: 20px;
+}
+
+.mt4 {
+	margin-top: 40px;
+}
+
+.mt5 {
+	margin-top: 80px;
+}
+
+.ol1 {
+	margin-left: 0px;
+}
+
+.ol2 {
+	margin-left: 50px;
+}
+
+.ol3 {
+	margin-left: 100px;
+}
+
+.ol4 {
+	margin-left: 150px;
+}
+
+.ol5 {
+	margin-left: 200px;
+}
+
+div#generic-overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.5;
+    z-index: 20;
+    display: none;
+}	
+
+.outline-search {
+	width: calc(100% - 110px);
+    line-height: 30px;
+    font-size: 20px;
+    margin: 20px 0 0 20px;
+    padding-left: 10px;
+    background: #555;
+    border: 2px solid #3f3f3f;
+    color: #f6f6f6;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.search-reset {
+	float: right;
+    height: 32px;
+    line-height: 30px;
+    width: 66px;
+    background: #555;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-right: 20px;
+    border: 2px solid #3f3f3f;
+    color: #f6f6f6;
+}
+
+.search-reset:hover {
+	background: #999;
+}
+
+.outline-container {
+	width: 100%;
+	height: 0;
+	overflow: hidden;
+}
+
+.outline-table {
+    color: #f6f6f6;
+    height: 90%;
+    overflow: auto;
+    background: #3f3f3f;
+    padding: 10px;
+    margin: 0 20px;
+}
+
+.outline-item {
+	display: block;
+	font-size: 20px;
+	cursor: pointer;
+	padding: 5px;
+}
+
+.outline-item:last-of-type {
+	margin-bottom: 50px;
+}
+
+.outline-item:hover {
+	background: #eee;
+	color: #222;
+}
+
+.help-img {
+	width: 50%;
+	border: 1px solid #aaa;
+    margin: auto;
+    display: block;
+}

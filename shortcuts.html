@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<!-- 
+@author      Phil Rymek
+@date		 11/27/2016
+@description ASIDE.IO Shortcuts
+
+Copyright (c) 2020, salesforce.com, inc.
+All rights reserved.
+SPDX-License-Identifier: BSD-3-Clause
+For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
+ -->
+ 
+<html>
+	<head>
+		<link rel="shortcut icon" href="images/favicon.ico" />
+		<title>ASIDE.IO Shortcuts</title>
+			
+		<link href="css/help.css?v=1.0.2" rel="stylesheet" type="text/css" />
+		<script src="js/jquery/jquery.min.js?v=1.0.2"></script>
+		<script src="js/d3v/d3vHelp.js?v=1.0.2"></script>
+	</head>
+	<body>
+		<div class="main">
+			<div class="header">
+				<div class="header-top">
+	  				<h1>ASIDE.IO Shortcuts</h1>
+	  			</div>
+	  			
+	  			<div class="header-bottom">
+		  			<a class="nav-link" href="/about">[about]</a>
+		  			<a class="nav-link" href="/help">[help]</a>	
+		  			<a class="nav-link" href="/new_instance">[instance]</a>	
+		  			<a class="nav-link" href="/login">[login]</a>
+		  			<a class="nav-link" href="/shortcuts">[shortcuts]</a>
+		  			<a class="nav-link" href="/updates">[updates]</a>	
+					<span class="title-block"></span>
+					<span class="nav-link scroller" href="#data">data</span>
+					<span class="nav-link scroller" href="#code">code</span>
+					<span class="nav-link scroller" href="#globals">globals</span>
+		  			<span class="nav-link scroller" href="#overview">overview</span>
+	  			</div>
+			</div>
+			
+			<h2 id="overview" class="mt4 title-item">Overview</h2>
+			<div class="mt4 text-block">
+			The shortcuts available for use within ASIDE are listed below. 
+			Shortcuts shown in the <span class="term">globals</span> section can be used at 
+			anytime, but shortcuts listed for a specific screen (<span class="term">code</span>, <span class="term">data</span>) only work on those screens. For other help, see the <a class="text-link" href="/help">help</a> section.
+			</div>
+			
+			<h2 id="globals" class="mt4 title-item">Global Shortcuts</h2>
+			<h3 class="mt1">Work anywhere within ASIDE</h3>
+			
+			<table class="shortcuts mt4">
+				<thead>
+					<tr>
+						<th>Shortcut</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><span class="mod-key">⌘</span> + shift + l</td>
+						<td>opens the debug log list in the right panel</td>
+					</tr>
+					<tr>
+						<td><span class="mod-key">⌘</span> + shift + i</td>
+						<td>open a new instance of ASIDE</td>
+					</tr>
+					<tr>
+						<td><span class="mod-key">⌘</span> + shift + o</td>
+						<td>open the context of ASIDE within salesforce</td>
+					</tr>	
+					<tr>
+						<td><span class="mod-key">⌘</span> + shift + 6</td>
+						<td>switch to "code" screen</td>
+					</tr>
+					<tr>
+						<td><span class="mod-key">⌘</span> + shift + 7</td>
+						<td>switch to "test" screen</td>
+					</tr>
+					<tr>
+						<td><span class="mod-key">⌘</span> + shift + 8</td>
+						<td>switch to "push" screen</td>
+					</tr>
+					<tr>
+						<td><span class="mod-key">⌘</span> + shift + 9</td>
+						<td>switch to "data" screen</td>
+					</tr>
+					<tr>
+						<td><span class="mod-key">⌘</span> + shift + x</td>
+						<td>logout of ASIDE</td>
+					</tr>																															
+					<tr>
+						<td><span class="mod-key">⌘</span> + shift + p</td>
+						<td>open options</td>
+					</tr>
+					<tr>
+						<td><span class="mod-key">⌘</span> + shift + 0</td>
+						<td>open help documentation</td>
+					</tr>		
+					<tr>
+						<td><span class="mod-key">⌘</span> + shift + h</td>
+						<td>open shortcuts documentation</td>
+					</tr>										
+					<tr>
+						<td><span class="mod-key">⌘</span> + shift + u</td>
+						<td>open open user detail page</td>
+					</tr>	
+					<tr>
+						<td><span class="mod-key">⌘</span> + shift + v</td>
+						<td>toggle salesforce's development mode on and off</td>
+					</tr>		
+					<tr>
+						<td><span class="mod-key">⌘</span> + shift + ,</td>
+						<td>save the state of the ASIDE tabs you have open</td>
+					</tr>
+					<tr>
+						<td><span class="mod-key">⌘</span> + shift + .</td>
+						<td>load the saved tab state for the current org</td>
+					</tr>	
+					<tr>
+						<td><span class="mod-key">⌘</span> + shift + &#92;</td>
+						<td>resets ASIDE to its default stylesheet</td>
+					</tr>														
+					<tr>
+						<td>esc</td>
+						<td>close top popup / panel</td>
+					</tr>																
+				</tbody>
+			</table>
+
+			<h2 id="code" class="mt4 title-item">Code Section Shortcuts</h2>
+			<h3 class="mt1">Shortcuts which only work from the code screen</h3>
+			
+			<table class="shortcuts mt4">
+				<thead>
+					<tr>
+						<th>Shortcut</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><span class="mod-key">⌘</span> + s</td>
+						<td>save the current file (or executes anonymous when in that mode)</td>
+					</tr>
+					<tr>
+						<td><span class="mod-key">⌘</span> + f</td>
+						<td>opens panel to find within current file</td>
+					</tr>	
+					<tr>
+						<td><span class="mod-key">⌘</span> + h</td>
+						<td>opens panel to find within all code in the org</td>
+					</tr>
+					<tr>
+						<td><span class="mod-key">⌘</span> + g</td>
+						<td>if the current file is a test class, runs the unit tests within it. if the current file is a package xml, performs a retrieve using that package</td>
+					</tr>
+					<tr>
+						<td><span class="mod-key">⌘</span> + ;</td>
+						<td>get code coverage for the current file</td>
+					</tr>
+					<tr>
+						<td><span class="mod-key">⌘</span> + shift + ;</td>
+						<td>toggle code coverage highlights on/off</td>
+					</tr>
+					<tr>
+						<td><span class="mod-key">⌘</span> + u</td>
+						<td>for apex and visualforce, updates the open file's version number. for static resources updates the open file's content type</td>
+					</tr>
+					<tr>
+						<td><span class="mod-key">⌘</span> + k</td>
+						<td>deletes the current file from the server</td>
+					</tr>
+					<tr>
+						<td><span class="mod-key">⌘</span> + r</td>
+						<td>repeats the last action taken</td>
+					</tr>
+					<tr>
+						<td><span class="mod-key">⌘</span> + j</td>
+						<td>navigates to the selected apex class, sobject, or visualforce tag in a new tab</td>
+					</tr>	
+					<tr>
+						<td><span class="mod-key">⌘</span> + b</td>
+						<td>jumps focus to the command typeahead</td>
+					</tr>
+					<tr>
+						<td><span class="mod-key">⌘</span> + l</td>
+						<td>open local file history</td>
+					</tr>
+					<tr>
+						<td><span class="mod-key">⌘</span> + e</td>
+						<td>rename current file name</td>
+					</tr>
+					<tr>
+						<td><span class="mod-key">⌘</span> + shift + d</td>
+						<td>download editor contents</td>
+					</tr>
+					<tr>
+						<td><span class="mod-key">⌘</span> + shift + c</td>
+						<td>toggle dual editors</td>
+					</tr>
+					<tr>
+						<td><span class="mod-key">⌘</span> + shift + a</td>
+						<td>toggle diff highlights on/off</td>
+					</tr>
+					<tr>
+						<td><span class="mod-key">⌘</span> + shift + b</td>
+						<td>beautify HTML, VF, CSS, JS (works on Apex too, but more of an uglifier)</td>
+					</tr>	
+					<tr>
+						<td><span class="mod-key">⌘</span> + shift + f</td>
+						<td>generate wsdl</td>
+					</tr>		
+					<tr>
+						<td><span class="mod-key">⌘</span> + shift + y</td>
+						<td>open lightning bundle popup</td>
+					</tr>															
+					<tr>
+						<td>ctrl + space</td>
+						<td>get autocomplete suggestions</td>
+					</tr>																													
+				</tbody>
+			</table>	
+			
+			<h2 id="data" class="mt4 title-item">Data Section Shortcuts</h2>
+			<h3 class="mt1">Shortcuts which only work from the data screen</h3>
+			
+			<table class="shortcuts mt4">
+				<thead>
+					<tr>
+						<th>Shortcut</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><span class="mod-key">⌘</span> + s</td>
+						<td>execute the query in the query input</td>
+					</tr>
+				</tbody>
+			</table>	
+		</div>	
+	</body>
+</html>

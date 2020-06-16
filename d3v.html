@@ -1,0 +1,1841 @@
+<!DOCTYPE html>
+
+<!--
+@author      Phil Rymek
+@date		 2/19/2012
+@description d3v - an alternative to force.com ide
+
+Copyright (c) 2020, salesforce.com, inc.
+All rights reserved.
+SPDX-License-Identifier: BSD-3-Clause
+For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
+ -->
+<html>
+	<!-- D3V HEAD -->
+	<head>
+		<link rel="shortcut icon" href="images/favicon.ico" />
+		<title>loading</title>
+
+		<!-- D3V CSS -->
+		<link href="css/d3v.css?v=1.0.2" rel="stylesheet" type="text/css" id="aside-css" />
+
+		<!-- jQuery ui theme -->
+	   	<link href="css/jquery-ui.css?v=1.0.2" rel="stylesheet" type="text/css" />
+
+	   	<!-- Perfect Scrollbar -->
+	   	<link href="css/perfect-scrollbar.min.css?v=1.0.2" rel="stylesheet" type="text/css" />
+
+	   	<!-- Slickgrid css -->
+	   	<link href="css/slick.grid.css?v=1.0.2" rel="stylesheet" type="text/css" />
+	   	<link href="css/examples.css?v=1.0.2" rel="stylesheet" type="text/css" />
+	  	<link href="css/slick.pager.css?v=1.0.2" rel="stylesheet" type="text/css" />
+	 	  <link href="css/slick.columnpicker.css?v=1.0.2" rel="stylesheet" type="text/css" />
+
+	 	  <!-- Chosen CSS -->
+ 	  	<link href="css/chosen.css?v=1.0.2" rel="stylesheet" type="text/css" />
+
+	    <!-- jQuery & jQuery UI -->
+	    <script src="js/jquery/jquery.min.js?v=1.0.2"></script>
+	    <script src="js/jquery/jquery-ui.min.js?v=1.0.2"></script>
+	    <script src="js/jquery/jquery.multisortable.js?v=1.0.2"></script>
+
+	    <!-- ACE - the text editor which powers the code portion of d3v
+	        Themes are different color schemes the editor takes on
+	        Mode is code context highlighting  -->
+        <script src="js/ace/ace.js?v=1.0.2"></script>
+        <script src="js/ace/ext-language_tools.js?v=1.0.2"></script>
+        <script src="js/ace/theme-ambiance.js?v=1.0.2"></script>
+        <script src="js/ace/theme-chaos.js?v=1.0.2"></script>
+        <script src="js/ace/theme-chrome.js?v=1.0.2"></script>
+        <script src="js/ace/theme-clouds_midnight.js?v=1.0.2"></script>
+        <script src="js/ace/theme-clouds.js?v=1.0.2"></script>
+        <script src="js/ace/theme-cobalt.js?v=1.0.2"></script>
+        <script src="js/ace/theme-crimson_editor.js?v=1.0.2"></script>
+        <script src="js/ace/theme-dawn.js?v=1.0.2"></script>
+        <script src="js/ace/theme-dreamweaver.js?v=1.0.2"></script>
+        <script src="js/ace/theme-eclipse.js?v=1.0.2"></script>
+        <script src="js/ace/theme-github.js?v=1.0.2"></script>
+        <script src="js/ace/theme-idle_fingers.js?v=1.0.2"></script>
+        <script src="js/ace/theme-kr.js?v=1.0.2"></script>
+        <script src="js/ace/theme-kr_theme.js?v=1.0.2"></script>
+        <script src="js/ace/theme-kuroir.js?v=1.0.2"></script>
+        <script src="js/ace/theme-merbivore_soft.js?v=1.0.2"></script>
+        <script src="js/ace/theme-merbivore.js?v=1.0.2"></script>
+        <script src="js/ace/theme-mono_industrial.js?v=1.0.2"></script>
+        <script src="js/ace/theme-monokai.js?v=1.0.2"></script>
+        <script src="js/ace/theme-pastel_on_dark.js?v=1.0.2"></script>
+        <script src="js/ace/theme-solarized_dark.js?v=1.0.2"></script>
+        <script src="js/ace/theme-solarized_light.js?v=1.0.2"></script>
+        <script src="js/ace/theme-textmate.js?v=1.0.2"></script>
+        <script src="js/ace/theme-tomorrow_night_blue.js?v=1.0.2"></script>
+        <script src="js/ace/theme-tomorrow_night_bright.js?v=1.0.2"></script>
+        <script src="js/ace/theme-tomorrow_night_eighties.js?v=1.0.2"></script>
+        <script src="js/ace/theme-tomorrow_night.js?v=1.0.2"></script>
+        <script src="js/ace/theme-terminal.js?v=1.0.2"></script>
+        <script src="js/ace/theme-twilight.js?v=1.0.2"></script>
+        <script src="js/ace/theme-vibrant_ink.js?v=1.0.2"></script>
+        <script src="js/ace/theme-xcode.js?v=1.0.2"></script>
+        <script src="js/ace/mode-html.js?v=1.0.2"></script>
+        <script src="js/ace/mode-java.js?v=1.0.2"></script>
+	    <script src="js/ace/mode-javascript.js?v=1.0.2"></script>
+	    <script src="js/ace/mode-css.js?v=1.0.2"></script>
+	    <script src="js/ace/mode-xml.js?v=1.0.2"></script>
+	    <script src="js/ace/keybinding-vim.js?v=1.0.2"></script>
+	    <script src="js/ace/keybinding-emacs.js?v=1.0.2"></script>
+
+	    <!-- Stuff the slickgrid wants -->
+	    <script src="js/slickgrid/firebugx.js?v=1.0.2"></script>
+	    <script src="js/jquery/jquery.event.drag-2.0.min.js?v=1.0.2"></script>
+	    <script src="js/slickgrid/slick.core.js?v=1.0.2"></script>
+	    <script src="js/slickgrid/slick.dataview.js?v=1.0.2"></script>
+	    <script src="js/slickgrid/slick.checkboxselectcolumn.js?v=1.0.2"></script>
+	    <script src="js/slickgrid/slick.autotooltips.js?v=1.0.2"></script>
+	    <script src="js/slickgrid/slick.cellrangedecorator.js?v=1.0.2"></script>
+	    <script src="js/slickgrid/slick.cellrangeselector.js?v=1.0.2"></script>
+	    <script src="js/slickgrid/slick.cellcopymanager.js?v=1.0.2"></script>
+	    <script src="js/slickgrid/slick.cellselectionmodel.js?v=1.0.2"></script>
+	    <script src="js/slickgrid/slick.rowselectionmodel.js?v=1.0.2"></script>
+	    <script src="js/slickgrid/slick.formatters.js?v=1.0.2"></script>
+	    <script src="js/slickgrid/slick.editors.js?v=1.0.2"></script>
+	    <script src="js/slickgrid/slick.grid.js?v=1.0.2"></script>
+	    <script src="js/slickgrid/slick.pager.js?v=1.0.2"></script>
+	    <script src="js/slickgrid/slick.columnpicker.js?v=1.0.2"></script>
+
+	    <!-- filesaver -->
+	    <script src="js/filesaver/Blob.js?v=1.0.2"></script>
+	    <script src="js/filesaver/BlobBuilder.min.js?v=1.0.2"></script>
+	    <script src="js/filesaver/FileSaver.min.js?v=1.0.2"></script>
+
+    	<!-- jszip -->
+    	<script src="js/jszip/jszip.js?v=1.0.2"></script>
+    	<script src="js/jszip/jszip-load.js?v=1.0.2"></script>
+		<script src="js/jszip/jszip-deflate.js?v=1.0.2"></script>
+		<script src="js/jszip/jszip-inflate.js?v=1.0.2"></script>
+
+	 	<!-- Chosen -->
+ 		<script src="js/chosen/chosen.jquery.min.js?v=1.0.2"></script>
+
+ 		<!-- stacktracejs -->
+ 		<script src="js/stacktrace/stacktrace.js?v=1.0.2"></script>
+
+		<!-- intercom -->
+		<script src="js/intercom/intercom.min.js?v=1.0.2"></script>
+
+ 		<!-- Keymaster -->
+ 		<script src="js/keymaster/keymaster.js?v=1.0.2"></script>
+
+ 		<!-- Mousetrap -->
+ 		<script src="js/mousetrap/mousetrap.min.js?v=1.0.2"></script>
+ 		<script src="js/mousetrap/mousetrap-global-bind.min.js?v=1.0.2"></script>
+
+ 		<!-- Easy Pie Chart -->
+ 		<script src="js/easypiechart/canvas.js?v=1.0.2"></script>
+ 		<script src="js/easypiechart/easypiechart.js?v=1.0.2"></script>
+ 		<script src="js/easypiechart/jquery.plugin.js?v=1.0.2"></script>
+
+ 		<!-- Perfect Scrollbar -->
+ 		<script src="js/perfectscrollbar/perfect-scrollbar.min.js?v=1.0.2"></script>
+
+ 		<!-- Diff Match Patch -->
+ 		<script src="js/diffmatchpatch/dmp.js?v=1.0.2"></script>
+
+ 		<!-- Ace Diff -->
+ 		<script src="js/acediff/ace-diff.js?v=1.0.2"></script>
+
+ 		<!-- JS-Beautify -->
+ 		<script src="js/beautify/beautify-html.js?v=1.0.2"></script>
+ 		<script src="js/beautify/beautify-css.js?v=1.0.2"></script>
+ 		<script src="js/beautify/beautify.js?v=1.0.2"></script>
+
+ 		<!-- HTML-Minifier -->
+ 		<script src="js/minify/htmlminifier.min.js"></script>
+
+    	<!-- D3V! -->
+    	<script src="js/d3v/d3vApex-min.js?v=1.0.2"></script>
+    	<script src="js/d3v/ServerAction.js?v=1.0.2"></script>
+    	<script src="js/d3v/CookieUtil.js?v=1.0.2"></script>
+    	<script src="js/d3v/d3vConstants.js?v=1.0.2"></script>
+    	<script src="js/d3v/d3vGlobals.js?v=1.0.2"></script>
+    	<script src="js/d3v/d3vUtil.js?v=1.0.2"></script>
+    	<script src="js/d3v/d3vCode.js?v=1.0.2"></script>
+    	<script src="js/d3v/d3vData.js?v=1.0.2"></script>
+    	<script src="js/d3v/d3vPopups.js?v=1.0.2"></script>
+    	<script src="js/d3v/d3vTest.js?v=1.0.2"></script>
+    	<script src="js/d3v/d3vArchive.js?v=1.0.2"></script>
+    	<script src="js/d3v/d3vPush.js?v=1.0.2"></script>
+    	<script src="js/d3v/d3vSync.js?v=1.0.2"></script>
+
+    	<!-- Start 'er up -->
+    	<script>
+			$(function() {
+				d3vUtil.initializeD3V();
+			});
+    	</script>
+	</head>
+
+	<!-- D3V Body -->
+	<body>
+
+		<!-- D3V HEADER -->
+		<div id="d3v-header" class="unselectable">
+
+			<!-- HEADER LEFT -->
+			<div id="left">
+
+	        	<!-- Code Helper -->
+	        	<span id="code-helper" class="helper-section">
+	        		<span id="loading-logo">ASIDE.IO</span>
+	        		<select id="code-helper-input" class="hidden"></select>
+	        		<div id="zip-handler-btn" class="button gen-btn keep-left thin-btn unselectable hidden">
+	        			<img src="css/images/zip-icon.png" style="margin-right:5px;" />
+	        			<span>open</span>
+	        		</div>
+	        		<div id="debug-handler-btn" class="button gen-btn keep-left thin-btn unselectable hidden">
+	        			<span>close debug log</span>
+	        		</div>
+	        	</span>
+
+	        	<!-- Data Helper -->
+	        	<span id="data-helper" class="helper-section hidden">
+	        		<span id="data-delete-link" class="button keep-left">
+	        			delete
+	        		</span>
+	        		<span id="data-export-link" class="button keep-left">
+	        			export
+	        		</span>
+	        		<span id="data-share-link" class="button keep-left">
+	        			share
+	        		</span>
+	        		<span id="data-query-link" class="button keep-left">
+	        			query
+	        		</span>
+	        	</span>
+
+	        	<!-- Test Helper -->
+	        	<span id="test-helper" class="helper-section hidden">
+	        		<span id="test-all-link" class="button keep-left">
+	        			run all
+	        		</span>
+	        		<span id="test-some-link" class="button keep-left">
+	        			run some
+	        		</span>
+	        		<span id="filter-results-link" class="button keep-left">
+	        			set view
+	        		</span>
+	        		<span id="coverage-report-link" class="button keep-left">
+	        			code coverage
+	        		</span>
+	        	</span>
+
+	        	<!-- Push Helper -->
+	        	<span id="push-helper" class="helper-section hidden">
+		        	<select id="retrieve-filter" class="keep-left"></select>
+		        	<span class="button keep-right" id="push-edit-filter">Edit Filter</span>
+		        	<span class="button keep-right" id="push-add-filter">Add Filter</span>
+	        	</span>
+        	</div>
+
+        	<!-- HEADER CENTER (alert replacement) -->
+        	<span id="center">
+        		<div id="alert-replacement">
+        		</div>
+        	</span>
+
+        	<!-- HEADER RIGHT -->
+        	<div id="right">
+        		<div id="mode-buttons" class="keep-left">
+        			<span class="mode-button active keep-left admin-req">code</span>
+        			<span class="mode-button inactive keep-left admin-req">test</span>
+        			<span class="mode-button inactive keep-left admin-req">push</span>
+        			<span class="mode-button inactive keep-left" id="non-admin-helper">data</span>
+        		</div>
+        	</div>
+		</div>
+
+		<!-- Instance slideout -->
+		<div id="sub-container" class="unselectable">
+			<div id="instance-tabs"></div>
+			<div id="sub-controls">
+				<div class="dropdown">
+					<div class="dropbtn"></div>
+				    <div class="dropdown-content">
+				    	<a href="/help" target="_blank" class="menu-divider" title="shortcut: ⌘ + shift + 0">help</a>
+				    	<a id="help-tab" title="shortcut: ⌘ + shift + p">options</a>
+				    	<a href="/shortcuts" target="_blank" title="shortcut: ⌘ + shift + h">shortcuts</a>
+				    	<a id="foot-logs" title="shortcut: ⌘ + shift + u" class="menu-divider">debug logs</a>
+				    	<a id="foot-devmode" title="shortcut: ⌘ + shift + v">development mode</a>
+				    	<a id="foot-ois" title="shortcut: ⌘ + shift + o">open in salesforce</a>
+				    	<a id="user-detail" title="shortcut: ⌘ + shift + u">user detail</a>
+				    	<a id="exit-tab" title="shortcut: ⌘ + shift + x" class="menu-divider">logout</a>
+				  	</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- D3V BODY -->
+		<div id="d3v-body">
+
+			<!-- Push -->
+	        <div id="push-content" class="content-section hidden">
+	        	<div class="push-block">
+	        		<div class="push-header">
+	        			<input type="text" id="retrieve-filter-filter" placeholder="Enter text to filter metadata" />
+	        			<span id="retrieve-filter-clear">Clear</span>
+	        		</div>
+					<ul id="available-to-retrieve" class="deployable sortable">
+					    <div class="hidden empty-msg">
+					    	Select a retrieve filter to find metadata to add to the package.xml
+					    </div>
+					</ul>
+				</div>
+				<div id="push-controls">
+					<span class="button full-width hidden post-deploy" id="push-show-deploy-status">Deploy Results</span>
+					<hr style="margin-top: 20px;margin-bottom:20px;" class="hidden post-deploy" />
+					<span class="button full-width" id="p-refresh-left">Refresh Left</span>
+					<span class="button full-width" id="p-add-all">Add All</span>
+					<span class="button full-width" id="p-add-sel">Add Selected</span>
+					<span class="button full-width" id="p-clear-left">Clear Left</span>
+					<hr style="margin-top: 20px;margin-bottom:20px;" />
+					<span class="button full-width" id="p-clear-right">Clear Right</span>
+					<span class="button full-width" id="p-rem-sel">Remove Selected</span>
+					<span class="button full-width" id="p-rem-all">Remove All</span>
+				</div>
+				<div class="push-block">
+		        	<div class="push-header">
+		        		<span id="download-pkg" class="button keep-left gen-btn half-width">
+		        			Save Package
+		        		</span>
+		        		<span id="retrieve" class="button keep-right gen-btn half-width">
+		        			Retrieve Files
+		        		</span>
+		        	</div>
+					<ul id="will-retrieve" class="deployable sortable">
+						<div class="hidden empty-msg">
+							Add metadata from the left to begin building the package.xml
+						</div>
+					</ul>
+				</div>
+				<div id="push-footer">
+					Drop a Package.xml here to retrieve, or a zip for a deploy.
+				</div>
+	        </div>
+
+	        <!-- Data -->
+	        <div id="data-content" class="content-section hidden">
+	        	<input id="query-source" class="label-in-input label-in-input-active"
+	        	       value="enter a soql query…" d3v-label="enter a soql query…" />
+	        	<div id="grid-container" class="full-size">
+	        		<div id="myGrid" class="full-size"></div>
+	        	</div>
+	        	<div id="pager"></div>
+	        	<div id="grid-rc-menu" class="hidden">
+	        		<ul>
+	        			<li id="grm-ois"></li>
+	        			<li id="grm-sis"></li>
+	        		</ul>
+	        	</div>
+	        </div>
+
+			<!-- Code -->
+	        <div id="code-content" class="content-section hidden">
+	        	<div id="diff-container">
+	        		<div id="left-editor">
+	        			<div id="d3v-ace-main"></div>
+	        		</div>
+	        		<div id="diff-gutter"></div>
+	        		<div id="right-editor">
+	        			<div id="diff-ace-right"></div>
+	        		</div>
+	        	</div>
+	        </div>
+
+			<!-- Test -->
+	        <div id="test-content" class="content-section hidden">
+	        	<div id="test-results" class="keep-left">
+	        		<div class="tests-no-results">
+	        			nothing to display
+	        		</div>
+	        	</div>
+	        	<div id="test-results-detail" class="keep-left">
+	        		<div id="test-results-detailed" class="large-bottom-margin">
+	        			<div class="no-test-detail">
+	        				click a row to see test results
+	        			</div>
+	        		</div>
+	        		<div id="results-by-method">
+	        		</div>
+	        	</div>
+	        </div>
+
+		</div>
+
+		<div id="global-panel" class="hidden">
+			<div id="gp-body">
+				<div id="gp-title">
+					<div id="gp-title-text">
+					</div>
+				</div>
+				<div id="gp-buttons">
+					<span id="gp-close">close</span>
+					<span id="gp-help">help</span>
+					<span id="gp-resize">resize</span>
+				</div>
+
+	        	<div id="code-errors-list" class="gp-panel hidden full-height error-pop"></div>
+	        	<div id="general-errors" class="gp-panel hidden full-height error-pop"></div>
+	        	<div id="debug-logs" class="gp-panel hidden full-height">
+			      	<div id="debug-log-table">
+			      	</div>
+			  		<div id="dlpbc">
+				      	<div class="button gp-btn full-width" id="start-debug-logs">
+				        	Start Logging
+				      	</div>
+				      	<div class="button gp-btn full-width" id="refresh-debug-logs">
+				        	Refresh Logs
+				      	</div>
+				      	<div class="button gp-btn full-width" id="set-log-levels">
+				        	Set Log Levels
+				      	</div>
+
+				      	<select id="debug-open-select" class="open-select">
+				      		<option value="download">Download Log</option>
+				      		<option value="left">Open in Primary Editor</option>
+				      		<option value="aside">Open in Diff Editor</option>
+				      	</select>
+			      	</div>
+	        	</div>
+
+	        	<div id="local-history" class="gp-panel hidden full-height">
+			  		<div id="history-table">
+			  		</div>
+			      	<div class="button gp-btn full-width" id="refresh-file-history">
+			        	Refresh History
+			      	</div>
+		  			<select id="lh-open-select" class="open-select">
+			      		<option value="download">Download Local History</option>
+			      		<option value="left">Open in Primary Editor</option>
+			      		<option value="aside">Open in Diff Editor</option>
+			      	</select>
+	        	</div>
+
+	        	<div id="ocs-popup" class="gp-panel hidden full-height">
+	        		<div id="ocs-results"><div class="ocs-no-results">no results found</div></div>
+	        		<input type="text" class="ocs-input" placeholder="search all apex and visualforce for this" />
+			      	<div id="go-ocs" class="button gp-btn full-width">search</div>
+			      	<div id="clear-ocs" class="button gp-btn full-width">clear</div>
+			      	<select id="ocs-open-select" class="open-select">
+			      		<option value="current">Open in Current Instance</option>
+			      		<option value="new">Open in New Instance</option>
+			      	</select>
+	        	</div>
+
+	        	<div id="find-popup" class="gp-panel hidden full-height">
+		      		<textarea id="find-textarea" class="find-input" placeholder="find"></textarea>
+			      	<div id="find-previous" class="button gp-btn unselectable">Previous</div>
+			      	<div id="find-next" class="button gp-btn unselectable">Next</div>
+		      		<textarea id="replace-textarea" class="find-input" placeholder="replace"></textarea>
+			      	<div id="replace-selected" class="button gp-btn unselectable">Replace</div>
+			      	<div id="replace-all" class="button gp-btn unselectable">All</div>
+			      	<div id="find-options-container">
+			      		<div id="find-options-header">Options</div>
+			      		<table>
+			      			<tr>
+			      				<td><input type="checkbox" id="find-case-sensitive" /></td>
+			      				<td>case sensitive</td>
+			      			</tr>
+			      			<tr>
+			      				<td><input type="checkbox" id="find-by-regex" /></td>
+			      				<td>regular expression</td>
+			      			</tr>
+			      			<tr>
+			      				<td><input type="checkbox" id="find-by-whole" /></td>
+			      				<td>whole word</td>
+			      			</tr>
+			      			<tr>
+			      				<td><input type="checkbox" id="find-with-wrap" /></td>
+			      				<td>wrap around</td>
+			      			</tr>
+			      		</table>
+			      	</div>
+	        	</div>
+
+			</div>
+		</div>
+
+    	<div id="code-footer" class="hidden">
+    		<div class="cf-section left">
+				<span id="foot-save" class="foot-btn btn-unsaveable keep-left small-left-marg unselectable" title="save the current file (shortcut: command + s)">
+					<div id="fs-save">save</div>
+					<div id="fs-run" class="hidden">saved</div>
+				</span>
+				<span class="cf-sub-test cf-sub-min hidden foot-version foot-btn keep-left unselectable" title="not applicable">-</span>
+				<span id="foot-split" class="foot-btn keep-left unselectable" title="click to toggle split editor (shortcut: command + shift + c)">
+					diff
+				</span>
+				<span id="foot-download" class="foot-btn keep-left unselectable" title="download the current file (shortcut: command + shift + d)">
+					download
+				</span>
+				<span id="foot-find" class="foot-btn keep-left unselectable" title="find in current file (shortcut: command + f)">
+					find
+				</span>
+				<span id="foot-find-all" class="foot-btn keep-left unselectable" title="find across entire org (shortcut: command + h)">
+					find all
+				</span>
+				<span id="foot-history" class="foot-btn keep-left unselectable" title="view local file history (shortcut: command + L)">
+					history
+				</span>
+				<span id="foot-related" class="cf-sub-min hidden foot-btn keep-left unselectable" title="manage bundle (shortcut: command + shift + y)">
+					lightning
+				</span>
+				<span id="foot-repeat" class="foot-btn keep-left unselectable" title="repeat the last action (shortcut: command + r)">
+					reload
+				</span>
+				<span id="non-apex-rename" class="cf-sub-min hidden foot-btn keep-left unselectable" title="rename the current file (shortcut: command + e)">
+					rename
+				</span>
+			    <div id="coverage-bar" class="cf-sub-test hidden">
+			        <div id="cb-percentage"></div>
+			        <span id="db-desc">Not Applicable</span>
+			    </div>
+    			<span id="foot-rt"
+    			      class="cf-sub-test hidden foot-btn keep-left small-right-marg unselectable"
+    			      title="run the current files unit test (shortcut: command + g)">
+    			    run tests
+    			</span>
+    			<span id="foot-th"
+    			      class="cf-sub-test hidden foot-btn keep-left small-right-marg unselectable"
+    			      title="toggle code coverage highlights (shortcut: command + shift + ;)">
+    				show coverage
+    			</span>
+				<span id="foot-minify" class="cf-sub-min hidden foot-btn keep-left unselectable" title="minify code (shortcut: command + shift + m)">
+					minify
+				</span>
+				<span id="foot-beautify" class="cf-sub-min hidden foot-btn keep-left unselectable" title="beautify code (shortcut: command + shift + b)">
+					beautify
+				</span>
+				<span id="foot-wsdl" class="cf-sub-test hidden foot-btn keep-left unselectable" title="generate wsdl (shortcut: command + shift + f)">
+					wsdl
+				</span>
+				<span id="foot-delete" class="foot-btn keep-left unselectable" title="delete current file (shortcut: command + k)">
+					delete
+				</span>
+    		</div>
+    		<div class="cf-section right">
+    			<div id="cf-section-info">
+	        		<div id="cf-center">
+	        			<span id="fc-3"></span>
+	        		</div>
+    			</div>
+    		</div>
+    	</div>
+
+		<!-- POPUPS -->
+
+	    <!-- A simple overlay, to use for whatever> -->
+	    <div id="generic-overlay"></div>
+
+	    <!-- Help Dialog -->
+		<div id="help-dialog" class="animated-modal hidden">
+			<div class="d3v-popup-header">
+		      	<div class="d3v-popup-title">
+		          	Options
+		      	</div>
+				<div class="button keep-right d3v-popup-close hidden" id="close-help">X</div>
+			</div>
+
+			<div class="d3v-pop-body">
+				<div id="hd-data" class="help-body-subsection hidden">
+	        		<span class="help-title">Data Screen Options</span>
+	        		<div class="help-title-info">
+Setup the data screen to work in a way which suits you best.  Configure options related to query history. Your options will be automatically saved.
+	        		</div>
+
+	        		<table class="commands-tbl">
+		            	<thead>
+		            		<tr>
+		            			<th colspan="2">Global Style - select universal UI theme</th>
+		            		</tr>
+		            	</thead>
+		            	<tbody>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+							        <select size="1" class="open-select aside-theme">
+								        <option value="/css/d3v.css">Classic</option>
+								        <option value="/css/d3v-dark.css">Dark</option>
+							        </select>
+			            		</td>
+			            		<td class="commands-desc">pick which theme / stylesheet to use</td>
+			            	</tr>
+		            	</tbody>
+	        		</table>
+
+		            <table class="commands-tbl">
+		            	<thead>
+		            		<tr>
+		            			<th colspan="2">Query History - manage history available to query typeahead</th>
+		            		</tr>
+		            	</thead>
+		            	<tbody>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+			            			<input id="query-history-length" class="range-slider" save-as="qhl" pair-with="2" type="range" min="0" max="100" value="15" />
+			            			<span id="qh-length-viewer" class="range-viewer" pair-with="2"></span>
+			            		</td>
+			            		<td class="commands-desc">max number of queries stored in autocomplete history</td>
+			            	</tr>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<span id="delete-query-history" class="button">
+										Clear History
+									</span>
+			            		</td>
+			            		<td class="commands-desc">delete the entire query history</td>
+			            	</tr>
+		            	</tbody>
+		            </table>
+					<div class="help-bottom-buffer"></div>
+	            </div>
+
+	            <div id="hd-push" class="help-body-subsection hidden">
+	        		<span class="help-title">Push Screen Options</span>
+	        		<div class="help-title-info">
+Setup the push screen to work in a way which suits you best.  Configure options related to the Metadata API deploy operation. Your options will be automatically saved.
+	        		</div>
+
+	        		<table class="commands-tbl">
+		            	<thead>
+		            		<tr>
+		            			<th colspan="2">Global Style - select universal UI theme</th>
+		            		</tr>
+		            	</thead>
+		            	<tbody>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+							        <select size="1" class="open-select aside-theme">
+								        <option value="/css/d3v.css">Classic</option>
+								        <option value="/css/d3v-dark.css">Dark</option>
+							        </select>
+			            		</td>
+			            		<td class="commands-desc">pick which theme / stylesheet to use</td>
+			            	</tr>
+		            	</tbody>
+	        		</table>
+
+	        		<table class="commands-tbl">
+		            	<thead>
+		            		<tr>
+		            			<th colspan="2">Retrieve Settings - control retrieve behavior</th>
+		            		</tr>
+		            	</thead>
+		            	<tbody>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+							        <select size="1" class="open-select" id="package-xml-version">
+							        	<option value="" selected>Unspecified</option>
+							        </select>
+			            		</td>
+			            		<td class="commands-desc">set the version number used for retrieves</td>
+			            	</tr>
+		            	</tbody>
+	        		</table>
+
+		            <table class="commands-tbl">
+		            	<thead>
+		            		<tr>
+		            			<th colspan="2">Deploy Settings - configure how the deploy operates</th>
+		            		</tr>
+		            	</thead>
+		            	<tbody>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+			            			<span class="bold-font">Allow Missing</span>
+			            			<input type="checkbox" id="allow-missing-files" class="help-check" />
+			            		</td>
+			            		<td class="commands-desc">
+			            			allows the deploy to succeed when files are listed in the package.xml, but not present in the zip file
+			            		</td>
+			            	</tr>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+			            			<span class="bold-font">Validate Only</span>
+									<input type="checkbox" id="validate-only" class="help-check" />
+			            		</td>
+			            		<td class="commands-desc">
+			            			performs a mock deploy, validating success of the operation but not making any changes to the server
+			            		</td>
+			            	</tr>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+			            			<span class="bold-font">Ignore Warnings</span>
+									<input type="checkbox" id="ignore-warnings" class="help-check" />
+			            		</td>
+			            		<td class="commands-desc">
+			            			when checked, warnings have no effect on deploy outcome. if unchecked warnings will fail the deploy
+			            		</td>
+			            	</tr>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+			            			<span class="bold-font">Purge Delete</span>
+									<input type="checkbox" id="purge-on-delete" class="help-check" />
+			            		</td>
+			            		<td class="commands-desc">
+			            			causes files deleted via destructiveChanges.xml to not appear in the recycle bin
+			            		</td>
+			            	</tr>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+			            			<span class="bold-font">Run All</span>
+									<input type="checkbox" id="push-rat" class="help-check" />
+			            		</td>
+			            		<td class="commands-desc">
+			            			runs all tests on deploy.  note that if you are deploying to a production organization all tests will always run
+			            		</td>
+			            	</tr>
+		            	</tbody>
+		            </table>
+					<div class="help-bottom-buffer"></div>
+	            </div>
+
+	            <div id="hd-test" class="help-body-subsection hidden">
+	        		<span class="help-title">Test Screen Options</span>
+	        		<div class="help-title-info">
+Setup the test screen to work in a way which suits you best.  Configure options related to test filtering. Your options will be automatically saved.
+	        		</div>
+
+	        		<table class="commands-tbl">
+		            	<thead>
+		            		<tr>
+		            			<th colspan="2">Global Style - select universal UI theme</th>
+		            		</tr>
+		            	</thead>
+		            	<tbody>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+							        <select size="1" class="open-select aside-theme">
+								        <option value="/css/d3v.css">Classic</option>
+								        <option value="/css/d3v-dark.css">Dark</option>
+							        </select>
+			            		</td>
+			            		<td class="commands-desc">pick which theme / stylesheet to use</td>
+			            	</tr>
+		            	</tbody>
+	        		</table>
+
+		            <table class="commands-tbl">
+		            	<thead>
+		            		<tr>
+		            			<th colspan="2">Filter History - manage history available to test filter</th>
+		            		</tr>
+		            	</thead>
+		            	<tbody>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<input id="filter-history-length" class="range-slider" save-as="fhl" pair-with="3" type="range" min="0" max="100" value="10" />
+									<span id="fh-length-viewer" class="range-viewer" pair-with="3"></span>
+			            		</td>
+			            		<td class="commands-desc">max number of queries stored in test filter history</td>
+			            	</tr>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<span id="delete-filter-history" class="button">Clear History</span>
+			            		</td>
+			            		<td class="commands-desc">delete the entire test filter history</td>
+			            	</tr>
+		            	</tbody>
+		            </table>
+		            <div class="help-bottom-buffer"></div>
+	            </div>
+
+	        	<div id="hd-code" class="help-body-subsection">
+	        		<span class="help-title">Code Screen Options</span>
+	        		<div class="help-title-info">
+Setup the code editor to work in a way which suits you best.  Configure various options from the look and feel of the editor to debug log levels. Your options will be automatically saved.
+	        		</div>
+
+	        		<table class="commands-tbl">
+		            	<thead>
+		            		<tr>
+		            			<th colspan="2">Global Style - select universal UI theme</th>
+		            		</tr>
+		            	</thead>
+		            	<tbody>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+							        <select size="1" class="open-select aside-theme">
+								        <option value="/css/d3v.css">Classic</option>
+								        <option value="/css/d3v-dark.css">Dark</option>
+							        </select>
+			            		</td>
+			            		<td class="commands-desc">pick which theme / stylesheet to use</td>
+			            	</tr>
+		            	</tbody>
+	        		</table>
+
+		            <table class="commands-tbl">
+		            	<thead>
+		            		<tr>
+		            			<th colspan="2">Look &amp; Feel - configure editor aesthetics</th>
+		            		</tr>
+		            	</thead>
+		            	<tbody>
+			            	<tr>
+			            		<td class="options-seq">
+							        <select id="ace-theme" size="1" class="open-select">
+								        <option value="ace/theme/ambiance">
+								        	Ambiance
+								        </option>
+								        <option value="ace/theme/chaos">
+								        	Chaos
+								        </option>
+								        <option value="ace/theme/chrome">
+								        	Chrome
+								        </option>
+								        <option value="ace/theme/clouds_midnight">
+								        	Clouds Midnight
+								        </option>
+								        <option value="ace/theme/clouds">
+								        	Clouds
+								        </option>
+								        <option value="ace/theme/cobalt">
+								        	Cobalt
+								        </option>
+								        <option value="ace/theme/crimson_editor">
+								        	Crimson Editor
+								        </option>
+								        <option value="ace/theme/dawn">
+								        	Dawn
+								        </option>
+								        <option value="ace/theme/dreamweaver">
+								        	Dreamweaver
+								        </option>
+								        <option value="ace/theme/eclipse">
+								        	Eclipse
+								        </option>
+								        <option value="ace/theme/github">
+								        	Github
+								        </option>
+								        <option value="ace/theme/idle_fingers">
+								        	Idle Fingers
+								        </option>
+								        <option value="ace/theme/katzenmilch">
+								        	Katzenmilch
+								        </option>
+								        <option value="ace/theme/kr_theme">
+								        	kr
+								        </option>
+								        <option value="ace/theme/kuroir">
+								        	kuroir
+								        </option>
+								        <option value="ace/theme/merbivore">
+								        	Merbivore
+								        </option>
+								        <option value="ace/theme/merbivore_soft">
+								        	Merbivore Soft
+								        </option>
+								        <option value="ace/theme/mono_industrial">
+								        	Mono Industrial
+								        </option>
+								        <option value="ace/theme/monokai">
+								        	Monokai
+								        </option>
+								        <option value="ace/theme/pastel_on_dark">
+								        	Pastel On Dark
+								        </option>
+								        <option value="ace/theme/solarized_dark">
+								        	Solarized Dark
+								        </option>
+								        <option value="ace/theme/solarized_light">
+								        	Solarized Light
+								        </option>
+								        <option value="ace/theme/textmate">
+								        	TextMate
+								        </option>
+								        <option value="ace/theme/terminal">
+								        	Terminal
+								        </option>
+								        <option value="ace/theme/tomorrow_night">
+								        	Tomorrow Night
+								        </option>
+								        <option value="ace/theme/tomorrow_night_blue">
+								        	Tomorrow Night Blue
+								        </option>
+								        <option value="ace/theme/tomorrow_night_bright">
+								        	Tomorrow Night Bright
+								        </option>
+								        <option value="ace/theme/tomorrow_night_eighties">
+								        	Tomorrow Night Eighties
+								        </option>
+								        <option value="ace/theme/twilight">
+								        	Twilight
+								        </option>
+								        <option value="ace/theme/vibrant_ink">
+								        	Vibrant Ink
+								        </option>
+								        <option value="ace/theme/xcode">
+								        	Xcode
+								        </option>
+							        </select>
+			            		</td>
+			            		<td class="commands-desc">color scheme used by the code editor</td>
+			            	</tr>
+
+			            	<tr>
+			            		<td class="options-seq">
+							        <select id="ace-keyboard" size="1" class="open-select">
+								        <option value="">Default</option>
+								        <option value="ace/keyboard/vim">Vim</option>
+								        <option value="ace/keyboard/emacs">Emacs</option>
+							        </select>
+			            		</td>
+			            		<td class="commands-desc">key bindings used by the editor</td>
+			            	</tr>
+
+			            	<tr class="commands-row">
+			            		<td class="options-seq"><input type="text" class="ocs-input" id="font-size" value="14" /></td>
+			            		<td class="commands-desc">editor font size in pixels</td>
+			            	</tr>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<input type="checkbox" id="show-footer" checked="checked" />
+			            		</td>
+			            		<td class="commands-desc">enables the footer at the bottom of the code section</td>
+			            	</tr>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<input type="checkbox" id="show-invisibles" />
+			            		</td>
+			            		<td class="commands-desc">
+			            			display invisible characters
+			            		</td>
+			            	</tr>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<input type="checkbox" id="show-indentation-guide" />
+			            		</td>
+			            		<td class="commands-desc">display indentation characters</td>
+			            	</tr>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<input type="checkbox" id="highlight-active-line" checked="checked" />
+			            		</td>
+			            		<td class="commands-desc">highlights the currently selected line in the editor</td>
+			            	</tr>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<input type="checkbox" id="highlight-active-word" checked="checked" />
+			            		</td>
+			            		<td class="commands-desc">highlights the currently selected word in the editor</td>
+			            	</tr>
+		            	</tbody>
+		            </table>
+
+		            <table class="commands-tbl">
+		            	<thead>
+		            		<tr>
+		            			<th colspan="2">Tabs - manage tab type and size</th>
+		            		</tr>
+		            	</thead>
+		            	<tbody>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+			            			<input type="checkbox" id="soft-tabs" checked="checked" />
+			            		</td>
+			            		<td class="commands-desc">use soft tabs (multiple spaces instead of tabs)</td>
+			            	</tr>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+			            			<input type="text" class="ocs-input" id="tab-size" value="4" />
+			            		</td>
+			            		<td class="commands-desc">the number of spaces to interpret a soft tab as / number of spaces to indent during beautify</td>
+			            	</tr>
+		            	</tbody>
+		            </table>
+
+		            <table class="commands-tbl">
+		            	<thead>
+		            		<tr>
+		            			<th colspan="2">Print Margin - configure location and visibility of margin</th>
+		            		</tr>
+		            	</thead>
+		            	<tbody>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+			            			<input type="checkbox" id="show-pm" checked="checked" />
+			            		</td>
+			            		<td class="commands-desc">display the print margin</td>
+			            	</tr>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+			            			<input type="text" class="ocs-input" id="pm-size" value="80" />
+			            		</td>
+			            		<td class="commands-desc">column number where print margin will display</td>
+			            	</tr>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+			            			<input type="text" class="ocs-input" id="beautify-pm-size" value="80" />
+			            		</td>
+			            		<td class="commands-desc">value where code will wrap HTML during beautify</td>
+			            	</tr>
+		            	</tbody>
+		            </table>
+
+		            <table class="commands-tbl">
+		            	<thead>
+		            		<tr>
+		            			<th colspan="2">Local History - manage local code history</th>
+		            		</tr>
+		            	</thead>
+		            	<tbody>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<input id="code-history-length" class="range-slider" save-as="chl" pair-with="1" type="range" min="0" max="100" value="30" />
+									<span id="ch-length-viewer" class="range-viewer" pair-with="1"></span>
+			            		</td>
+			            		<td class="commands-desc">number of file versions to store in local history</td>
+			            	</tr>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<span id="delete-local-code" class="button">Clear History</span>
+			            		</td>
+			            		<td class="commands-desc">delete local file history for all files</td>
+			            	</tr>
+		            	</tbody>
+		            </table>
+
+		            <table class="commands-tbl">
+		            	<thead>
+		            		<tr>
+		            			<th colspan="2">Conflict Resolution - setup how save conflicts are handled (experimental)</th>
+		            		</tr>
+		            	</thead>
+		            	<tbody>
+			            	<tr>
+			            		<td class="options-seq">
+			            			<input type="radio" name="resolve-conflicts" value="off" />
+			            		</td>
+			            		<td class="commands-desc">do not attempt to resolve conflicts (<span class="italic-font">no resolution</span>)</td>
+			            	</tr>
+			            	<tr>
+			            		<td class="options-seq">
+			            			<input type="radio" name="resolve-conflicts" value="manual" checked="checked" />
+			            		</td>
+			            		<td class="commands-desc">show diff of conflict and merge it yourself (<span class="italic-font">manual resolution</span>)</td>
+			            	</tr>
+			            	<tr>
+			            		<td class="options-seq">
+			            			<input type="radio" name="resolve-conflicts" value="auto-man" />
+			            		</td>
+			            		<td class="commands-desc">let aside resolve the conflict automatically, when the conflict cannot be automatically resolved, use the <span class="italic-font">manual resolution</span> method. Please note this functionality is experimental, and using it may result in loss of code.</td>
+			            	</tr>
+			            	<tr>
+			            		<td class="options-seq">
+			            			<input type="radio" name="resolve-conflicts" value="auto-off" />
+			            		</td>
+			            		<td class="commands-desc">let aside resolve the conflict automatically, when the conflict cannot be automatically resolved, use the <span class="italic-font">no resolution</span> method. Please note this functionality is experimental, and using it may result in loss of code.</td>
+			            	</tr>
+		            	</tbody>
+		            </table>
+
+		            <table class="commands-tbl ocs-option-help">
+		            	<thead>
+		            		<tr>
+		            			<th colspan="2">Org Code Search - uninstall</th>
+		            		</tr>
+		            	</thead>
+		            	<tbody>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<span class="button gen-btn ocs-help-btn" id="uninstall-ocs">Uninstall</span>
+			            		</td>
+			            		<td class="commands-desc">org code search no longer requires install.  click here to remove the no longer required code and sobjects from your org.</td>
+			            	</tr>
+		            	</tbody>
+		            </table>
+
+		            <table class="commands-tbl">
+		            	<thead>
+		            		<tr>
+		            			<th colspan="2">Sync - keep instances synchonrized</th>
+		            		</tr>
+		            	</thead>
+		            	<tbody>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<input type="checkbox" id="synchronize-settings" checked="checked" />
+			            		</td>
+			            		<td class="commands-desc">update settings across all instances</td>
+			            	</tr>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<select id="synchronize-switch" class="open-select">
+										<option value="alert">alert()</option>
+										<option value="title">Title Change</option>
+									</select>
+			            		</td>
+			            		<td class="commands-desc">
+									method used to switch focus when selecting a different tab. the "alert()" option
+									uses the javascript alert() function to switch tabs, but this may not be supported on
+									all browsers. "Title Change" will work on all browsers, but does not directly switch
+									tabs, instead informing the user which browser tab to click by changing the browser tab title.
+			            		</td>
+			            	</tr>
+		            	</tbody>
+		            </table>
+
+		            <table class="commands-tbl">
+	            		<thead>
+	            			<tr>
+	            				<th colspan="2">Debug Logs - set logging levels (<a href="https://help.salesforce.com/apex/HTViewHelpDoc?id=code_setting_debug_log_levels.htm&language=en" target="_blank" class="help-link">more info here</a>)</th>
+	            			</tr>
+	            		</thead>
+	            		<tbody>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<select id="debug-apexcode" class="debug-option open-select">
+										<option>NONE</option>
+										<option>INTERNAL</option>
+										<option>FINEST</option>
+										<option>FINER</option>
+										<option>FINE</option>
+										<option>DEBUG</option>
+										<option>INFO</option>
+										<option>WARN</option>
+										<option>ERROR</option>
+									</select>
+			            		</td>
+			            		<td class="commands-desc"><b>Apex Code:</b> Includes information about Apex code. Can include information such as log messages generated by DML statements, inline SOQL or SOSL queries, the start and completion of any triggers, and the start and completion of any test method.</td>
+			            	</tr>
+
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<select id="debug-apexprofiling" class="debug-option open-select">
+										<option>NONE</option>
+										<option>INTERNAL</option>
+										<option>FINEST</option>
+										<option>FINER</option>
+										<option>FINE</option>
+										<option>DEBUG</option>
+										<option>INFO</option>
+										<option>WARN</option>
+										<option>ERROR</option>
+									</select>
+			            		</td>
+			            		<td class="commands-desc"><b>Apex Profiling:</b> Includes cumulative profiling information, such as the limits for your namespace and the number of emails sent.</td>
+			            	</tr>
+
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<select id="debug-callout" class="debug-option open-select">
+										<option>NONE</option>
+										<option>INTERNAL</option>
+										<option>FINEST</option>
+										<option>FINER</option>
+										<option>FINE</option>
+										<option>DEBUG</option>
+										<option>INFO</option>
+										<option>WARN</option>
+										<option>ERROR</option>
+									</select>
+			            		</td>
+			            		<td class="commands-desc"><b>Callout:</b> Includes the request-response XML that the server is sending and receiving from an external web service. Useful when debugging issues related to using Force.com web service API calls or troubleshooting user access to external objects via an OData adapter for Salesforce Connect.</td>
+			            	</tr>
+
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<select id="debug-database" class="debug-option open-select">
+										<option>NONE</option>
+										<option>INTERNAL</option>
+										<option>FINEST</option>
+										<option>FINER</option>
+										<option>FINE</option>
+										<option>DEBUG</option>
+										<option>INFO</option>
+										<option>WARN</option>
+										<option>ERROR</option>
+									</select>
+			            		</td>
+			            		<td class="commands-desc"><b>Database:</b> Includes information about database activity, including every data manipulation language (DML) statement or inline SOQL or SOSL query.</td>
+			            	</tr>
+
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<select id="debug-system" class="debug-option open-select">
+										<option>NONE</option>
+										<option>INTERNAL</option>
+										<option>FINEST</option>
+										<option>FINER</option>
+										<option>FINE</option>
+										<option>DEBUG</option>
+										<option>INFO</option>
+										<option>WARN</option>
+										<option>ERROR</option>
+									</select>
+			            		</td>
+			            		<td class="commands-desc"><b>System:</b> Includes information about calls to all system methods such as the System.debug method.</td>
+			            	</tr>
+
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<select id="debug-validation" class="debug-option open-select">
+										<option>NONE</option>
+										<option>INTERNAL</option>
+										<option>FINEST</option>
+										<option>FINER</option>
+										<option>FINE</option>
+										<option>DEBUG</option>
+										<option>INFO</option>
+										<option>WARN</option>
+										<option>ERROR</option>
+									</select>
+			            		</td>
+			            		<td class="commands-desc"><b>Validation:</b> Includes information about validation rules, such as the name of the rule and whether the rule evaluated true or false.</td>
+			            	</tr>
+
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<select id="debug-visualforce" class="debug-option open-select">
+										<option>NONE</option>
+										<option>INTERNAL</option>
+										<option>FINEST</option>
+										<option>FINER</option>
+										<option>FINE</option>
+										<option>DEBUG</option>
+										<option>INFO</option>
+										<option>WARN</option>
+										<option>ERROR</option>
+									</select>
+			            		</td>
+			            		<td class="commands-desc"><b>Visualforce:</b> Includes information about Visualforce events, including serialization and deserialization of the view state or the evaluation of a formula field in a Visualforce page.</td>
+			            	</tr>
+
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<select id="debug-workflow" class="debug-option open-select">
+										<option>NONE</option>
+										<option>INTERNAL</option>
+										<option>FINEST</option>
+										<option>FINER</option>
+										<option>FINE</option>
+										<option>DEBUG</option>
+										<option>INFO</option>
+										<option>WARN</option>
+										<option>ERROR</option>
+									</select>
+			            		</td>
+			            		<td class="commands-desc"><b>Workflow:</b> Includes information for workflow rules, flows, and processes, such as the rule name and the actions taken.</td>
+			            	</tr>		            			            			            			            			            			            	</tbody>
+		            </table>
+
+		            <table class="commands-tbl">
+		            	<thead>
+		            		<tr>
+		            			<th colspan="2">Other - configure various options</th>
+		            		</tr>
+		            	</thead>
+		            	<tbody>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<input type="checkbox" id="auto-autocomplete" checked="checked" />
+			            		</td>
+			            		<td class="commands-desc">enable live autocomplete to have autocomplete make suggestions as you type</td>
+			            	</tr>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<input type="checkbox" id="scroll-past-end" />
+			            		</td>
+			            		<td class="commands-desc">allow scrolling past end of file</td>
+			            	</tr>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<input id="ac-max-results" class="range-slider" save-as="amr" pair-with="5" type="range" min="0" max="100" value="50" />
+									<span id="ac-max-results-viewer" class="range-viewer" pair-with="5"></span>
+			            		</td>
+			            		<td class="commands-desc">
+			            			max number of results that can appear in the code autocomplete
+			            		</td>
+			            	</tr>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<select id="onload-filter" class="open-select">
+										<option value="both">Load Everything</option>
+										<option value="upkg">Load Only Unpackaged</option>
+										<option value="pkgd">Load Only Packaged</option>
+										<option value="none">Don't Load Anything</option>
+									</select>
+			            		</td>
+			            		<td class="commands-desc">
+									filters the command typeahead and improves load times by reducing the scope of what ASIDE populates the
+									typeahead with on load. &nbsp;requires page refresh to take effect.
+			            		</td>
+			            	</tr>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<input id="code-scroll-speed" class="range-slider" save-as="csp" pair-with="4" type="range" min="0" max="500" value="200" />
+									<span id="c-speed-viewer" class="range-viewer" pair-with="4"></span>
+			            		</td>
+			            		<td class="commands-desc">
+			            			speed the editor moves at when scrolled by the user. &nbsp;higher is more sensitive
+			            		</td>
+			            	</tr>
+			            	<tr class="commands-row">
+			            		<td class="options-seq">
+									<input type="checkbox" id="enable-multi-cursor" />
+			            		</td>
+			            		<td class="commands-desc">enable multiple cursors. &nbsp;<span class="command-mod">⌘</span>+ left click places an
+			            		additional cursor.</td>
+			            	</tr>
+		            	</tbody>
+		            </table>
+				</div>
+	        </div>
+		</div>
+
+		<!-- Deploy Status Popup -->
+		<div id="deploy-status-popup" class="animated-modal hidden">
+			<div id="deploy-popup-header">
+		      	<div class="d3v-popup-title">
+		          	Deploy Status
+		      	</div>
+		      	<img src="css/images/ajax-loader.gif" class="keep-right" />
+				<div class="button keep-right d3v-popup-close hidden">X</div>
+		  	</div>
+		  	<div id="deploy-status-popup-body" class="d3v-popup-body auto-width auto-width">
+		  		<div id="deploy-status-console">
+			      	<span id="pco-btn" class="button keep-left deploy-status-active no-top-pad">
+			        	Console Results
+			      	</span>
+			      	<span id="pdr-btn" class="button keep-left deploy-status-inactive no-top-pad">
+			        	Deploy Overview
+			      	</span>
+			      	<span id="pter-btn" class="button keep-left deploy-status-inactive no-top-pad">
+			        	Test Execution Results
+			      	</span>
+					<span id="deploy-detail-marker" class="marker keep-right failed"></span>
+					<span id="deploy-status-marker" class="marker keep-right aborted"></span>
+		  		</div>
+		  		<div id="pdr-table" class="hidden"></div>
+		  		<div id="pco"><textarea></textarea></div>
+		  		<div id="pter" class="hidden">
+		  			<div id="pter-console" class="full-width">
+	  					<table>
+  							<tr>
+  								<th>Successful Tests</th>
+  								<th>Failed Tests</th>
+  								<th>Deploy Execution Time</th>
+  								<th>Test Execution Time</th>
+  								<th>Code Coverage</th>
+  								<th rowspan="2" style="font-size:17px !important;padding:4px 15px 4px 15px !important;">
+									<div id="coverage-chart" data-percent="0" class="chart" title="Code Coverage Percent">
+				  						<span class="percent bold-font">0</span>
+				  					</div>
+  								</th>
+  							</tr>
+  							<tr>
+  								<td id="p-num-success">Calculating...</td>
+  								<td id="p-num-fails">Calculating...</td>
+  								<td id="p-deploy-exec-time">Calculating...</td>
+  								<td id="p-test-exec-time">Calculating...</td>
+  								<td id="p-code-coverage">Calculating…</td>
+  							</tr>
+	  					</table>
+		  			</div>
+		  			<div id="pter-details">
+		  			</div>
+		  		</div>
+		  	</div>
+		</div>
+
+		<!-- Error popup -->
+		<div id="fatal-error-popup">
+			<div id="fatal-error-popup-header">
+				Error Encountered
+				<span class="status-marker marker successful hidden">Recovery Successful</span>
+				<span class="status-marker marker failed hidden">Recovery Failed</span>
+				<img src="css/images/ajax-loader.gif" />
+			</div>
+			<div id="fatal-error-popup-body">
+				<span id="fe-progress">
+					Sorry! ASIDE encountered an error.<br /><br />
+					Don't worry, recovery is underway and you won't be losing any work.
+					If this error is reproducible, please email details to admin@aside.io.
+				</span>
+				<span id="fe-success" class="hidden">
+					ASIDE has successfully recovered from the error.<br /><br />
+					<span id="quick-recover" class="hidden">
+						This popup will close in a moment.
+					</span>
+					<span id="long-recover" class="hidden">
+						To complete the recovery process, ASIDE will reload the page in a moment.
+						All unsaved work will be available upon reload.
+					</span>
+					Sorry for any inconvenience.
+				</span>
+				<span id="fe-failed" class="hidden">
+					ASIDE tried to recover from the error and failed. You will be kicked back to
+					the login page and will need to login again.<br /><br />
+					If logging in does not resolve this error, you may need to disable the
+					"Lock sessions to the IP address from which they originated" option,
+					found under Security &gt; Session Settings in your salesforce org.
+				</span>
+			</div>
+		</div>
+
+		<!-- Share Query Popup -->
+		<div id="share-query-popup" class="animated-modal hidden">
+			<div id="share-query-popup-header" class="d3v-popup-header">
+				<div class="button keep-right d3v-popup-close">
+		        	X
+		      	</div>
+		      	<div class="d3v-popup-title">
+		          	Share Query Results
+		      	</div>
+		  	</div>
+		  	<div id="share-query-popup-body" class="d3v-popup-body">
+		  		<div class="info-text">
+		  			To share the results of this query with another salesforce user give them the link below.
+		  		</div>
+		  		<textarea id="share-query"></textarea>
+		  	</div>
+		</div>
+
+		<!-- Version Popup -->
+		<div id="version-popup" class="animated-modal hidden">
+			<div id="version-popup-header" class="d3v-popup-header">
+				<div class="button keep-right d3v-popup-close">
+		        	X
+		      	</div>
+		      	<div class="d3v-popup-title">
+		          	Change Version
+		      	</div>
+		  	</div>
+		  	<div id="version-popup-body" class="d3v-popup-body">
+		  		<div class="info-text">Use the select box below to change the API version of the current file.</div>
+		      	<span>API Version:</span>
+		      	<select id="version-selector" class="alt-select">
+		      	</select>
+		      	<span id="update-to-new-version" class="button">Update</span>
+		  	</div>
+		</div>
+
+		<!-- Version Popup -->
+		<div id="related-popup" class="animated-modal hidden">
+			<div id="related-popup-header" class="d3v-popup-header">
+				<div class="button keep-right d3v-popup-close">
+		        	X
+		      	</div>
+		      	<div class="d3v-popup-title">
+		          	Lightning Bundle
+		      	</div>
+		  	</div>
+		  	<div id="related-popup-body" class="d3v-popup-body">
+		  		<div class="info-text">Click below to open other resources in the bundle or to add new resources to it.</div>
+		  		<div id="related-files-home"></div>
+		      	<select id="related-open-select" class="open-select">
+		      		<option value="current">Open in Current Instance</option>
+		      		<option value="new">Open in New Instance</option>
+		      	</select>
+		  	</div>
+		</div>
+
+		<!-- Test Result Filter-->
+		<div id="tr-filter-popup" class="animated-modal hidden" style="width:45%;">
+			<div id="tr-filter-popup-header" class="d3v-popup-header" style="height:30px;">
+		      	<div class="button keep-right d3v-popup-close">
+		        	X
+		      	</div>
+		    	<div class="d3v-popup-title">
+		    		Set Query Results View
+		    	</div>
+			</div>
+		  	<div id="tr-filter-popup-body">
+		  		<div class="info-text">
+		  			To modify the list of query results displayed in the left table on the test screen,
+		  			change the query below to suit your needs. If you start getting undesirable results, the default value is "ORDER BY CreatedDate desc, Status asc".
+		  		</div>
+		      	<div class="sub-info-text">SELECT &lt;fields&gt; FROM ApexTestQueueItem ...</div>
+		      	<input type="text" id="tr-filter" class="popup-input" value="ORDER BY CreatedDate desc, Status asc" />
+		  	</div>
+		</div>
+
+		<!-- Manage Push Filters -->
+		<div id="manage-push-filter" class="animated-modal hidden" style="width:45%;">
+			<div id="manage-push-filter-header" class="d3v-popup-header" style="height:30px;">
+		      	<div class="button keep-right d3v-popup-close">
+		        	X
+		      	</div>
+		    	<div class="d3v-popup-title">
+		    		Manage Retrieve Filter
+		    	</div>
+			</div>
+		  	<div id="manage-push-filter-body">
+		  		<input type="text" class="filter-box keep-left" id="p-filter-name" placeholder="Enter a filter name" />
+		  		<div id="push-filter-main">
+		  			<span class="start-adding-md">Enter a filter name and click 'Add Metadata' to begin building a retrieval filter.</span>
+		  			<div id="push-filter-contents"></div>
+				</div>
+				<div class="pf-foot">
+		      		<div class="button keep-left" id="push-save-filter" >Save Filter</div>
+		      		<div class="button keep-left hidden" id="push-delete-filter">Delete Filter</div>
+		      		<div class="button keep-right" id="push-add-metadata">Add Metadata</div>
+				</div>
+		  	</div>
+		</div>
+
+		<!-- Retrieve Filter Type (1/3) -->
+		<div id="rf1-popup" class="animated-modal hidden" style="width:45%;">
+			<div id="rf1-popup-header" class="d3v-popup-header" style="height:30px;">
+		      	<div class="button keep-right d3v-popup-close">
+		        	X
+		      	</div>
+		    	<div class="d3v-popup-title">
+		    		<b>Step 1:</b>&nbsp;Choose Metadata
+		    	</div>
+			</div>
+		  	<div id="rf1-popup-body" class="rf-popup">
+		      	<div class="info-text">Enter either the name of a metadata type you would like to retrieve (<a href="https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_customapplicationcomponent.htm" target="_blank" class="help-link">complete list here</a>), or select the name of a package.xml file already saved within ASIDE (e.g. MyPackage.xml).</div>
+		      	<input type="text" id="rf-type" placeholder="Metadata type or package.xml name" class="popup-input keep-original" />
+		      	<div class="rf-foot">
+		      		<div class="button gen-btn keep-left" id="rf1-back">Back</div>
+		      		<div class="button gen-btn keep-left" id="rf1-next">Next</div>
+		      	</div>
+		  	</div>
+		</div>
+
+		<!-- Retrieve Filter Method (2/3) -->
+		<div id="rf2-popup" class="animated-modal hidden" style="width:45%;">
+			<div id="rf2-popup-header" class="d3v-popup-header" style="height:30px;">
+		      	<div class="button keep-right d3v-popup-close">
+		        	X
+		      	</div>
+		    	<div class="d3v-popup-title">
+		    		<b>Step 2:</b>&nbsp;Pick Retrieve Method
+		    	</div>
+			</div>
+		  	<div id="rf2-popup-body" class="rf-popup">
+		      	<div class="info-text">Choose a strategy for retrieving metadata of the selected type.</div>
+
+		      	<table>
+		      		<tr>
+		      			<td class="method-cell info-text"><input type="radio" name="rf-method" value="query" checked="checked" /> By Query</td>
+		      			<td class="method-pad info-text">Write out a query which determines what metadata to retrieve.</td>
+		      		</tr>
+		      		<tr>
+		      			<td class="method-cell info-text"><input type="radio" name="rf-method" value="wildcard" /> Wildcard</td>
+		      			<td class="method-pad info-text">Selects all of the selected metadata type. The list of metadata types which support wildcard retrieves <a href="https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_types_list.htm" target="_blank" class="help-link">is available here</a>.</td>
+		      		</tr>
+		      		<tr>
+		      			<td class="method-cell info-text"><input type="radio" name="rf-method" value="written" /> Written Out</td>
+		      			<td class="method-pad info-text">Specifically list which members of the selected type should be retrieved.</td>
+		      		</tr>
+		      	</table>
+
+		      	<div class="rf-foot">
+		      		<div class="button gen-btn keep-left" id="rf2-back">Back</div>
+		      		<div class="button gen-btn keep-left" id="rf2-next">Next</div>
+		      	</div>
+		  	</div>
+		</div>
+
+		<!-- Retrieve Filter Detail - Written Out (3/3) -->
+		<div id="rf3written-popup" class="animated-modal hidden" style="width:45%;">
+			<div id="rf3written-popup-header" class="d3v-popup-header" style="height:30px;">
+		      	<div class="button keep-right d3v-popup-close">
+		        	X
+		      	</div>
+		    	<div class="d3v-popup-title">
+		    		<b>Step 3:</b>&nbsp;Write it Out
+		    	</div>
+			</div>
+		  	<div id="rf3written-popup-body" class="rf-popup">
+		      	<div class="info-text">Enter a comma separated list of metadata members to retrieve (e.g. MyClass,MyClassTest).</div>
+
+		      	<textarea id="rf3-detail-written" class="find-input" placeholder="Enter metadata members"></textarea>
+
+		      	<div class="rf-foot">
+		      		<div class="button gen-btn keep-left" id="rf3written-back">Back</div>
+		      		<div class="button gen-btn keep-left" id="rf3written-next">Next</div>
+		      	</div>
+		  	</div>
+		</div>
+
+		<!-- Retrieve Filter Detail - By Query (3/3) -->
+		<div id="rf3query-popup" class="animated-modal hidden" style="width:45%;">
+			<div id="rf3query-popup-header" class="d3v-popup-header" style="height:30px;">
+		      	<div class="button keep-right d3v-popup-close">
+		        	X
+		      	</div>
+		    	<div class="d3v-popup-title">
+		    		<b>Step 3:</b>&nbsp;Build Query
+		    	</div>
+			</div>
+		  	<div id="rf3query-popup-body" class="rf-popup">
+		      	<div class="info-text">
+			      	Write a query to define which metadata members you want to retrieve.  For example, to retrieve all
+			      	classes modified today your query would be:
+			      	<br /><br />
+			      	<span class="sub-info-text">SELECT Name FROM ApexClass WHERE LastModifiedDate = TODAY</span>
+			      	<br /><br />
+			      	In addition to the query you must enter a value in the <i>Member Field</i> input to tell
+			      	ASIDE what sObject field(s) to use as the value in the <i>&lt;members&gt;</i> element when building out the package XML.
+			      	This is typically the <i>Name</i> or <i>DeveloperName</i> field, but more complex examples <a href="/help#custom-retrieve-filters" target="_blank" class="help-link">are available here</a>.
+		      	</div>
+
+		      	<hr class="med-bottom-marg med-top-marg" />
+
+		      	<textarea id="rf3-detail-query" class="find-input" placeholder="Query"></textarea>
+		      	<input type="text" id="rf3-detail-member" placeholder="Member Field" class="popup-input keep-original" />
+
+		      	<div class="rf-foot">
+		      		<div class="button gen-btn keep-left" id="rf3query-back">Back</div>
+		      		<div class="button gen-btn keep-left" id="rf3query-next">Next</div>
+		      	</div>
+		  	</div>
+		</div>
+
+		<!-- Run Some Tests -->
+		<div id="run-some-popup" class="animated-modal hidden" style="width:45%;">
+			<div id="run-some-popup-header" class="d3v-popup-header" style="height:30px;">
+		      	<div class="button keep-right d3v-popup-close">
+		        	X
+		      	</div>
+		    	<div class="d3v-popup-title">
+		    		Queue Selected Tests
+		    	</div>
+			</div>
+		  	<div id="run-some-popup-body">
+		      	<div class="info-text">Complete the query below to execute unit tests based on the results of that query.  Useful when your code has a namespace.</div>
+		      	<div class="sub-info-text">SELECT Id FROM ApexClass WHERE ...</div>
+		      	<input type="text" id="tests-to-query" value="Name like 'MyNamespace_%'" class="popup-input" />
+		      	<div class="button" id="run-by-query">
+		        	Run by Query
+		      	</div>
+		      	<hr style="margin-top:20px;margin-bottom:20px;" />
+		      	<div class="info-text">If running tests by query does not meet your needs, select them individually below.</div>
+	        	<select id="the-chosen-one"
+	        	        data-placeholder="Select classes or xml files containing unit tests to execute…"
+	        	        multiple
+	        	        type="text">
+	        	</select>
+		      	<div class="button" id="run-specific">
+		        	Run by Selection
+		      	</div>
+		  	</div>
+		</div>
+
+	    <!-- Add uploaded file to zip popup -->
+		<div id="add-upload-to-zip" class="popup-generic animated-modal hidden">
+		  	<div class="popup-header-generic d3v-popup-header">
+		      	<div class="button keep-right d3v-popup-close" id="add-upload-to-zip-close">
+		          	X
+		      	</div>
+		      	<div id="add-upload-to-zip-title" class="d3v-popup-title">
+		          	Add Existing File to Zip
+		      	</div>
+		  	</div>
+		  	<div id="add-upload-to-zip-body" class="popup-body-generic d3v-popup-body">
+				<div id="add-upload-to-zip-other">
+			      	<div class="med-lrg-font med-top-marg">File Path</div>
+			      	<div><input id="add-upload-to-zip-rn" type="text" class="popup-input popup-input-disabled" /></div>
+			      	<br />
+	      			<div class="med-lrg-font">Choose File</div>
+	      			<div><input id="add-upload-to-zip-file" type="file" /></div>
+					<br />
+					<span id="add-upload-to-zip-sr" class="gen-btn button keep-left small-margin-bottom small-margin-left">
+						Add File to Zip
+					</span>
+					<span id="ausr-back" class="gen-btn button keep-left small-margin-bottom small-margin-left">
+						Back to Resource View
+					</span>
+				</div>
+		  	</div>
+		</div>
+
+		<!-- Code coverage report popup -->
+		<div id="code-coverage-table" class="animated-modal hidden">
+		  	<div id="cct-popup-header" class="d3v-popup-header">
+		      	<div class="button keep-right d3v-popup-close" id="cct-close">
+		          	X
+		      	</div>
+		      	<div id="cct-error-title" class="d3v-popup-title">
+		          	Apex Code Coverage
+		      	</div>
+		  	</div>
+		  	<div id="cct-popup-body" class="d3v-popup-body">
+		  		<div id="cct-button-bar">
+		  			<div id="cct-refresh" class="button keep-left">Refresh Coverage</div>
+		  			<div id="cct-csv" class="button keep-left">Download as CSV</div>
+		  			<div id="cct-filter" class="button keep-left">Filter Coverage</div>
+		  			<div class="keep-right" id="cct-pct">Click 'Refresh Coverage' To Calculate</div>
+		  			<img src="css/images/ajax-loader.gif" class="hidden keep-right" id="coverage-report-waiting" />
+		  		</div>
+		  		<div id="cct-grid-container" class="full-size">
+		  			<div id="cct-grid" class="full-size"></div>
+		  		</div>
+		  		<div id="cct-pager"></div>
+		  		<div id="cct-filter-info" class="hidden">
+			  		<span id="coverage-report-desc">
+				  		The code coverage report is a class-by-class breakdown of your organization's unit
+				  		test code coverage in CSV format. For best results, run all unit tests before generating the report.
+				  		Optionally, you may filter the report by finishing the SOQL query below
+				  		(e.g. <span class="italic-font" style="font-size:14px;">WHERE ApexClassOrTrigger.Name like 'MyNamespace%'</span>).
+			  		</span>
+			  		<span id="coverage-report-soql">SELECT &lt;fields&gt; FROM ApexCodeCoverageAggregate ...</span>
+			  		<div id="where-container">
+			  			<input type="text" id="coverage-report-where" class="popup-input" />
+			  		</div>
+			  		<div id="cct-filter-apply" class="button keep-left">Apply Filter</div>
+			  		<div id="cct-filter-clear" class="button keep-left">Clear Filter</div>
+			  		<div id="cct-filter-cancel" class="button keep-left">Back to Coverage Results</div>
+		  		</div>
+		  	</div>
+		</div>
+
+	    <!-- Mime type popup -->
+	    <div id="mime-errors" class="animated-modal hidden">
+		  	<div id="mime-popup-header" class="d3v-popup-header">
+		      	<div class="button keep-right d3v-popup-close hidden" id="mime-close">
+		          	X
+		      	</div>
+		      	<div id="mime-error-title" class="d3v-popup-title">
+		          	Static Resource Type
+		      	</div>
+		  	</div>
+		  	<div id="mime-popup-body" class="d3v-popup-body">
+		  		<div id="mime-type-main">
+		        	<div class="info-text lrg-left-marg">What is this new type for this Static Resource?</div>
+		        	<div class="bold-font info-text lrg-left-marg">Warning: Changing the resource type will delete the resource contents.</div>
+			      	<select id="mime-choice" class="keep-left right-marg-med alt-select">
+			      		<option value="upload">Upload a File</option>
+			      		<option value="css">CSS</option>
+			      		<option value="html">HTML</option>
+			      		<option value="js">Javascript</option>
+			      		<option value="xml">XML</option>
+			      		<option value="zip">Zip</option>
+			      	</select>
+			      	<span id="mime-okay" class="gen-btn button keep-left small-margin-bottom">Okay</span>
+				</div>
+				<div id="mime-type-other" class="hidden">
+		        	<div class="bold-font info-text">Static Resource Details</div>
+			      	<table>
+			      		<tr>
+			      			<td class="med-lrg-font special">Resource Name&nbsp;&nbsp;&nbsp;</td>
+			      			<td><input id="mime-rn" type="text" /></td>
+			      		</tr>
+			      		<tr>
+			      			<td class="med-lrg-font special">Content</td>
+			      			<td><input id="mime-file" type="file" /></td>
+			      		</tr>
+			      	</table>
+					<br /><br />
+					<span id="mime-back" class="gen-btn button keep-left small-margin-bottom">
+						Back
+					</span>
+					<span id="mime-sr" class="gen-btn button keep-left small-margin-bottom small-margin-left">
+						Save Resource
+					</span>
+				</div>
+	      	</div>
+	    </div>
+
+	    <!-- Adding new file to a zip -->
+	    <div id="zip-new" class="animated-modal hidden">
+		  	<div class="d3v-popup-header">
+		      	<div class="button keep-right d3v-popup-close hidden">X</div>
+		      	<div class="d3v-popup-title">New File Details</div>
+		  	</div>
+		  	<div id="zn-body" class="d3v-popup-body am-body">
+		  		<div class="info-text">Enter information about the new file</div>
+		  		<hr />
+		  		<table class="full-width med-margin-bottom">
+		  			<tr>
+		  				<td>Type:</td>
+		  				<td>
+					      	<select id="zn-mime-choice" class="keep-left right-marg-med alt-select">
+					      		<option value="css">CSS</option>
+					      		<option value="html">HTML</option>
+					      		<option value="js">Javascript</option>
+					      		<option value="txt">Text</option>
+					      		<option value="xml">XML</option>
+					      	</select>
+		  				</td>
+		  			</tr>
+		  			<tr>
+		  				<td>Path:</td>
+		  				<td>
+		  					<input type="text" id="zn-path" class="popup-input popup-input-disabled" disabled="disabled" />
+		  				</td>
+		  			</tr>
+		  			<tr>
+		  				<td>Name:</td>
+		  				<td>
+		  					<input type="text" id="zn-name" class="popup-input" />
+		  				</td>
+		  			</tr>
+		  			<tr>
+		  				<td>Full Name:</td>
+		  				<td>
+		  					<input type="text" id="zn-full" class="popup-input popup-input-disabled" disabled="disabled" />
+		  				</td>
+		  			</tr>
+		  		</table>
+		  		<span id="zn-create" class="gen-btn button keep-left zh-button">Create New File</span>
+		  		<span id="zn-back" class="gen-btn button keep-left zh-button">Back to Resource View</span>
+		  	</div>
+	    </div>
+
+	    <!-- Lightning bundler popup -->
+	    <div id="lightning-bundler" class="animated-modal hidden save-reseter">
+		  	<div id="lb-header" class="d3v-popup-header">
+		      	<div class="button keep-right d3v-popup-close hidden">X</div>
+		      	<div id="lb-title" class="d3v-popup-title">New Lightning Resource</div>
+		  	</div>
+		  	<div id="lb-body" class="rf-popup">
+				<div class="info-text">
+					Enter the new lightning resource name, or enter the name of an existing lightning resource
+					to bundle the files together.
+				</div>
+
+				<div class="small-margin-bottom full-width full-height keep-left">
+					<input type="text" id="lightning-bundle-name" placeholder="Enter a name here..." class="popup-input" />
+				</div>
+
+		      	<div class="button keep-left gen-btn" id="save-lightning-bundle">Save</div>
+		      	<div class="button keep-left gen-btn" id="cancel-lightning-bundle">Cancel</div>
+		  	</div>
+	    </div>
+
+	    <!-- Zip Expander Dialog -->
+	    <div id="zip-handler" class="animated-modal hidden">
+		  	<div id="zh-header" class="d3v-popup-header">
+		      	<div class="button keep-right d3v-popup-close hidden">X</div>
+		      	<div id="zh-title" class="d3v-popup-title">Static Resource Explorer</div>
+		  	</div>
+		  	<div id="zh-body" class="d3v-popup-body am-body">
+				<div id="zh-instr">
+					Modify the resource by using the controls below to add, edit, and delete files/folders.
+				</div>
+
+		  		<div id="zh-container">
+		  			<div id="zh-path">
+		  				<div>
+		  					<span id="zh-path-title">PATH</span>
+		  					<span id="zh-location">/</span>
+		  				</div>
+		  			</div>
+		  			<div id="zh-files">
+		  				<ul>
+		  					<li>Back</li>
+		  					<li>New</li>
+		  				</ul>
+		  			</div>
+		  			<div id="zh-footer">
+						<span id="zh-open" class="gen-btn button keep-left zh-button">Select</span>
+						<span id="zh-delete" class="gen-btn button keep-left zh-button">Delete</span>
+		  			</div>
+		  		</div>
+		  	</div>
+	    </div>
+
+	</body>
+</html>
