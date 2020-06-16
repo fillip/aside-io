@@ -1,4 +1,12 @@
 <!doctype html>
+<!-- 
+@author Phil Rymek
+
+Copyright (c) 2020, salesforce.com, inc.
+All rights reserved.
+SPDX-License-Identifier: BSD-3-Clause
+For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
+ -->
 <html>
 <head>
 	<meta charset="utf-8">
@@ -40,6 +48,9 @@
 <body>
 <div style="overflow:hidden;">
 <header class="header" id="header"><!--header-start-->
+	<div id="important-banner">ASIDE.IO IS NOW OPEN SOURCE BUT WILL NOT BE HOSTED PAST 6/19/20. &nbsp;
+		<a href="/shutdown" target="_blank">Click here for more information</a>. &nbsp;Thanks for all your support!
+	</div>
 	<div id="cloudtainer">
 		<div class="cloud large cloud-1">
 		  <div></div><div></div><div></div><div></div>
@@ -86,7 +97,11 @@
 	        	<li style="font-size:30px;margin-top:5px;">click below to login now</li>
 	        </ul>
 	        <a class="link animated fadeInUp delay-1s sandbox" style="width:250px;margin-bottom:5px;" id="sand-btn">Sandbox Login</a>
-	        <a class="link animated fadeInUp delay-1s production" style="width:250px;margin-bottom:5px;" id="prod-btn">Production Login</a><br />
+	        <a class="link animated fadeInUp delay-1s production" style="width:250px;margin-bottom:5px;" id="prod-btn">Production Login</a>
+	        <div style="margin-top:20px;" class="animated fadeInUp delay-1s">
+	        	<a href="/new_instance" target="_blank" style="color:#555;">(or click here to deploy a new instance)</a>
+	        </div>
+	        <br />
 			<figure class="animated fadeInUp delay-1s btn btn-circle page-scroll" id="go-down" href="#service">
 				<i class="fa fa-angle-double-down animated"></i>
 			</figure>	
@@ -102,6 +117,7 @@
         <ul class="main-nav" style="float:left;" id="main-left">
         	<li><a class="link sandbox">Sandbox Login</a></li>
             <li><a class="link production">Production Login</a></li>
+            <li><a class="link instance" href="/new_instance" target="_blank">New Instance</a></li>
         </ul>
         <ul class="main-nav" style="float:right;margin-top:28px;" id="main-right">
         	<li class="hidden-btn"><a class="sandbox">Sandbox Login</a></li>
@@ -363,7 +379,9 @@
         <h3 class="large-top-marg">Is there any documentation available?</h3>
         <p>Check <a href="/help" target="_blank">here</a>.</p>            
         <h3 class="large-top-marg">Is ASIDE open source?</h3>
-        <p>Currently it is not, but possibly in the future.</p>
+        <p>Yes it is!  View it's github repository <a href="https://github.com/fillip/aside-io" target="_blank">here</a>.</p>
+        <h3 class="large-top-marg">How do I spin up my own instance of ASIDE?</h3>
+        <p>You can do it by following the steps <a href="/new_instance" target="_blank">here</a>.</p>
         <h3 class="large-top-marg">Do I need to give ASIDE my credentials?</h3>
         <p>No, ASIDE never sees your credentials. Clicking the login button will redirect you to the Salesforce.com domain where you can securely authenticate.</p>        
         <h3 class="large-top-marg">Does ASIDE store any of my Salesforce or personal data?</h3>
@@ -461,7 +479,7 @@ function positionLanding() {
     
     if(windowHeight > containerHeight) {
     	var positionScalar = windowHeight >= windowComparator ? 0.50 : 0.75;
-    	var newPad = parseInt((windowHeight - containerHeight) * positionScalar) - 25;
+    	var newPad = parseInt((windowHeight - containerHeight) * positionScalar);
     	$header.css({height : (windowHeight) + "px"}); //, paddingTop: newPad + "px"
     	$('div#cloudtent').css({top:newPad + "px"});
     } else {

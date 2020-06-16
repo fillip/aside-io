@@ -167,13 +167,19 @@ color: #fff;
 	-webkit-transition:all 0.3s ease-in-out;
 	cursor: pointer;
 }
-.link:hover {
+.link:not(.instance):hover {
 	text-decoration:none;
 	color:white !important;
 	background:#896600;
 }
 
-.link:active, .link:focus {
+.link.instance:hover {
+	text-decoration:none;
+	color:white !important;
+	background:steelblue;
+}
+
+.link:not(.instance):active, .link:not(.instance):focus {
 	background: #7cc576;
 	text-decoration:none;
 	color:#fff !important;
@@ -221,7 +227,7 @@ div#grass {
 	display: none !important;
 }
 
-.main-nav li a:hover{ 
+.main-nav li a:hover { 
 	text-decoration:none;
 	color: #7cc576;
 }
@@ -240,6 +246,10 @@ div#grass {
 
 .sandbox, .production {
 	cursor: pointer;
+}
+
+.instance {
+	background: cadetblue;
 }
 
 

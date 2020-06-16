@@ -4,6 +4,11 @@
 @author      Phil Rymek
 @date		 11/25/2019
 @description ASIDE.IO Deployment
+
+Copyright (c) 2020, salesforce.com, inc.
+All rights reserved.
+SPDX-License-Identifier: BSD-3-Clause
+For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
  -->
 
 <html>
@@ -25,10 +30,10 @@
 	  			<div class="header-bottom">
 		  			<a class="nav-link" href="/about">[about]</a>
 		  			<a class="nav-link" href="/help">[help]</a>	
-		  			<a class="nav-link" href="/instance">[instance]</a>
+		  			<a class="nav-link" href="/new_instance">[instance]</a>	
 		  			<a class="nav-link" href="/login">[login]</a>
-		  			<a class="nav-link" href="/instance">[shortcuts]</a>
-		  			<a class="nav-link" href="/updates">[updates]</a>
+		  			<a class="nav-link" href="/shortcuts">[shortcuts]</a>
+		  			<a class="nav-link" href="/updates">[updates]</a>	
 		  			<span class="title-block"></span>
 		  		</div>
 			</div>
@@ -73,7 +78,7 @@
 				Click the button below to begin the deployment process for ASIDE.  It will open a new page 
 				which contains a form with a couple fields relating to the deployment.
 				<br/>
-				<a href="https://www.google.com" target="_blank">
+				<a href="https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2Ffillip%2Faside-io" target="_blank">
 					<img src="https://www.herokucdn.com/deploy/button.png" class="mt3" />
 				</a>
 				<br/><br/>
@@ -105,7 +110,7 @@
 				and click the save button to finish configuring the <span class="important">Connected App</span>.
 				<br /><br />
 				Now that you have created a <span class="important">Connected App</span> it has two fields which are populated by Salesforce 
-				on it's detail page: <span class="term">Client Id</span> and <span class="term">Client Secret</span>.  
+				on it's detail page: <span class="term">Consumer Key</span> and <span class="term">Consumer Secret</span>.  
 				Their values will be used to finish configuring the application in the next step.
 			</div>
 			
@@ -121,7 +126,7 @@
 						<span class="term">CID</span>
 						<ul>
 							<li>
-								This is the <span class="term">Client Id</span> from the 
+								This is the <span class="term">Consumer Key</span> from the 
 								<span class="important">Connected App</span> you created in Salesforce.
 							</li>
 						</ul>
@@ -130,7 +135,7 @@
 						<span class="term">SEC</span>
 						<ul>
 							<li>
-								This is the <span class="term">Client Secret</span> from the 
+								This is the <span class="term">Consumer Secret</span> from the 
 								<span class="important">Connected App</span> you created in Salesforce.
 							</li>
 						</ul>

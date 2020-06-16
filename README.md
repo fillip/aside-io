@@ -119,4 +119,4 @@ Save these values and wait 10 minutes, then you should be able to login to your 
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the 3-Clause BSD License - see the [LICENSE.md](LICENSE.md) file for details
