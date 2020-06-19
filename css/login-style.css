@@ -1236,3 +1236,12 @@ div#cloudtainer {
 	background: red;
 	color: white;	
 }
+
+
+.bold {
+	font-weight: bold;
+}
+
+.important-answer {
+	color: red;
+}
