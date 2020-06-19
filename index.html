@@ -525,11 +525,11 @@ $(window).load(function(){
          return false;
     });
     
-    $('.production').click(function() {
+    $('.production').on('click', function() {
         window.location.href = 'https://github.com/fillip/aside-io';
     });
     
-    $('.sandbox').click(function() {
+    $('.sandbox').on('click', function() {
         window.location.href = '/aside-io/instance.html';
     });    
 });
