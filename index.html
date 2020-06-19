@@ -470,7 +470,7 @@ function positionLanding() {
     
     if(windowHeight > containerHeight) {
     	var positionScalar = windowHeight >= windowComparator ? 0.50 : 0.75;
-    	var newPad = parseInt((windowHeight - containerHeight) * positionScalar) - 60;
+    	var newPad = parseInt((windowHeight - containerHeight) * positionScalar) - 50;
     	$header.css({height : (windowHeight) + "px"}); //, paddingTop: newPad + "px"
     	$('div#cloudtent').css({top:newPad + "px"});
     } else {
