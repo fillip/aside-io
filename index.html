@@ -365,14 +365,18 @@ For full license text, see the LICENSE file in the repo root or https://opensour
 	<div class="container">
         <h2>Frequently Asked Questions</h2>
         <h6>Have something on your mind?</h6>
+        <h3 class="large-top-marg bold">Why can't I log into my org anymore from this website?</h3>
+        <p class="important-answer">I am not able to host ASIDE anymore; it has switched to an open source model where it is easy to deploy a new 
+        instance of ASIDE that you can log into your org from. 
+        <a href="/aside-io/instance.html" target="_blank">Click here for more information on deploying a new instance of ASIDE.</a></p>          
         <h3 class="large-top-marg">What is ASIDE?</h3>
         <p>ASIDE is full-featured Salesforce IDE built from the ground up for efficient delivery, design, and testing of Apex and Visualforce code.</p>
         <h3 class="large-top-marg">Is there any documentation available?</h3>
-        <p>Check <a href="/help" target="_blank">here</a>.</p>            
+        <p>Check <a href="/aside-io/help.html" target="_blank">here</a>.</p>            
         <h3 class="large-top-marg">Is ASIDE open source?</h3>
         <p>Yes it is!  View it's github repository <a href="https://github.com/fillip/aside-io" target="_blank">here</a>.</p>
         <h3 class="large-top-marg">How do I spin up my own instance of ASIDE?</h3>
-        <p>You can do it by following the steps <a href="/new_instance" target="_blank">here</a>.</p>
+        <p>You can do it by following the steps <a href="/aside-io/instance.html" target="_blank">here</a>.</p>
         <h3 class="large-top-marg">Do I need to give ASIDE my credentials?</h3>
         <p>No, ASIDE never sees your credentials. Clicking the login button will redirect you to the Salesforce.com domain where you can securely authenticate.</p>        
         <h3 class="large-top-marg">Does ASIDE store any of my Salesforce or personal data?</h3>
@@ -391,7 +395,7 @@ For full license text, see the LICENSE file in the repo root or https://opensour
         related to retrieving and downloading not working properly.
         </p>
         <h3 class="large-top-marg">Where can I find information about the latest update?</h3>
-        <p>On <a href="/updates" target="_blank">the updates page</a>.</p>                 
+        <p>On <a href="/aside-io/updates.html" target="_blank">the updates page</a>.</p>                 
         <h3 class="large-top-marg">Who can I contact about questions/bugs/feature requests?</h3>
         <p>Hit me up at <a href="mailto:admin@aside.io">admin@aside.io</a></p>
     </div>
@@ -470,7 +474,7 @@ function positionLanding() {
     
     if(windowHeight > containerHeight) {
     	var positionScalar = windowHeight >= windowComparator ? 0.50 : 0.75;
-    	var newPad = parseInt((windowHeight - containerHeight) * positionScalar) - 50;
+    	var newPad = parseInt((windowHeight - containerHeight) * positionScalar) - 40;
     	$header.css({height : (windowHeight) + "px"}); //, paddingTop: newPad + "px"
     	$('div#cloudtent').css({top:newPad + "px"});
     } else {
