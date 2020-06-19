@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+
+<!-- 
+@author      Phil Rymek
+@date		 11/27/2016
+@description ASIDE.IO Help
+
+Copyright (c) 2020, salesforce.com, inc.
+All rights reserved.
+SPDX-License-Identifier: BSD-3-Clause
+For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
+ -->
+
+<html>
+	<head>
+		<link rel="shortcut icon" href="images/favicon.ico" />
+		<title>ASIDE.IO Help</title>
+			
+		<link href="css/help.css?v=1.0.2" rel="stylesheet" type="text/css" />
+		<script src="js/jquery/jquery.min.js?v=1.0.2"></script>
+		<script src="js/d3v/d3vHelp.js?v=1.0.2"></script>
+	</head>
+	<body>
+		<div class="main">
+			<div id="generic-overlay"></div>
+			<div class="header">
+				<div class="outline-container">
+					<input type="text" class="outline-search" placeholder="search..." />
+					<div class="search-reset">clear</div>
+					<div class="outline-table">
+					</div>
+				</div>
+				<div class="header-top">
+	  				<h1>ASIDE.IO Help</h1>
+	  			</div>
+	  			<div class="header-bottom">
+		  			<a class="nav-link" href="/about">[about]</a>
+		  			<a class="nav-link" href="/help">[help]</a>	
+		  			<a class="nav-link" href="/new_instance">[instance]</a>	
+		  			<a class="nav-link" href="/login">[login]</a>
+		  			<a class="nav-link" href="/shortcuts">[shortcuts]</a>	
+		  			<a class="nav-link" href="/updates">[updates]</a>	
+					<span class="title-block"></span>
+					<span class="nav-link outline">search</span>
+					<span class="nav-link goes-next">next</span>
+					<span class="nav-link goes-prev">prev</span>
+				</div>
+			</div>
+			
+			<h2 class="mt5 title-item tl1">What is ASIDE?</h2>
+			<div class="mt4 text-block">
+ASIDE is <span class="important">A</span> <span class="important">S</span>alesforce <span class="important">IDE</span> that is fast, free, and always available. It is full-featured and supports the entire Salesforce development cycle from writing code, running unit tests, querying/managing data, and deploying the resulting application.  			
+			</div>
+
+			<h2 class="mt5 title-item tl1">How can I use this Help?</h2>
+			<div class="mt4 text-block">
+This help section serves as the documentation for all of ASIDE.  It is most easily consumed with the search feature.  Click <span class="term">search</span> in the top right or use the <span class="term">esc</span> key to toggle the search open and closed.  When the search is open, click any entry in the search to jump to the related text.  If you find there are too many entries in the search, enter a topic into the search input to filter the results.<br /><br />
+
+If you are seeking other information about ASIDE, please see the other available pages: <a target="_blank" href="/about" class="text-link">about</a>, <a target="_blank" href="/updates" class="text-link">updates</a>, or <a target="_blank" href="/shortcuts" class="text-link">shortcuts</a>.
+			</div>
+			
+			<h2 class="mt5 title-item tl1">Getting Started</h2>
+			<div class="mt4 text-block">
+Getting started with ASIDE is simple.  All you need is a Salesforce login and an Internet connection, and considering you’re viewing this web page, you probably have the latter half covered!			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Logging In</h3>
+			<div class="mt4 text-block">
+To login, navigate to the <a target="_blank" href="/login" class="text-link">login</a> page.  From here there are two buttons for logging in: <span class="term">Sandbox Login</span> and <span class="term">Production Login</span>.  If you are working against a production Salesforce organization, a developer organization, or any Salesforce organization where you normally login via <a target="_blank" href="https://login.salesforce.com" class="text-link">login.salesforce.com</a>, you’ll want to click the <span class="term">Production Login</span> button.  If you are working against a sandbox organization, or normally login via <a target="_blank" href="https://test.salesforce.com" class="text-link">test.salesforce.com</a>, you’ll want to use the <span class="term">Sandbox Login</span> button to login.  Once you click one of the buttons, Salesforce handles your login (go ahead, look at the URL) and then returns you back to ASIDE after a successful login.  <span class="bold">ASIDE doesn’t ever see your credentials or store any of your Salesforce data.</span>
+			</div>
+			
+			<h3 class="mt4 title-item tl3">Login Limitations</h3>
+			<div class="mt4 text-block">
+			There are a few cases where ASIDE won’t allow you to login, or work as described in the rest of this help document.  They are:
+
+				<ul class="mt3 text-block">
+					<li>If your organization has IP restrictions enabled it will not be possible to login or use ASIDE because it has a dynamic IP address.  There is no range of IPs I can give you to whitelist either ☹.</li>
+					<li>If your organization has the setting <span class="important">Lock sessions to the IP address from which they originated</span> enabled, then you’re likely to encounter issues with ASIDE because it has a dynamic IP address from request-to-request.</li>
+					<li>If your user profile does not have both the <span class="important">Modify All Data</span> and <span class="important">Author Apex</span> permissions, then ASIDE is limited to the <span class="term">data</span> screen, and does not provide access to the <span class="term">code</span>, <span class="term">test</span>, or <span class="term">push</span> screens.</li>
+				</ul>
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Where to Start</h3>
+			<div class="mt4 text-block">
+ASIDE has four main screens that correspond to the four primary activities that occur during Salesforce development: <span class="term">code</span>, <span class="term">test</span>, <span class="term">push</span>, and <span class="term">data</span>.  Use the four buttons in the top right to switch between the screens.  The table below lays out the functionality available to each screen.
+
+				<table class="shortcuts mt4">
+					<thead>
+						<tr>
+							<th>Screen</th>
+							<th>Functionality</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Code</td>
+							<td>Ability to create, edit, and delete code</td>
+						</tr>
+						<tr>
+							<td>Test</td>
+							<td>Run Unit Tests & View Coverage</td>
+						</tr>
+						<tr>
+							<td>Push</td>
+							<td>Retrieve and Deploy Metadata</td>
+						</tr>
+						<tr>
+							<td>Data</td>
+							<td>Query and Modify Data</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<h2 class="mt5 title-item tl1">How To: Common Salesforce Operations</h2>
+			<div class="mt4 text-block">
+ASIDE supports the entire workflow of Salesforce developer tasks.  Below are examples of how to perform common tasks with ASIDE.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Creating New Files</h3>
+			<div class="mt4 text-block">
+From the <span class="term">code</span> screen:
+
+
+				<ul class="mt3 text-block">
+					<li>Click the <span class="important">command typeahead</span> in top left corner</li>
+					<li>Choose <span class="term">New Apex Class</span></li>
+					<li>Replace <span class="term">CLASS_NAME</span> with a cool class name of your own</li>
+					<li>Save the new apex class by clicking <span class="term">save</span> in the lower left, or with <span class="term"><span class="mod-key">command</span> + s</span></li>															
+				</ul>
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Opening Existing Files</h3>
+			<div class="mt4 text-block">
+From the <span class="term">code</span> screen:
+
+				<ul class="mt3 text-block">
+					<li>Click the <span class="important">command typeahead</span> in top left corner</li>
+					<li>Type in the name of the file you want to open</li>
+					<li>Press <span class="term">enter</span></li>														
+				</ul>
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Running Unit Tests</h3>
+			<div class="mt4 text-block">
+From the <span class="term">test</span> screen:
+
+				<ul class="mt3 text-block">
+					<li>Click the <span class="term">run some</span> button</li>
+					<li>In the second input, enter the name(s) of any test classes you wish to execute</li>
+					<li>Click <span class="term">run by selection</span></li>													
+				</ul>
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Viewing Code Coverage</h3>
+			<div class="mt4 text-block">
+From the <span class="term">test</span> screen, after unit tests have ran:
+
+				<ul class="mt3 text-block">
+					<li>Click the <span class="term">code coverage</span> button</li>
+					<li>Enjoy code coverage results</li>							
+				</ul>
+			</div>
+
+			<h3 class="mt4 title-item tl2">Retrieving Metadata</h3>
+			<div class="mt4 text-block">
+From the <span class="term">push</span> screen:
+
+				<ul class="mt3 text-block">
+					<li>Click <span class="term">Select Retrieve Filter</span></li>
+					<li>Choose the default filter named <span class="important">Apex, Lightning, VF, Static Resources</span></li>
+					<li>Click <span class="term">Add All</span></li>
+					<li>Click <span class="term">retrieve</span></li>															
+				</ul>
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Deploying Metadata</h3>
+			<div class="mt4 text-block">
+Logged into the target org, from the <span class="term">push</span> screen:
+
+				<ul class="mt3 text-block">
+					<li>Drag your previous retrieve result from your desktop onto ASIDE’s browser window</li>
+					<li>Wait for the deploy to complete</li>															
+				</ul>
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Querying Data</h3>
+			<div class="mt4 text-block">
+From the <span class="term">data</span> screen:
+
+				<ul class="mt3 text-block">
+					<li>Click into the <span class="term">enter a soql query…</span> input</li>
+					<li>Type <span class="important">SELECT Id, Name FROM Account</span></li>
+					<li>Click the <span class="term">query</span> button or press <span class="term"><span class="mod-key">command</span> + s</span></li>				
+				</ul>
+			</div>
+			
+			<h2 class="mt5 title-item tl1">Main Menu Operations</h2>
+			<div class="mt4 text-block">
+In the top right corner of the screen is your username.  Hover over it, and a menu appears.  This menu is referred to as the <span class="important">main menu</span> and has all of the operations that are always available to you, regardless of what screen you’re on.  Each item in this menu is explained below.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">New Tab</h3>
+			<div class="mt4 text-block">
+Clicking <span class="term">new tab</span> opens a new instance of ASIDE.  Alternatively you can use the shortcut <span class="term"><span class="mod-key">command</span> + shift + i</span>.<br /><br />
+
+There is no way to open multiple tabs within a single instance of ASIDE.  However, ASIDE does have a <span class="important">virtual tabs</span> feature, which makes having multiple instances open behave similarly to having one instance with multiple tabs.  ASIDE detects when you have multiple instances of itself open inside your browser, and renders each instance as a <span class="important">“virtual tab”</span>.  Clicking one of the <span class="important">virtual tabs</span> tells your browser to switch tabs to the corresponding instance of ASIDE.  			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Help</h3>
+			<div class="mt4 text-block">
+Opens the <span class="term">help</span> page in a new window.  Shortcut: <span class="term"><span class="mod-key">command</span> + shift + 0</span>		
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Options</h3>
+			<div class="mt4 text-block">
+Opens the <span class="term">options</span> popup.   Please note that you do not see all the options at once, they are relative to the screen you are viewing.  For example, if you are viewing the code screen and choose options, you get options related to the code screen only.  As you make changes to the options, your choices are automatically saved in your browser’s storage.  Shortcut: <span class="term"><span class="mod-key">command</span> + shift + p</span>.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Shortcuts</h3>
+			<div class="mt4 text-block">
+Opens the <span class="term">shortcuts</span> page in a new window.   Shortcuts shown in the <span class="important">globals</span> section can be used at anytime, but shortcuts listed for a specific screen (<span class="term">code</span>, <span class="term">data</span>) only work on those screens.  Shortcut: <span class="term"><span class="mod-key">command</span> + shift + h</span>		
+			</div>
+			
+			<h3 class="mt4 title-item tl2" id="debug-logs">Debug Logs</h3>
+			<div class="mt4 text-block">
+Choosing <span class="term">debug logs</span> displays debug log information in the side panel (shortcut: <span class="term"><span class="mod-key">command</span> + shift + l</span>).   At the top of the panel is a list of debug logs available for viewing.  Beneath the list of debug logs are buttons for managing how ASIDE works with debug logs.  The functionality of each button is described below:<br /><br />
+
+				<table class="shortcuts mt3">
+					<thead>
+						<tr>
+							<th>Button</th>
+							<th>Functionality</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Start Logging</td>
+							<td>Updates your user’s TraceFlag entry</td>
+						</tr>
+						<tr>
+							<td>Refresh Logs</td>
+							<td>Updates the list of debug logs with the newest</td>
+						</tr>
+						<tr>
+							<td>Set Log Levels</td>
+							<td>Open the options popup to the debug log level section</td>
+						</tr>
+					</tbody>
+				</table>
+				<br /><br />
+By default, clicking one of the debug logs will download the debug log.  However, you can change how ASIDE serves up the debug log by changing the input at the bottom from <span class="term">Download Log</span> to either <span class="term">Open in Primary Editor</span> (debug logs will open in the main editor) or <span class="term">Open in Diff Editor</span> (debug logs will open in the secondary “diff” editor).  Note that if you open a debug log in the primary editor, you will likely end up opening the debug log over the code you were last working on.  If this occurs and you wish to leave the debug log and return to the code you were editing, click the <span class="term">close debug log</span> button.<br /><br />
+
+ASIDE does make an attempt to keep the trace flag up to date so you don’t have to.  When ASIDE opens and when you execute anonymous the trace flag is automatically updated to help keep your debug logs up to date.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Development Mode</h3>
+			<div class="mt4 text-block">
+Toggles the value of the development mode on your user record.  Shortcut: <span class="term"><span class="mod-key">command</span> + shift + v</span>.			
+			</div>
+
+			<h3 class="mt4 title-item tl2">Open in Salesforce</h3>
+			<div class="mt4 text-block">
+Opens the current context of ASIDE within Salesforce.  Shortcut: <span class="term"><span class="mod-key">command</span> + shift + o</span>.
+
+				<ul class="mt3 text-block">
+					<li>
+						On the <span class="term">code</span> screen:
+						<ul class="mt3 text-block">
+							<li>If editing Visualforce, opens the VF page</li>
+							<li>Otherwise opens the detail page for the file being edited</li>
+						</ul>
+					</li>
+					<li>On the <span class="term">test</span> screen: opens the Salesforce standard test execution page</li>
+					<li>On the <span class="term">push</span> screen: opens the <span class="important">monitor deployments</span> page</li>
+					<li>On the <span class="term">data</span> screen: opens the <span class="important">show all tabs</span> page</li>									
+				</ul>
+			</div>
+			
+			<h3 class="mt4 title-item tl2">User Detail</h3>
+			<div class="mt4 text-block">
+Opens the user detail page in a new tab.  Shortcut: <span class="term"><span class="mod-key">command</span> + shift + u</span>.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Logout</h3>
+			<div class="mt4 text-block">
+Logs you out of both ASIDE and Salesforce.  Shortcut: <span class="term"><span class="mod-key">command</span> + shift + x</span>.			
+			</div>
+			
+			<h2 class="mt5 title-item tl1">Command Typeahead</h2>
+			<div class="mt4 text-block">
+The <span class="important">command typeahead</span> is how you tell ASIDE what you want to do while editing code.  It sits in the top left hand corner of the code screen.   There are a handful basic command types you can issue to ASIDE that are listed below.<br /><br />
+
+				<img src="images/help_command_typeahead.png" class="help-img" />
+			</div>
+			
+			<h3 class="mt4 title-item tl2">New</h3>
+			<div class="mt4 text-block">
+Type <span class="term">new</span> into the <span class="important">command typeahead</span> to see the types of files ASIDE can create.  <span class="term">new apex class</span>, <span class="term">new custom object</span>, <span class="term">new package xml</span>, <span class="term">new static resource</span>, <span class="term">new test class</span>, <span class="term">new trigger</span>, <span class="term">new visualforce component</span>, <span class="term">new visualforce page</span>, <span class="term">new lightning application</span>, <span class="term">new lightning controller</span>, <span class="term">new lightning component</span>, <span class="term">new lightning design</span>, <span class="term">new lightning documentation</span>, <span class="term">new lightning event</span>, <span class="term">new lightning helper</span>, <span class="term">new lightning interface</span>, <span class="term">new lightning renderer</span>, <span class="term">new lightning style</span>, <span class="term">new lightning svg</span>, <span class="term">new lightning tokens</span>, and <span class="term">new ui theme</span> are all valid commands.
+			</div>
+			
+			<h3 class="mt4 title-item tl3">New UI Theme</h3>
+			<div class="mt4 text-block">
+The <span class="term">New UI Theme</span> command allows you to alter the entire look and feel of ASIDE.  When you choose to create a New UI Theme, ASIDEs primary stylesheet is cloned into your browsers local storage where you are able to freely edit it from the code editor without modifying ASIDEs original stylesheet.  If you then choose your custom stylesheet from the <span class="term">options</span> screen, ASIDE will switch to use that stylesheet. Please note that if you modify your stylesheet with broken css and set it as your UI theme, it is possible to style ASIDE such that it will not be usable. If this occurs, use <span class="term">command + shift + \</span> (Mac) or <span class="term">control + shift + \</span> (PC) to reset to the default stylesheet.
+<br /><br />
+By default there are two different stylesheets available from the <span class="important">Global Style</span> section of the options dialog: Classic and Dark. When you create new custom UI themes they will be listed there as well. If you create a new stylesheet that you think others would like to use, send it to me at admin@aside.io.  			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Open</h3>
+			<div class="mt4 text-block">
+Shows the entire list of files you are able to open.  Type more of the filename you wish to open to filter the list further. 			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Execute Anonymous</h3>
+			<div class="mt4 text-block">
+Puts the editor in <span class="term">execute anonymous</span> mode.  The <span class="term">save</span> button and the normal save shortcut (<span class="term"><span class="mod-key">command</span> + s</span>) are used to execute the anonymous Apex code you have written in the editor.   Your last executed block is remembered and automatically loaded into the editor when you choose the <span class="term">execute anonymous</span> command.  Hint: Use <span class="important">history</span> functionality to look through previously executed blocks.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Go To</h3>
+			<div class="mt4 text-block">
+Typing <span class="term">go to</span> into the <span class="important">command typeahead</span> will result in four options: <span class="term">Go To Apex Developers Guide</span> , <span class="term">Go To Developer Forums</span>, <span class="term">Go To Salesforce Stack Exchange</span>, and <span class="term">Go To Visualforce Developers Guide</span>.  Clicking one of them will open the related website.			
+			</div>
+			
+			<h2 class="mt5 title-item tl1">Writing Code</h2>
+			<div class="mt4 text-block">
+ASIDE supports writing a variety of different code types: Apex Classes, Apex Triggers, Visualforce Pages, Visualforce Components, Static Resources, Custom Objects and even Package.xml files.  			
+			</div>
+
+			<h3 class="mt4 title-item tl2">Apex Classes</h3>
+			<div class="mt4 text-block">
+To create a new Apex Class, navigate to the code screen, click into the <span class="important">command typeahead</span>, and type <span class="term">New Apex Class</span>.<br /><br />
+
+To work with an existing Apex Class, type its name into the <span class="important">command typeahead</span>.  If you aren’t sure of the name of the file you want to work with, type <span class="term">.cls</span> into the <span class="important">command typeahead</span>, as this is the extension for Apex Classes, so it will filter the list of files accordingly.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Apex Test Classes</h3>
+			<div class="mt4 text-block">
+To create a new Apex Test Class, navigate to the code screen, click into the <span class="important">command typeahead</span>, and type <span class="term">New Test Class</span>.<br /><br />
+
+To work with an existing Apex Test Class, type its name into the <span class="important">command typeahead</span>.  If you don’t remember the name of the test class you are looking to open, unfortunately there is no way to generate a list of test classes with ASIDE.  However, ASIDE works best when you name your files according to best practice.  If you have been adding the word <span class="term">Test</span> in the names of all your test classes, it should be as simple as typing <span class="term">Test</span> into the <span class="important">command typeahead</span> to filter to just test classes.<br /><br />
+
+Once you have written your unit tests, test classes can have their unit tests executed from the code editor with the shortcut: <span class="term"><span class="mod-key">command</span> + g</span>.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Apex Triggers</h3>
+			<div class="mt4 text-block">
+To create a new Apex Trigger, navigate to the code screen, click into the <span class="important">command typeahead</span>, and type <span class="term">New Trigger</span>.<br /><br />  
+
+To work with an existing Apex Trigger, type its name into the <span class="important">command typeahead</span>.  If you aren’t sure of the name of the trigger you want to work with, type <span class="term">.trigger</span> into the <span class="important">command typeahead</span>, as this is the extension for Apex Triggers, so it will filter the list of files accordingly.
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Lightning Resources</h3>
+			<div class="mt4 text-block">
+To create a new Lightning Resource, navigate to the code screen, click into the <span class="important">command typeahead</span>, and type <span class="term">New Lightning</span>.  From here all the new Lightning types you can create will be displayed, as shown in the screenshot below.
+<br /><br />
+<img src="images/help_lightning_new.png" class="help-img" />	
+<br /><br />
+Any time you save a new Lightning Resource you will be prompted to enter the name of the corresponding Lightning Bundle (API Name AuraDefinitionBundle, <a target="_blank" href="https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/tooling_api_objects_auradefinitionbundle.htm" class="text-link">see here</a>).  You can either enter a brand new name to create a new Lightning Bundle, or enter the name of an existing Lightning Bundle to add the new resource to that bundle. 
+<br /><br />
+<img src="images/help_lightning_save.png" class="help-img" />	
+<br /><br />
+To work with existing Lightning code, type the resource name into the <span class="important">command typeahead</span>.  If you aren’t sure of the name of the Lightning Resource you want to work with, type <span class="term">.aura</span> into the <span class="important">command typeahead</span>, as this is the prefix for all Lightning Resource extensions, so it will filter the list accordingly.
+			</div>			
+			
+			<h3 class="mt4 title-item tl2">Visualforce Pages</h3>
+			<div class="mt4 text-block">
+To create a new Visualforce Page, navigate to the <span class="term">code</span> screen, click into the <span class="important">command typeahead</span>, and type <span class="term">New Visualforce Page</span>.<br /><br />
+
+To work with an existing Visualforce Page, type its name into the <span class="important">command typeahead</span>.  If you aren’t sure of the name of the page you want to work with, type <span class="term">.page</span> into the <span class="important">command typeahead</span>, as this is the extension for Visualforce Pages, so it will filter the list of files accordingly.<br /><br />
+
+ASIDE is capable of generating a controller or unit test automatically when saving a new Visualforce page. This allows you to speed up your development, and reference a controller that does not yet exist. Using the <span class="term">#</span> character as the value for the <span class="term">controller</span> or <span class="term">extensions</span> attribute on a new Visualforce Page will result in the controller or extension along with its test class automatically being generated. Syntax examples below:
+<br /><br />
+<span class="term">&lt;apex:page controller=”#”&gt;</span>
+<span class="term">&lt;apex:page standardController=”MyObject__c” extensions=”#Ext”&gt;</span>
+<br /><br />
+Using the above syntax will automatically generate both an apex controller/extension and corresponding test class, then will replace the hash tag with the new apex controller/extension name. The name of the new Apex controller/extension will be the same as the Visualforce page name, and the test class will be the controller/extension name with "Test" appended to the end. However, you can specify a string to append to the end of the Apex controller/extension name by including the string after the hash tag. If the Visualforce page extension example above were saved with the filename <span class="term">MyPage</span>, three files would be created in Salesforce on save: <span class="term">MyPage.page</span>, <span class="term">MyPageExt.cls</span>, <span class="term">MyPageExtTest.cls</span>.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Visualforce Components</h3>
+			<div class="mt4 text-block">
+To create a new Visualforce Component, navigate to the <span class="term">code</span> screen, click into the <span class="important">command typeahead</span>, and type <span class="term">New Visualforce Component </span>.<br /><br />
+
+To work with an existing Visualforce Component, type its name into the <span class="important">command typeahead</span>.  If you aren’t sure of the name of the component you want to work with, type <span class="term">.component</span> into the <span class="important">command typeahead</span>, as this is the extension for Visualforce Components, so it will filter the list of files accordingly.<br /><br />
+
+ASIDE is capable of generating a controller or unit test automatically when saving a new Visualforce Component. This allows you to speed up your development, and reference a controller that does not yet exist. Using the <span class="term">#</span> character as the value for the "controller" or "extensions" attribute on a new Visualforce Component will result in the controller or extension along with its test class automatically being generated. Syntax examples below:
+<br /><br />
+<span class="term">&lt;apex:component controller=”#”&gt;</span>
+<span class="term">&lt;apex:component standardController=”MyObject__c” extensions=”#Ext”&gt;</span>
+<br /><br />
+Using the above syntax will automatically generate both an apex controller/extension and corresponding test class, then will replace the hash tag with the new apex controller/extension name. The name of the new Apex controller/extension will be the same as the Visualforce Component name, and the test class will be the controller/extension name with "Test" appended to the end. However, you can specify a string to append to the end of the Apex controller/extension name by including the string after the hash tag. If the Visualforce Component extension example above were saved with the filename <span class="term">MyComponent</span>, three files would be created in Salesforce on save: <span class="term">MyComponent.component</span>, <span class="term">MyComponentExt.cls</span>, <span class="term">MyComponentExtTest.cls</span>.
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Static Resources</h3>
+			<div class="mt4 text-block">
+To create a new Static Resource, navigate to the <span class="term">code</span> screen, click into the <span class="important">command typeahead</span>, and type <span class="term">New Static Resource</span>.   It is possible to create new css, js, html, xml, zip, and "upload" based Static Resources; when creating a Static Resource you will be prompted to choose one of those types.<br /><br />
+
+To work with an existing Static Resource, type its name into the <span class="important">command typeahead</span>.  If you aren’t sure of the name of the resource you want to work with, type <span class="term">.resource</span> into the <span class="important">command typeahead</span>, as this is the extension for Static Resources, so it will filter the list of files accordingly.			
+			</div>
+			
+			<h2 class="mt4 title-item tl3" id="resource-types">Static Resource Types</h2>
+			<div class="mt4 text-block">
+Static Resources have a content type that describes the type of content stored in the resource.  ASIDE supports the following resource types: CSS, HTML, Javascript, XML, and Zip.  Working with the non-zip types is simple and is no different than working with other file types in ASIDE such as Apex Classes or Triggers.			
+			</div>
+			
+			<h3 class="mt4 title-item tl3">Zipped Static Resources</h3>
+			<div class="mt4 text-block">
+To create a zipped Static Resource choose <span class="term">Zip</span> as the resource type when creating the Static Resource.   This adds a new button to the header, <span class="term">open resource</span>, which is used to add, delete, and modify files inside of the zip.  Opening an existing zipped static resource will also display the <span class="term">open resource</span> button.  
+<br /><br />
+<img src="images/help_resource_explorer.png" class="help-img" />
+<br /><br />
+To open a file or folder displayed in the <span class="term">Static Resource Explorer</span> double click on it.  If instead of working with existing files you need to create new files there are three options in the resource explorer for adding new content to the zip:
+<br /><br />
+				<table class="shortcuts mt3">
+					<thead>
+						<tr>
+							<th>Button</th>
+							<th>Functionality</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Add Uploaded File</td>
+							<td>Upload an existing file into the resource</td>
+						</tr>
+						<tr>
+							<td>Create New File</td>
+							<td>Creates a new blank file to the resource</td>
+						</tr>
+						<tr>
+							<td>Create New Folder</td>
+							<td>Adds a new folder to the zip</td>
+						</tr>
+					</tbody>
+				</table>
+<br /><br />
+<span class="bold">Take extra precaution when working with zipped static resources.  Saving will cause the entire static resource to be saved to the server, not just the file you are editing.  Opening a different zipped file without first saving your changes will cause you to lose your changes in the current zipped file.  Using the delete shortcut (<span class="term"><span class="mod-key">command</span> + k</span>) will cause the entire static resource to be deleted from the server.  To delete an individual file inside of a zipped resource use the delete button found inside of the static resource explorer popup.</span>			
+			</div>
+			
+			<h3 class="mt4 title-item tl3">Static Resource Uploads</h3>
+			<div class="mt4 text-block">
+Most likely you have an asset you want to upload and reference as a static resource.  To do this, choose <span class="term">Upload a File</span> as the type when creating a new static resource.  From here ASIDE will upload the file and infer its content type from the file you picked.  ASIDE will infer its edit-ability from the content type of the uploaded file.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Custom Objects</h3>
+			<div class="mt4 text-block">
+To create a new Custom Object, navigate to the <span class="term">code</span> screen, click into the <span class="important">command typeahead</span>, and type <span class="term">New Custom Object</span>.  The <span class="term">fullName</span> field within the sObject metadata determines the name of the custom object.<br /><br />
+
+To work with an existing Custom Object, type its name into the <span class="important">command typeahead</span>.  If you aren’t sure of the name of the sObject you want to work with, type <span class="term">.object</span> into the <span class="important">command typeahead</span>, as this is the extension for Custom Objects, so it will filter the list of files accordingly.<br /><br />
+
+Please note that standard objects do not appear within ASIDE for editing.			
+			</div>
+
+			<h3 class="mt4 title-item tl2">Package XML Files</h3>
+			<div class="mt4 text-block">
+To make retrieves simpler, ASIDE allows you to save and edit package XML files within the code editor. To create a new package XML file, choose <span class="term">New Package XML</span> from the <span class="important">command typeahead</span>. Working with a package XML file is no different than working with other file types in ASIDE. However, package XML files are not saved to Salesforce, they are stored in your browsers local storage. Additionally, there is no validation of the package XML file on save (tip: you can save anything you want in these files).<br /><br />
+
+Once you have a package XML saved, there are two ways you can use it. If you are viewing a package xml in the code editor, use the shortcut <span class="term"><span class="mod-key">command</span> + g</span> to perform a retrieve of the contents of that package XML. Alternatively, the package XML files can be referenced from the push section. If you are creating or editing a retrieve filter, you can add one of the package XML files to the filter. This allows you to retrieve the contents of the package XML in addition to the results of the retrieve filter queries.  More information on this is available in the <a target="_blank" href="#retrieve-filters" class="text-link">retrieve filters</a> section.			
+			</div>
+			
+			<h2 class="mt5 title-item tl1">Configuring the Code Editor</h2>
+			<div class="mt4 text-block">
+Opening the options dialog (shortcut: <span class="term"><span class="mod-key">command</span> + shift + p</span>) while on the <span class="term">code</span> screen will reveal a wide variety of options for configuring ASIDE to best suit your needs.  Many of the options are self-explanatory, the ones that aren’t are discussed in greater detail below.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Conflict Resolution</h3>
+			<div class="mt4 text-block">
+During development it is possible to encounter "save conflict" errors where another user has updated the same bit of code you are trying to save. ASIDE provides a number of options for handling these save conflicts; they are listed below.<br /><br />
+
+<span class="bold">do not attempt to resolve conflicts</span><br /><br />
+This is the most basic method. Informs the user there was an error and rejects the save.<br /><br />
+
+<span class="bold">show diff of conflict and merge it yourself</span><br /><br />
+Present a diff of your working file (left) and the version on the server (right). Merge and save manually.<br /><br />
+
+<span class="bold">let aside resolve the conflict automatically, when the conflict cannot be automatically resolved, use the manual resolution method</span><br /><br />
+ASIDE attempts to merge your changes into the server version and save again. If the merge fails, works like the <span class="important">show diff of conflict and merge it yourself</span> option. Please note this functionality is experimental, and using it may result in loss of code.<br /><br />
+
+<span class="bold">let aside resolve the conflict automatically, when the conflict cannot be automatically resolved, use the no resolution method</span><br /><br />
+ASIDE attempts to merge your changes into the server version and save again. If the merge fails, works like the <span class="important">do not attempt to resolve conflicts</span> option. Please note this functionality is experimental, and using it may result in loss of code.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Org Code Search</h3>
+			<div class="mt4 text-block">
+The old implementation of the <span class="important">Find All</span> feature (previously known as <span class="important">org code search</span>) installed multiple classes and objects into your org to archive the code in a searchable format.  This feature no longer requires an install, and as such there is the option to uninstall it if you have the old code and metadata installed in your org. 			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Sync</h3>
+			<div class="mt4 text-block">
+ASIDE is aware of other instances of ASIDE you have running, and is able to work together with them to provide a more cohesive experience, provided you are not using Internet Explorer.  You can configure to what degree ASIDE will communicate with itself from the <span class="important">sync</span> set of options.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Other - Filtering the Command Typeahead</h3>
+			<div class="mt4 text-block">
+By default the <span class="important">command typeahead</span> shows all the Apex Classes, Pages, Triggers, Components, Lightning Resources, Static Resources, and Custom Objects in your Salesforce organization. However, you can filter what files appear in the typeahead. From the <span class="term">options</span> section scroll to <span class="important">Other - configure various options</span>. The option whose description mentions, <span class="important">"filters the command typeahead"</span>, has four values by default <span class="term">Load Everything</span>, <span class="term">Load Only Unpackaged</span>, <span class="term">Load Only Packaged</span>, and <span class="term">Don't Load Anything</span>.  These filters reduce the scope of what appears in the type ahead and increase the speed ASIDE loads. Typically there is no benefit in loading code files from managed packages, so <span class="term">Load Only Unpackaged</span> is good for that use case. <span class="term">Don't Load Anything</span> is good for administrators who don't intend on writing any code, it makes ASIDE load noticeably faster.<br /><br />
+
+Additionally, you can use retrieve filters created in the push section to filter the <span class="important">command typeahead</span>. Only the <span class="term">ApexClass</span>, <span class="term">ApexPage</span>, <span class="term">ApexComponent</span>, <span class="term">ApexTrigger</span>, <span class="term">AuraDefinition</span>, <span class="term">StaticResource</span>, and <span class="term">CustomObject</span> queries are supported when using a retrieve filter to filter the typeahead. The <span class="important">Base Package XML</span> and queries against objects other than those mentioned above are not considered when ASIDE is building out the list of files available to the selector.			
+			</div>
+			
+			<h2 class="mt5 title-item tl1">Code Screen Functionality</h2>
+			<div class="mt4 text-block">
+The <span class="term">code</span> screen has a variety of functionality, most of which is accessible via the code footer at the bottom of the screen.  On the right side of the footer is your cursor position (e.g. <span class="important">line 1, column 0</span>), and on the left are a number of buttons.  Depending on what type of file you have open in the code editor, you will get a different set of buttons in the footer.  The functionality of each button, as well as a few operations that do not have buttons, is described below.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Save</h3>
+			<div class="mt4 text-block">
+Saves the current file.  If you are in <span class="term">execute anonymous</span> mode, then the anonymous block is executed.  Shortcut: <span class="term"><span class="mod-key">command</span> + s</span>.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Diff</h3>
+			<div class="mt4 text-block">
+Normally the diff editor will be opened for you through other functionality such as a  save conflict or viewing a debug log.  However, if you wish to toggle it yourself clicking the <span class="term">diff</span> button will open and close the diff editor, or use the shortcut: <span class="term"><span class="mod-key">command</span> + shift + c</span>.  If you want to use the diff editor as a second editor, but not have it perform a diff, it is possible to toggle the difference highlighting on and off with the shortcut, <span class="term"><span class="mod-key">command</span> + shift + a</span>.<br /><br />
+				<img src="images/help_diff.png" class="help-img" />	
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Download</h3>
+			<div class="mt4 text-block">
+Downloads the contents of the code editor.  If you are viewing a zipped static resource, the resource itself and not the single file you are viewing will be downloaded.  Shortcut: <span class="term"><span class="mod-key">command</span> + shift + d</span>.			
+			</div>
+
+			<h3 class="mt4 title-item tl2" id="find-popup">Find</h3>
+			<div class="mt4 text-block">
+Typical find and replace functionality, searches for the text in the find box within the contents of the code editor.  Click <span class="term">next</span> or press enter to search for the token entered in the find input.  New lines can be entered into the inputs with <span class="term">control + enter</span>.  The find panel can also be opened with the shortcut, <span class="term"><span class="mod-key">command</span> + f</span>.  If you have the diff editor open, the search is executed against the editor that has focus.  There are also a number of options available for changing how the search functions, they are listed below.<br /><br /> 
+
+				<table class="shortcuts mt3">
+					<thead>
+						<tr>
+							<th>Option</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Case Sensitive</td>
+							<td>Matches must have the same case as the search token</td>
+						</tr>
+						<tr>
+							<td>Regular Expression</td>
+							<td>Interpret the search token as a JavaScript format regular expression</td>
+						</tr>
+						<tr>
+							<td>Whole Word</td>
+							<td>The search token must match the entire word and not just part of it</td>
+						</tr>
+						<tr>
+							<td>Wrap Around</td>
+							<td>When search reaches the end of the document, wraps back to the top to continue searching</td>
+						</tr>						
+					</tbody>
+				</table>
+			</div>
+			
+			<h3 class="mt4 title-item tl2" id="ocs-popup">Find All</h3>
+			<div class="mt4 text-block">
+Searches all Apex and Visualforce code for the token in the search input.  Results are initially displayed collapsed, click the <span class="term">+</span> button in each row to expand that classes results and see where the tokens are actually used within the file.  Clicking a row will cause the result to open in the code editor.  To have the result open in a new instance of ASIDE, change <span class="term">Open in Current Instance</span> to <span class="term">Open in New Instance</span>.  Shortcut: <span class="term"><span class="mod-key">command</span> + h</span>.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2" id="local-history">History</h3>
+			<div class="mt4 text-block">
+Opens the local file history for the current file (shortcut: <span class="term"><span class="mod-key">command</span> + l</span>).  Local file history is stored as you save code to the server and open new files.  Clicking a file history row in the panel will open the archived file in the primary editor, the diff editor, or cause the file to be downloaded, depending on the preferences you have set on the local history panel.<br /><br />
+
+Entries in the local history table are either marked as <span class="important">Save Backup</span> or <span class="important">Crash Backup</span>.  A <span class="important">Save Backup</span> is a backup that occurred while ASIDE was functioning normally.  If ASIDE happens to crash for any reason while you are working on a file, you will probably be notified when reopening the file.  If you choose to not reopen the crashed version at that time, you can retrieve it from the history panel by choosing the <span class="important">Crash Backup</span> entry.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2" id="lightning">Lightning</h3>
+			<div class="mt4 text-block">
+Unlike Apex or Visualforce code, Lightning comes grouped together in a bundle.  The <span class="important">Lightning</span> button simplifies managing the Lightning Bundle.  Click the <span class="important">Lightning</span> button to add files to the bundle, or jump to existing files in the bundle.  Please note that the resource types  <span class="term">Event</span>, <span class="term">Interface</span>, and <span class="term">Tokens</span> are not bundled.  Shortcut: <span class="term"><span class="mod-key">command</span> + shift + y</span>			
+<br /><br />
+<img src="images/help_lightning_button.png" class="help-img" />	
+<br /><br />
+			</div>			
+			
+			<h3 class="mt4 title-item tl2">Reload</h3>
+			<div class="mt4 text-block">
+Repeats the last action in the <span class="important">command typeahead</span>.  Shortcut: <span class="term"><span class="mod-key">command</span> + r</span>.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Version</h3>
+			<div class="mt4 text-block">
+The code footer doesn’t actually have a button labeled as <span class="term">version</span>, instead it displays the current file’s API version as the label of the button.  For example, if <span class="term">MyClass.cls</span> has an API version of <span class="term">35.0</span>, the version button in the code footer will be labeled as <span class="term">35.0</span>.  Clicking this button will cause the <span class="important">Change Version</span> dialog to open.  If you want to change the API version, choose the new API version and click <span class="term">update</span>.  Shortcut: <span class="term"><span class="mod-key">command</span> + u</span>.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Rename</h3>
+			<div class="mt4 text-block">
+Allows you to rename Visualforce and Static Resources.  Apex is renamed by changing the class or trigger name in the code itself.  Also works with Lightning, but only changes the MasterLabel field and not the AuraDefinitionBundle.DeveloperName (which is the field used for display in ASIDE).  Shortcut: <span class="term"><span class="mod-key">command</span> + e</span>.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Minify</h3>
+			<div class="mt4 text-block">
+Minifies the contents of the code editor, works on VF, HTML, Lightning, CSS, and JavaScript.  Shortcut: <span class="term"><span class="mod-key">command</span> + shift + m</span>.			
+			</div>
+		
+			<h3 class="mt4 title-item tl2">Beautify</h3>
+			<div class="mt4 text-block">
+Beautifies the contents of the code editor, works on VF, HTML, Lightning, CSS, and JavaScript.  Shortcut: <span class="term"><span class="mod-key">command</span> + shift + b</span>.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Run Tests</h3>
+			<div class="mt4 text-block">
+Executes unit tests in the current file.  Results can be viewed on the <span class="term">test</span> screen.  Shortcut: <span class="term"><span class="mod-key">command</span> + g</span>.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Show Coverage</h3>
+			<div class="mt4 text-block">
+Toggles code coverage highlights on and off, and queries the server for the most up to date code coverage percentage.  The code coverage percentage for the current file is displayed in the bar graph in the code footer, and the uncovered lines are highlighted in the code editor gutter (the left side of the editor that shows the line numbers).  Displays as <span class="term">hide coverage</span> when you already are displaying code coverage highlights.			
+			</div>
+
+			<h3 class="mt4 title-item tl2">Resource Type</h3>
+			<div class="mt4 text-block">
+Allows you to change the resource type of static resources.  See the <a target="_blank" href="#resource-types" class="text-link">Static Resource Types</a> section for more information about the various resource types.  Shortcut: <span class="term"><span class="mod-key">command</span> + u</span>.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Deleting Code</h3>
+			<div class="mt4 text-block">
+For safety reasons, the delete operation does not have a button anywhere in the interface; it can only be activated via shortcut.  Using the shortcut <span class="term"><span class="mod-key">command</span> + k</span> will prompt you to delete the file currently being viewed in the code editor.  Please note that you cannot delete sObjects from within ASIDE.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Auto Completion</h3>
+			<div class="mt4 text-block">
+By default, the <span class="important">enable live autocomplete</span> option is enabled which causes ASIDE to provide text suggestions as you type.  To open the autocomplete menu manually, use the shortcut <span class="term">ctrl + space</span> while you have focus in the code editor.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Tab Restore</h3>
+			<div class="mt4 text-block">
+ASIDE is aware of other instances you have open, and using the <span class="important">Tab State Restore</span> feature you can save the state of your tabs and later reload them.  This is useful for when you are working with a large number of files, want to close all your tabs at the end of the day, but want to be able to easy reopen all the tabs later.  In this case, you would use the shortcut <span class="term"><span class="mod-key">command</span> + shift + ,</span> to save the tab state, and then use <span class="term"><span class="mod-key">command</span> + shift + .</span> to reload that same tab state.  Anytime ASIDE crashes the tab state is automatically saved for easy recovery. Please note that ASIDE does not make any attempt to restore the tab state of new, unsaved files.
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Key Bindings</h3>
+			<div class="mt4 text-block">
+The code editor within ASIDE is an implementation of the excellent <a target="_blank" href="https://ace.c9.io/" class="text-link">Ace Editor</a>.  By default, Ace comes with a number of default key bindings, you can <a target="_blank" href="https://ace.c9.io/demo/keyboard_shortcuts.html" class="text-link">view them here</a>.  In addition to the default key bindings, it is possible to switch to the key bindings used by Vim and Emacs.  To change key bindings, navigate to the options menu from the code screen.
+			</div>			
+			
+			<h2 class="mt5 title-item tl1">Running Unit Tests</h2>
+			<div class="mt4 text-block">
+There are multiple ways to execute unit tests from ASIDE.  They are described in greater detail below. 			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Executing Tests from the Code Screen</h3>
+			<div class="mt4 text-block">
+To execute unit tests from the <span class="term">code</span> screen, you must be viewing the Apex test class containing the unit tests that you want to run.  Once you have the file open, click the <span class="term">run tests</span> button in the footer, or use the <span class="term"><span class="mod-key">command</span> + g</span> shortcut. 			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Executing Tests from the Test Screen</h3>
+			<div class="mt4 text-block">
+From the <span class="term">test</span> screen there are multiple ways to run unit tests.  In the top left hand corner of the screen you’ll see two buttons: <span class="term">run all</span> and <span class="term">run some</span>.  <span class="term">run all</span> does what you would expect – it runs all the unit tests in your entire organization.  Most of the time however, you’ll want to use the <span class="term">run some</span> button, to target a specific subset of tests.  
+<br /><br />
+<img src="images/help_run_some.png" class="help-img" />	
+<br /><br />
+There are two ways to run unit tests from the <span class="term">run some</span> popup.
+<br /><br />
+The first way is to <span class="term">run by query</span>, which works by providing a query against the ApexClass sObject to target exactly which classes you’re looking to run.  This may seem like a strange way to run unit tests, but if you have prefixed your class names with a namespace then it becomes a very powerful operation.  For example, if all the test classes I have been writing begin with <span class="term">ASIDE_</span>, then I can complete the query with the where clause <span class="term">Name like ‘ASIDE_%’</span> and execute all the tests for my application in a single click.<br /><br />
+
+The second way to run unit tests from the <span class="term">run some</span> popup is by using the <span class="term">run by selection</span> functionality.  This is similar to what you have seen in other Salesforce IDEs, where you are specifically selecting which classes’ unit tests you want to run.  Either way, once you click <span class="term">run by query</span> or <span class="term">run by selection</span>, the tests will be queued for execution and results will begin appearing on the test screen.			
+			</div>
+
+			<h2 class="mt5 title-item tl1">Understanding Test Results</h2>
+			<div class="mt4 text-block">
+Once you have executed unit tests the results will begin appearing on the <span class="term">test</span> screen.  On the left half of the test screen is a list of results class-by-class.  Clicking any of these results displays more detailed information about the results of that class on the right half of the screen.
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Result Table</h3>
+			<div class="mt4 text-block">
+The result table on the left half of the <span class="term">test</span> screen displays test results at a class level.  Results displayed refresh automatically and include the name of the class, a timestamp of when the unit test was executed, the number of test methods in the class that passed, the number of test methods in the class that failed, and a status representing the overall success of the test class.  A table of possible statuses and their meaning is displayed below.
+<br /><br />
+				<table class="shortcuts mt3">
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Successful</td>
+							<td>The test class ran and all of the test methods executed successfully</td>
+						</tr>
+						<tr>
+							<td>Failed</td>
+							<td>The test class ran but at least 1 of its test methods failed</td>
+						</tr>
+						<tr>
+							<td>Error</td>
+							<td>The test class failed to run</td>
+						</tr>
+						<tr>
+							<td>Aborted</td>
+							<td>The test class was cancelled by the user before it finished processing</td>
+						</tr>						
+					</tbody>
+				</table>
+<br /><br />
+While tests are running the first row in the results table will be a row representing the overall status of the unit test execution.  It displays the number of tests that are in a queued, pending, or processing state.  Clicking this status row will individually list out the classes that are currently pending execution.  Clicking the <span class="term">x</span> for their entry will cause that test classes execution to be aborted.			
+			</div>	
+			
+			<h3 class="mt4 title-item tl3">Changing the Result Table View</h3>
+			<div class="mt4 text-block">
+By default, the result table uses the following query to determine what results to display in the table:
+<br /><br />
+<span class="term">SELECT <fields> FROM ApexTestQueueItem ORDER BY CreatedDate desc, Status asc</span>
+<br /><br />
+However, this may not always be suitable to your needs.  Perhaps you are part of a large team and only want the results table to display test results relevant to your current work.  To change the query that seeds the result table, click the <span class="term">set view</span> button.  From here you can change the query to whatever suits your needs.  For more information on the ApexTestQueueItem sObject, <a target="_blank" class="text-link" href="https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/tooling_api_objects_apextestqueueitem.htm">see its entry in the Tooling API documentation</a>.
+			</div>				
+			
+			<h3 class="mt4 title-item tl2">Test Result Detail</h3>
+			<div class="mt4 text-block">
+Once a unit test has finished execution, its execution result is displayed in the results table.  Clicking one of these results rows displays more detailed information about the test result on the right half of the screen.
+<br /><br />
+<img src="images/help_test.png" class="help-img" />	
+<br /><br />
+At the top of the right half of the screen you will find a header recapping the same information found in the results table.  Additionally, it also provides a couple buttons to quickly rerun the test (<span class="term">rerun</span>), or view its source in the code editor (<span class="term">view class</span>).
+<br /><br />
+On the bottom half of the screen is an “accordion” component with a section for every test method in the class.  Test methods that executed successfully and have no information displayed other than telling you it ran successfully.  However, if the test method failed then it contains additional information such as the error message and stack trace information to help you address the issue.  ASIDE parses any stack traces it displays to the user and attempts to make them interactive.  Classes referenced by the stack trace are highlighted in blue and triggers are orange – both are clickable so you can jump directly to what the stack trace references instead of having to navigate there yourself.			
+			</div>						
+			
+			<h2 class="mt5 title-item tl1">Code Coverage</h2>
+			<div class="mt4 text-block">
+To calculate your organization’s code coverage, click the <span class="term">code coverage</span> button found on the <span class="term">test</span> screen. <span class="bold">Please note that results will be most accurate if you run all tests prior to calculating your organization’s code coverage.</span>		
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Understanding Code Coverage Results</h3>
+			<div class="mt4 text-block">
+Once coverage has completed calculating, the overall coverage for your organization is displayed in the top-right corner of the code coverage popup.  Next to the coverage percentage is both the number of covered lines of code, and the total lines of code in your organization.
+<br /><br />
+<img src="images/help_code_coverage.png" class="help-img" />	
+<br /><br />
+Beneath the overall coverage is a table that displays a variety of code coverage metrics, class-by-class.  Each metric is described in greater detail below.
+				<table class="shortcuts mt3">
+					<thead>
+						<tr>
+							<th>Metric (Column)</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Class Name</td>
+							<td>Name of apex class results are being displayed for.</td>
+						</tr>
+						<tr>
+							<td>Lines Uncovered</td>
+							<td>Number of lines of code in the apex class which were not covered by unit tests.</td>
+						</tr>
+						<tr>
+							<td>Lines Covered</td>
+							<td>Number of lines of code in the apex class where were covered by unit tests.</td>
+						</tr>
+						<tr>
+							<td>Total Lines</td>
+							<td>Total number of coverable lines of code. Formula = 'Lines Uncovered' + 'Lines Covered'.</td>
+						</tr>
+						<tr>
+							<td>Coverage (%)</td>
+							<td>Percentage of lines of code in the apex class which were covered by unit tests. Formula = 'Lines Uncovered' / 'Total Lines'.</td>
+						</tr>
+						<tr>
+							<td>Remaining Coverage (%)</td>
+							<td>Percentage of lines of code in the apex class which were not covered by unit tests. Formula = 1 - ('Lines Uncovered' / 'Total Lines').</td>
+						</tr>
+						<tr>
+							<td>% Of Organization Total</td>
+							<td>Size of the apex class, compared to the entire org, as a percentage.</td>
+						</tr>
+						<tr>
+							<td>Organization Potential Gain (%)</td>
+							<td>The amount of org code coverage that could be gained by raising the coverage for the apex class. This metric is useful when determining if it is worth your time to continue writing unit tests.</td>
+						</tr>				
+					</tbody>
+				</table>	
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Filtering Coverage</h3>
+			<div class="mt4 text-block">
+By default, the <span class="important">code coverage</span> popup displays a report of your entire organization’s code coverage.  If you wish to filter the report, click the <span class="term">Filter Coverage</span> button.  Next, you’ll need to modify the tail end of the SOQL query in the input.  For example, if I wanted to display only code coverage for a project I have prefixed with <span class="term">ASIDE_</span> then I would complete the query as <span class="term">WHERE ApexClassOrTrigger.Name like 'ASIDE_%'</span>.  This is a query against the <span class="term">ApexCodeCoverageAggregate</span> object, more info on which can be found <a target="_blank" href="https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/tooling_api_objects_apexcodecoverageaggregate.htm" class="text-link">here</a>.			
+			</div>
+
+			<h3 class="mt4 title-item tl2">Exporting Code Coverage</h3>
+			<div class="mt4 text-block">
+If you wish to download a spreadsheet version of the code coverage report for your organization, click the <span class="term">Download as CSV</span> button on the <span class="important">code coverage</span> popup. 			
+			</div>
+			
+			<h2 class="mt5 title-item tl1">Performing Retrieves</h2>
+			<div class="mt4 text-block">
+ASIDE takes a powerful but unconventional approach to retrieves.  Depending on if you already have a package.xml to seed the retrieve or not will determine how you proceed with the retrieve.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Retrieving with a Package XML</h3>
+			<div class="mt4 text-block">
+When you already have a package.xml specifying what you want to retrieve, ASIDE makes the operation simple.  Navigate to the <span class="term">push</span> screen, drag the package.xml from your computer, and drop it anywhere on the <span class="term">push</span> screen.  This will start the retrieve process and when it completes your browser will trigger a download of the retrieve result.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Retrieving without a Package XML</h3>
+			<div class="mt4 text-block">
+If you want to retrieve but don’t have a package.xml file ASIDE still has multiple ways of helping you create the package.xml file and perform the retrieve operation.			
+			</div>
+			
+			<h3 class="mt4 title-item tl3">Building a Package XML using the Code Editor</h3>
+			<div class="mt4 text-block">
+To perform a retrieve similar to how you would with the <span class="important">ANT Migration Toolkit</span>, change to the <span class="term">code</span> screen and click into the <span class="important">command typeahead</span> and choose <span class="term">New Package XML</span>.  From here you can manually build out a package.xml, and once it has been saved (<span class="term"><span class="mod-key">command</span> + s</span>), you can use it to seed retrieves with the shortcut <span class="term"><span class="mod-key">command</span> + g</span>.  			
+			</div>
+			
+			<h2 class="mt4 title-item tl3" id="retrieve-filters">Building a Package XML using Retrieve Filters</h2>
+			<div class="mt4 text-block">
+Retrieve filters are a powerful feature for determining what code and metadata should be pulled down for a retrieve.  Navigate to the <span class="term">push</span> screen and choose the <span class="important">Select Retrieve Filter</span> drop down to see a list of retrieve filters available.			
+			</div>
+			
+			<h3 class="mt4 title-item tl4">Using Retrieve Filters</h3>
+			<div class="mt4 text-block">
+To use a retrieve filter, first you’ll need to be on the <span class="term">push</span> screen, and then click into the <span class="important">Select Retrieve Filter</span> drop down.  There are a number of predefined default filters that should cover most of your retrieval needs.  For example, if I needed to retrieve everything I modified within the last week, I would choose the <span class="term">Code Modified By Me Within Last Week</span> filter.  
+<br /><br />
+Choosing a retrieve filter will cause all the code and metadata that match that filter to appear in the table on the left hand side of the screen.  This is a staging table – you still need to select what you actually want to retrieve or deploy by moving items from the left table to the right table.  You can drag-and-drop single or multiple items from table to table, or use the buttons in the center of the screen, like <span class="term">Add All</span>, to manipulate the tables.  It is also possible to further filter the results in the left table by typing into the input above it.  Once you have the list of items you wish to retrieve in the table on the right side of the screen, click <span class="term">retrieve</span> to perform a retrieve of the items you’ve listed out, or click <span class="term">download package.xml</span> to instead download a package.xml file of the items.			
+			</div>
+			
+			<h3 class="mt4 title-item tl4" id="custom-retrieve-filters">Custom Retrieve Filters</h3>
+			<div class="mt4 text-block">
+If the default retrieve filters do not cover your use case, it is possible to create custom retrieve filters.  Navigate to the <span class="term">push</span> screen, and then click <span class="term">Add Filter</span> to begin creating a custom filter.
+<br /><br />
+<img class="help-img" src="images/help_manage_filters.png" />
+<br /><br />
+Once you’ve clicked <span class="term">Add Filter</span>, the popup for managing filter creation and editing appears.  The first step of creating the filter is to give the filter a name; this is the name that will appear in the list of retrieve filters.  Once you've given the filter a name, click <span class="term">Add Metadata</span> to begin adding content to the retrieve filter. There are two ways to specify what content you want to retrieve.  Most salesforce retrieves are seeded by a package xml file, if you already have one you want to use saved in ASIDE, enter its name here.  If you don't have a package xml file, enter the metadata type you want to retrieve.  For example, if you wanted to retrieve Apex classes, enter <span class="term">ApexClass</span> as the metadata type.  Once you've chosen either a package.xml file or a metadata type, click <span class="term">Next</span>.
+<br /><br />
+<img class="help-img" src="images/help_retrieve_method.png" />
+<br /><br />
+After selecting a package.xml file you will be returned to the initial retrieve filter screen where you can add more metadata to the filter.  If you've selected a metadata type instead of a package.xml file, the popup above appears. This screen allows you to specify how you want to retrieve metadata for the selected type.  There are three ways to retrieve metadata.
+<br /><br />
+	<table class="shortcuts mt4">
+		<thead>
+			<tr>
+				<th>Retrieve Method</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>By Query</td>
+				<td>Use a query to dynamically specify what data should be retrieved. For example, retrieve test classes with the following query: <span class="important">SELECT Name FROM ApexClass WHERE Name like '%Test%'</span></td>
+			</tr>
+			<tr>
+				<td>Wildcard</td>
+				<td>Retrieves all of the specified metadata type.  Equivalent of writing &lt;members&gt;*&lt;/members&gt; into a package XML.  Only works with <a href="https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_types_list.htm" target="_blank" class="text-link">metadata types that support wildcard retrieves</a>.</td>
+			</tr>	
+			<tr>
+				<td>Written Out</td>
+				<td>Write out a comma-separated list of metadata to retrieve.  For example, if you had chosen metadata type of <span class="term">CustomObject</span>, you might write out <span class="important">"Account,Contact,User"</span> (without the quotes).</td>
+			</tr>								
+		</tbody>
+	</table>
+<br /><br />
+After choosing the retrieval method which best suits your needs and click "next". The <span class="term">Wildcard</span> option requires no additional information and you will be returned to the initial retrieve filter screen where you can add more metadata to the filter.  If you choose the <span class="term">Written Out</span> option, then the next popup will prompt you to enter the list of metadata members you would like to retrieve.  Selecting the <span class="term">By Query</span> option displays the following screen:
+<br /><br />
+<img class="help-img" src="images/help_retrieve_query.png" />
+<br /><br />
+In order to retrieve by query there are two pieces of data you must specify.  First, you must fill out a query which specifies the scope of what you want to retrieve.  After that you must fill in the <span class="term">Member Field</span> which tells ASIDE how to turn the query results into a package.xml file.  
+<br /><br />
+Using a query to retrieve might be unintuitive at first but it is a powerful feature. Leave the query wide open to select all metadata of a certain type, or add in a where clause to target something specific. In this way you can select all of a certain type even if the sObject does not support a wildcard based retrieve. The schema for the metadata sObjects that can be queried by ASIDE’s retrieve functionality is available <a target="_blank" class="text-link" href="https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/reference_objects_list.htm">here</a>. The query retrieve filters also include a couple special global variables, which can be used within the where clause in your retrieve filters.  They are explained below.
+				<table class="shortcuts mt4">
+					<thead>
+						<tr>
+							<th>Variable</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>#LAST_DEPLOY</td>
+							<td>DateTime variable representing when the last deploy was executed.</td>
+						</tr>
+						<tr>
+							<td>#LAST_RETRIEVE</td>
+							<td>DateTime variable representing when the last retrieve was executed.</td>
+						</tr>					
+					</tbody>
+				</table>
+<br /><br />
+Inspect the default filters for ideas on how to build your own.  For example, the <span class="term">Code Modified Since Last Retrieve</span> filter pictured below would return any files that were modified since the last time a retrieve was performed within ASIDE. This makes determining what you need to retrieve simple, as ASIDE figures it out for you.
+<br /><br />
+<img class="help-img" src="images/help_last_retrieve.png" />
+<br /><br />
+Once you have defined the query, you need fill out the <span class="term">Member field</span>.  This field tells ASIDE what sObject field(s) to use as the value in the <i>&lt;members&gt;</i> element when building out the package XML. Most of the time the appropriate value is either the <span class="term">Name</span> or <span class="term">DeveloperName</span> field, but some objects require more complex <span class="term">Member field</span>  values to successfully retrieve. For example, examine the default filter named "Objects and Layouts".  Under the <span class="important">CustomObject (Query)</span> entry, the <span class="term">Member field</span> is defined as <span class="important">DeveloperName + "__c"</span>.  This is because the value in the DeveloperName field in salesforce is not quite the correct value required for retrieves.  They need an "__c" concatenated to the end of the DeveloperName value, so the <span class="term">Member field</span> supports this type of basic concatenation between strings surrounded in double quotes as well as concatenation of sObject fields. In addition to concatenation, there is also one function available, <span class="term">TRANSLATE</span>, which can be used to turn an object id into its API name.  The <span class="important">Layout (Query)</span> uses the <span class="term">TRANSLATE</span> function to turn the <span class="term">TableOrEnumId</span> field into an API name: <span class="important">TRANSLATE(TableEnumOrId) + "-" + Name</span>
+<br /><br />
+Once you have defined your retrieve filter, click <span class="term">Save Filter</span> to add the filter to the list retrieve filters.  <span class="bold">After saving the filter it is not automatically applied, you will need to select it from the list.</span>  If at any time you want to change the definition of a filter, you can edit it by selecting the filter, and clicking the <span class="term">Edit Filter</span> button.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Working with Version Control</h3>
+			<div class="mt4 text-block">
+ASIDE does not have direct integration with any source control, however, retrieve filters make it simple to retrieve what you’ve been working on for a push to source control.  Try out the <span class="term">Code Modified By Me Since Last Retrieve</span> filter; it takes the guesswork out of figuring out what to commit to source control since it will only retrieve files modified by you since the last time you performed a retrieve operation (which is probably the last time you committed code).			
+			</div>
+			
+			<h2 class="mt5 title-item tl1">Performing Deploys</h2>
+			<div class="mt4 text-block">
+Though there are multiple ways to retrieve with ASIDE, there is only one way to deploy.  Once you have obtained a retrieve result, drag it from your computer and drop it anywhere on the <span class="term">push</span> screen.  ASIDE will detect that you dropped a zip file containing a package.xml and begin a deploy for it.  The deploy status popup, pictured below, automatically appears while the deploy is in progress.
+<br /><br />
+<img src="images/help_deploy_status.png" class="help-img" />
+<br /><br />
+The deploy status popup has three sections: <span class="important">console results</span>, <span class="important">deploy overview</span>, and <span class="important">test execution results</span>.  <span class="important">console results</span> displays the status of the deploy in the same manner you would see as if you had ran the same deploy from the command line using the <span class="important">ANT Migration Toolkit</span>.  The <span class="important">deploy overview</span> section is a list of all the metadata being deployed along with the status for each item. When you execute a deploy that causes unit tests to run, the <span class="important">test execution results</span> section gives detailed success and failure information about the unit tests, along with code coverage information.
+<br /><br />
+A few things to take into consideration when deploying:
+						<ul class="mt3 text-block">
+							<li>The max file size zip that can be deployed with ASIDE is 5MB.  For larger or more complex deploys, the ANT Migration Toolkit is recommended.</li>
+							<li>Only one deploy operation can be ran at a time. </li>
+							<li><span class="bold">Deploys are executed against the Salesforce org ASIDE is logged into.  You will not be asked to provide credentials for a different org upon deploy.  Before you deploy, make sure you are logged into the org you want to deploy against!  Tip: Use multiple browsers or Chrome’s personas feature to maintain active ASIDE sessions against multiple organizations at once.</span></li>
+						</ul>
+			</div>
+
+			<h3 class="mt4 title-item tl2">Configuring Deploy Settings</h3>
+			<div class="mt4 text-block">
+There are a handful of settings that can be configured before you deploy.  On the <span class="term">push</span> screen, hover over your username, and choose <span class="term">options</span>.  The options popup for the <span class="term">push</span> screen will appear and you will be able to configure the options listed below.  By default they are all set to false.		
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Destructive Changes</h3>
+			<div class="mt4 text-block">
+To perform a destructive changes deploy, include both a destructiveChanges.xml file along with a package.xml file (it does not need to list any metadata) in the zip, and then drag-and-drop to perform the deploy like you normally would.			
+			</div>
+			
+			<h2 class="mt5 title-item tl1">Querying Data</h2>
+			<div class="mt4 text-block">
+The data section is a modifiable view of all the data in your org. It allows you to query any data accessible to the Partner and Tooling APIs, and in many cases, edit the resulting data.
+<br /><br />
+<img src="images/help_data.png" class="help-img" />
+<br /><br />
+To perform queries, navigate to the <span class="term">data</span> screen and click into the query input (the text box that says “enter a query”).  From here you can enter a SOQL query against any sObject visible to the Partner API or the Tooling API.  After you have entered a query into the input, click the <span class="term">query</span> button to execute the query, or use the shortcut <span class="term"><span class="mod-key">command</span> + s</span>.  Query results appear in the table beneath the query input.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Query Limitations</h3>
+			<div class="mt4 text-block">
+There are a few limitations ASIDE places on queries executed:
+						<ul class="mt3 text-block">
+							<li>SOSL is not supported</li>
+							<li>Child sub queries are not supported</li>
+							<li><span class="bold">The number of records returned by your query is automatically limited to 2,000</span></li>
+						</ul>
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Query History</h3>
+			<div class="mt4 text-block">
+ASIDE stores a history of your past queries.  The query input is a typeahead of those previous queries.  To limit the number of queries ASIDE will store as history, or to clear the query history, navigate to the <span class="term">data</span> screen and open the <span class="term">options</span> popup from the main menu (the menu that appears when you hover over your username). 			
+			</div>
+			
+			<h2 class="mt5 title-item tl1">Working with Query Results</h2>
+			<div class="mt4 text-block">
+Once you have performed a query, results appear in the table beneath the query input.  The table is based on the <a target="_blank" class="text-link" href="https://github.com/mleibman/SlickGrid">incredibly awesome Slickgrid</a>.  The table itself has a variety of functionality built into it, which is described in detail below.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Query Results Table</h3>
+			<div class="mt4 text-block">
+The query results table has a variety of functionality built into it that makes working with the results easier.  			
+			</div>
+			
+			<h3 class="mt4 title-item tl3">Working with Query Result Columns</h3>
+			<div class="mt4 text-block">
+It is possible to manipulate the query result columns in a variety of ways.  By dragging columns you can reorder them from their initial position.  You can also sort on a column by clicking that column once to sort, and then another time to reverse the sort.  There are also more advanced column operations, which are described below.<br /><br />
+
+Normally, ASIDE displays one column in the query table for every field you are selecting in the SOQL query.  However, the results table allows you to change which columns are displayed.  For example, if I executed the query <span class="term">SELECT Id, Name FROM Account</span>, I could then right click on any of the columns (e.g. “Id”, or “Name”) which causes a column options menu to appear.  From the columns options menu it is possible to hide that column by unchecking the checkbox associated with it.  There are two other options in the columns menu: <span class="term">Force Fit Columns</span> and <span class="term">Synchronous Resize</span>.  <span class="term">Force Fit Columns</span> is on by default and when set to true, tries to size all the columns such that they end up filling the entire browser window.  When it is false, the columns do not attempt to fill the entire browser window.  If you try to resize a column with <span class="term">Synchronous Resize</span> set to true, you will see the other columns move to accommodate the new width of the column you are resizing, as you resize it.  With it set to false, the other columns don’t move until you are done resizing the column.			
+			</div>
+			
+			<h3 class="mt4 title-item tl3">Paginating Query Results</h3>
+			<div class="mt4 text-block">
+The query results table also supports pagination.  Click on the light bulb icon in the lower right hand corner of the table, and the pagination options will appear to the left of the light bulb icon.  You are able to set the page size from here, or selecting <span class="term">All</span> will turn off the pagination.  With pagination turned on, the buttons to page are on the left side of the query results table footer.  			
+			</div>
+			
+			<h3 class="mt4 title-item tl3">Filtering Query Results</h3>
+			<div class="mt4 text-block">
+Another useful feature of the query results table is the ability to filter on query results.  To filter your query results, click the magnifying glass in the query results table footer.  This will display an additional row at the top of the table that contains one input for each column.  Entering a value into the column will filter the table rows, matching against that column’s values. 
+<br /><br />
+<img src="images/help_column_filtering.png" class="help-img" />		
+			</div>
+
+			<h3 class="mt4 title-item tl2">Query Result Rows</h3>
+			<div class="mt4 text-block">
+There are also a number of operations you can perform directly on the query result rows themselves.  Right clicking any cell on the table will reveal a menu with two options.  You can either open the detail page for that row’s record, or it is also possible to execute a Salesforce global search for the value in the cell you are right clicking on.  			
+			</div>
+			
+			<h3 class="mt4 title-item tl3">Modifying Query Result Data</h3>
+			<div class="mt4 text-block">
+It is also possible to perform insert, update, and delete operations against the query result rows.  
+						<ul class="mt3 text-block">
+							<li>To update the value in any cell, double click on it, enter a new value, and press the <span class="term">enter</span> key, or click out of the cell; you should receive a success or error message in ASIDE’s header.</li>
+							<li>To insert an entirely new row, scroll to the bottom of the table where there will be a blank row.  Enter a value in one of the cells, if that is enough data to create the object, the insert will be successful and the row will be given an id.</li>
+							<li>To delete data, use the checkbox column to select the rows you wish to delete.  After you’ve selected the rows, click the <span class="term">delete</span> button in the upper left hand corner of the screen.  This will prompt you to confirm the delete, and then will perform the delete.  Please note the delete operation is carried out in batches of 50.</li>
+						</ul>
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Exporting Query Results</h3>
+			<div class="mt4 text-block">
+ASIDE can export query results to CSV.  After you have performed a query, click the <span class="term">export</span> button, and ASIDE will generate and kick off a download of a CSV file containing the results of the query.			
+			</div>
+			
+			<h3 class="mt4 title-item tl2">Sharing Query Results</h3>
+			<div class="mt4 text-block">
+In addition to exporting query results, you can share your query results with other people who have access to your Salesforce organization by clicking the <span class="term">share</span> button.  This opens a popup that has a link in it.  Simply copy the link and share it with your teammates.  <span class="bold">Please note that ASIDE is not storing any data for this functionality, the link contains the query used to replicate the results.</span>		
+			</div>	
+			
+			<h2 class="mt4">The End!</h2>	
+			<div class="mt4">
+That's all folks!  If you have any questions that were not covered within this help document, please email me at admin@aside.io.		
+			</div>										
+		</div>
+	</body> 
+</html>      

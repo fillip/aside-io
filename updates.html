@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<!-- 
+@author      Phil Rymek
+@date		 11/27/2016
+@description ASIDE.IO Updates
+
+Copyright (c) 2020, salesforce.com, inc.
+All rights reserved.
+SPDX-License-Identifier: BSD-3-Clause
+For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
+ -->
+
+<html>
+	<head>
+		<link rel="shortcut icon" href="images/favicon.ico" />
+		<title>ASIDE.IO Updates</title>
+			
+		<link href="css/help.css?v=1.0.2" rel="stylesheet" type="text/css" />
+		<script src="js/jquery/jquery.min.js?v=1.0.2"></script>
+		<script src="js/d3v/d3vHelp.js?v=1.0.2"></script>
+	</head>
+	<body>
+		<div class="main">
+			<div class="header">
+				<div class="header-top">
+	  				<h1>ASIDE.IO Updates</h1>
+	  			</div>
+	  			
+	  			<div class="header-bottom">
+		  			<a class="nav-link" href="/about">[about]</a>
+		  			<a class="nav-link" href="/help">[help]</a>	
+		  			<a class="nav-link" href="/new_instance">[instance]</a>	
+		  			<a class="nav-link" href="/login">[login]</a>
+		  			<a class="nav-link" href="/shortcuts">[shortcuts]</a>
+		  			<a class="nav-link" href="/updates">[updates]</a>	
+		  			<span class="title-block"></span>
+					<span class="nav-link scroller" href="#previous">previous</span>
+					<span class="nav-link scroller" href="#next">next</span>
+		  			<span class="nav-link scroller" href="#current">current (1.0.2)</span>
+		  		</div>
+			</div>
+			
+			<h2 id="current" class="mt4 title-item">Current</h2>
+			<h3 class="mt1">Version 1.0.2 - Released 6/16/2020</h3>
+			
+			<ul class="mt4 text-block">
+			    <li>Backend updated to a modern version of Ruby &amp; Heroku</li>
+				<li>Swanky "Deploy to Heroku" button</li>
+				<li>ASIDE is now open source!</li>
+			</ul>
+			
+			<h2 id="next" class="mt4 title-item">Next</h2>
+			<h3 class="mt1">What will be added to ASIDE.IO next?</h3>
+			
+			<div class="mt4 text-block">
+				Who knows!  I don't run this thing anymore!  Whatever the open source salesforce developer community wants to add, that's what you
+				should add.
+			</div>	
+			
+			<h2 id="previous" class="mt4 title-item">Previous</h2>
+			
+			<h3 class="mt1">Version 1.0.1 - Released 3/31/2019</h3>
+			
+			<ul class="mt4 text-block">
+			    <li>Max API version set to 46.0, default changed to 44.0</li>
+				<li>Info on ASIDE.IO Shutdown</li>
+				<li>Since ASIDE.IO is shutting down, screw it, we're jumping to v1.0.1!</li>
+				<li>Thanks for using ASIDE.IO and your continued support over all the years!</li>
+			</ul>
+
+			<h3 class="mt1">Version 0.9.0 - Released 4/16/2018</h3>
+			
+			<ul class="mt4 text-block">
+				<li>Full lightning support</li>
+				<li><span class="term">Command + click</span> support for all items in the command typeahead</li>
+				<li>Max API version set to 43.0, default changed to 41.0</li>
+				<li>Bug fixes:
+					<ul>
+						<li>When in Execute Anonymous mode, "save" button is now labeled as "execute"</li>
+						<li>No longer creates TraceFlags without a StartDate</li>
+					</ul>
+				</li>
+			</ul>
+			
+			<h3 class="mt1">Version 0.8.9 - Released 9/4/2017</h3>
+			
+			<ul class="mt4 text-block">
+				<li>Added "wsdl" button to code footer, for generating wsdl for the selected Apex class</li>
+				<li>Added "delete" button to code footer</li>
+				<li>Max API version set to 41, default changed to 40</li>
+				<li>Bug fixes:
+					<ul>
+						<li>Push screen rendering properly</li>
+						<li>Retrieve filters work on load</li>
+						<li>Execute Anonymous Improvements</li>
+						<li>Code coverage report download working again</li>
+						<li>and some other minor stuff</li>
+					</ul>
+				</li>
+			</ul>			
+			
+			<h3 class="mt1">Version 0.8.8 - Released 8/6/2017</h3>
+			
+			<ul class="mt4 text-block">
+				<li>Retrieve filters rewritten:
+					<ul>
+						<li>Support all objects</li>
+						<li>Retrieve by query, wildcard, list, or package xml</li>
+						<li>Filter retrieve filter results</li>
+					</ul>
+				</li>
+			</ul>			
+			
+			<h3 class="mt1">Version 0.8.7 - Released 5/29/2017</h3>
+			
+			<ul class="mt4 text-block">
+				<li>Vim and Emacs key bindings support</li>
+				<li>Debug logs have a "close debug log" button when opened in the primary editor</li>
+				<li>Bug fixes</li>
+			</ul>		
+			
+			<h3 class="mt1">Version 0.8.6 - Released 5/8/2017</h3>
+			<div class="mt4 text-block">
+				<ul class="mt4 text-block">
+					<li>
+						Custom Stylesheet support:
+						<ul>
+							<li>Ability to create custom stylesheets and use them instead of ASIDEs standard stylesheet</li>
+							<li>A new "dark" stylesheet (UI Theme) available in additional to the default "classic" theme</li>
+						</ul>
+					</li>
+					<li class="mt3">Max API version upped to 40</li>
+					<li>Fixes many of the most common defects</li>
+				</ul>						
+			</div>
+			
+			<h3 class="mt1">Version 0.8.5 - Released 11/28/2016</h3>
+			<div class="mt4 text-block">
+				<ul class="mt4 text-block">
+					<li>
+						Improved UI:
+						<ul>
+							<li>New side panel replaced find, find all, local history, debug log, and error popups</li>
+							<li>Other popups turned into modals with new look & feel</li>
+							<li>Button style updates</li>
+							<li>Other random UI tweaks</li>
+						</ul>
+					</li>
+					<li class="mt3">Static Resource support revamped.  Work with files inside zipped resources easily.</li>
+					<li>Buttons given more clear labels</li>
+					<li>Command typeahead bug fixes</li>
+					<li>Find in files search result preview tree</li>
+					<li>Various bug fixes across the board</li>
+					<li>Changed default theme to <span class="term">eclipse</span></li>
+					<li>Can now see the "API Response" for any errors</li>
+					<li>Namespace retrieve bug fix</li>
+					<li>Ability to rename files</li>
+					<li>help rewritten</li>
+					<li>new pages: <span class="term">shortcuts</span>, <span class="term">help</span>, <span class="term">updates</span>, <span class="term">about</span></li>
+					<li>Max API version upped to snowman with top hat (aka 38.0)</li>
+					<li>Login page updated</li>
+				</ul>			
+			</div>
+			
+			<h3 class="mt1">Older Updates</h3>
+			<div class="mt4 text-block">
+				Patch notes prior to 0.8.5 are not available.
+			</div>							
+		</div>	
+	</body>
+</html>

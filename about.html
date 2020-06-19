@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<!-- 
+@author      Phil Rymek
+@date		 11/27/2016
+@description ASIDE.IO About
+
+Copyright (c) 2020, salesforce.com, inc.
+All rights reserved.
+SPDX-License-Identifier: BSD-3-Clause
+For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
+
+ -->
+
+<html>
+	<head>
+		<link rel="shortcut icon" href="images/favicon.ico" />
+		<title>About ASIDE.IO</title>
+			
+		<link href="css/help.css?v=1.0.2" rel="stylesheet" type="text/css" />
+		<script src="js/jquery/jquery.min.js?v=1.0.2"></script>
+		<script src="js/d3v/d3vHelp.js?v=1.0.2"></script>
+	</head>
+	<body>
+		<div class="main">
+			<div class="header">
+				<div class="header-top">
+	  				<h1>About ASIDE.IO</h1>
+	  			</div>
+	  			
+	  			<div class="header-bottom">
+		  			<a class="nav-link" href="/about">[about]</a>
+		  			<a class="nav-link" href="/help">[help]</a>	
+		  			<a class="nav-link" href="/new_instance">[instance]</a>	
+		  			<a class="nav-link" href="/login">[login]</a>
+		  			<a class="nav-link" href="/shortcuts">[shortcuts]</a>	
+		  			<a class="nav-link" href="/updates">[updates]</a>			
+					<span class="title-block"></span>
+					<span class="nav-link scroller" href="#contact">contact</span>
+					<span class="nav-link scroller" href="#history">history</span>
+		  			<span class="nav-link scroller" href="#about">about</span>
+	  			</div>
+			</div>
+			
+			<h2 id="about" class="mt4 title-item">About</h2>
+			<div class="mt4 text-block">
+ASIDE.IO is <span class="important">A</span> <span class="important">S</span>alesforce <span class="important">IDE</span> that is fast, free, and always available.  It is full-featured and supports the entire Salesforce development cycle from writing code, to running unit tests, querying/managing data, and deploying the resulting application.  
+<br /><br />
+There is no download required to start using ASIDE.IO, it lives in the cloud and is happy to be up there.  Having Salesforce development tools in the cloud is a natural extension of the code and compiler being stored there.  Eliminating a dependency on local workspaces of code already stored in the cloud reduces save conflicts and lost code because you are working against the source and not a copy of it. 
+<br /><br />
+ASIDE.IO is not the product of a company; it has been designed, developed, and maintained solely by me, Phil Rymek (<a target="_blank" href="https://twitter.com/philrymek" class="text-link">Twitter</a>, <a target="_blank" href="https://www.linkedin.com/in/phillip-rymek-a8517398/" class="text-link">LinkedIn</a>, <a target="_blank" href="https://github.com/fillip" class="text-link">GitHub</a>), as my hobby project over the course of many years.  <span class="important">I sincerely hope you like it and thank you for using it.</span>		
+			</div>	
+			
+			<h2 id="history" class="mt4 title-item">History</h2>
+			<div class="mt4 text-block">
+Created in early 2012, ASIDE.IO started off as a simple experiment.  I wanted to know if you could execute Apex code from Apex code, similar to JavaScript’s <span class="term">eval</span> function.  After a bit of research I found out it was possible by calling Force.com APIs to execute anonymous from Apex code.
+<br /><br />
+From here the next logical step for me was to throw a UI on top of my shiny new Apex <span class="term">eval</span> function.  It didn’t take long for me to find the amazing <a class="text-link" href="https://ace.c9.io" target="_blank">ACE Editor</a> and hook it up to the code I had written.  While crude, the result was exciting, and invigorated me to see what else I could create.  From here d3v (pronounced “dev”, as in “developer”) was born, a Visualforce page that had some basic functionality to aid me in my daily tasks.
+<br /><br />
+As d3v gained more functionality, I had a blast using and building it, but wanted to open it up to a larger audience.  At this point Salesforce had acquired Heroku so it seemed like the logical place for me to host d3v.  From here there was a long transition process as I ported d3v over to Heroku, translated an Apex backend into Ruby, and opened d3v up to the public.
+<br /><br />
+Even as d3v became more capable, there weren’t many people using it.  At that point it performed well, but was ugly and had a stupid name.  In an attempt to get more users and right these wrongs, many changes were made: d3v was given a new interface, many bugs were fixed, and it was relaunched as ASIDE.IO in February 2014.
+<br /><br />
+The rebranding was successful – on day 1 more people used ASIDE.IO than had ever used d3v.   Over time ASIDE.IO has continued to gain more popularity and functionality, and turned into the full-featured Salesforce development tool that it is today.
+			</div>	
+			
+			<h2 id="contact" class="mt4 title-item">Contact</h2>
+			<div class="mt4 text-block">
+				If you are encountering any issues with ASIDE.IO, have bug/feature requests, or have any other questions/comments, email me at <a class="text-link" href="mailto:admin@aside.io">admin@aside.io</a>.
+			</div>						
+		</div>	
+	</body>
+</html>
