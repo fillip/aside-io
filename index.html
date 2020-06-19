@@ -1,3 +1,541 @@
+<!doctype html>
+<!-- 
+@author Phil Rymek
+
+Copyright (c) 2020, salesforce.com, inc.
+All rights reserved.
+SPDX-License-Identifier: BSD-3-Clause
+For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
+ -->
 <html>
-hello world
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, maximum-scale=1">
+	
+	<title>ASIDE.IO | a salesforce ide</title>
+	<link rel="shortcut icon" href="images/favicon.ico" type="img/x-icon">
+	
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800italic,700italic,600italic,400italic,300italic,800,700,600' rel='stylesheet' type='text/css'>
+	
+	<meta name="description" content="ASIDE is a Salesforce IDE that is free, fast, full-featured, and easy to use.  There is no sign up or download; start building Force.com apps now!" />
+	
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+	<link href="css/login-style.css" rel="stylesheet" type="text/css">
+	<link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+	<link href="css/login-responsive.css" rel="stylesheet" type="text/css">
+	<link href="css/animate.css" rel="stylesheet" type="text/css">
+	<link href="css/lightbox.css" rel="stylesheet" />
+	<!--[if IE]><style type="text/css">.pie {behavior:url(PIE.htc);}</style><![endif]-->
+	
+	<script type="text/javascript" src="js/login/jquery.1.8.3.min.js"></script>
+	<script type="text/javascript" src="js/login/bootstrap.js"></script>
+	<script type="text/javascript" src="js/login/jquery-scrolltofixed.js"></script>
+	<script type="text/javascript" src="js/login/jquery.easing.1.3.js"></script>
+	<script type="text/javascript" src="js/login/jquery.isotope.js"></script>
+	<script type="text/javascript" src="js/login/wow.js"></script>
+	<script type="text/javascript" src="js/login/classie.js"></script>
+	<script type="text/javascript" src="js/login/lightbox.min.js"></script>
+	<!--
+	<script type="text/javascript" src="js/d3v/CookieUtil.js"></script>
+	<script type="text/javascript" src="js/d3v/d3vLogin.js"></script>
+	-->
+	<!--[if lt IE 9]>
+	    <script src="js/respond-1.1.0.min.js"></script>
+	    <script src="js/html5shiv.js"></script>
+	    <script src="js/html5element.js"></script>
+	<![endif]-->
+</head>
+<body>
+<div style="overflow:hidden;">
+<header class="header" id="header"><!--header-start-->
+	<div id="important-banner">ASIDE.IO IS NOW OPEN SOURCE BUT WILL NOT BE HOSTED PAST 6/19/20. &nbsp;
+		<a href="/shutdown" target="_blank">Click here for more information</a>. &nbsp;Thanks for all your support!
+	</div>
+	<div id="cloudtainer">
+		<div class="cloud large cloud-1">
+		  <div></div><div></div><div></div><div></div>
+		</div>
+		<div class="cloud normal cloud-2">
+		  <div></div><div></div><div></div><div></div>
+		</div>
+		<div class="cloud small cloud-3">
+		  <div></div><div></div><div></div><div></div>
+		</div>
+		<div class="cloud tiny cloud-4">
+		  <div></div><div></div><div></div><div></div>
+		</div>
+		<div class="cloud large cloud-5">
+		  <div></div><div></div><div></div><div></div>
+		</div>
+		<div class="cloud normal cloud-6">
+		  <div></div><div></div><div></div><div></div>
+		</div>
+		<div class="cloud small cloud-7">
+		  <div></div><div></div><div></div><div></div>
+		</div>
+		<div class="cloud tiny cloud-8">
+		  <div></div><div></div><div></div><div></div>
+		</div>
+		<div class="cloud small cloud-9">
+		  <div></div><div></div><div></div><div></div>
+		</div>
+		<div class="cloud normal cloud-10">
+		  <div></div><div></div><div></div><div></div>
+		</div>
+		<div class="cloud tiny cloud-11">
+		  <div></div><div></div><div></div><div></div>
+		</div>
+		<div class="cloud small cloud-12">
+		  <div></div><div></div><div></div><div></div>
+		</div>
+	</div>
+	<div class="container" style="width:100%;padding-left:0;padding-right:0;position:absolute;top:0;">
+		<div id="cloudtent" style="position:absolute;width:100%;">
+	        <h1 class="animated fadeInDown delay-07s" style="font-size:100px;" id="aside-io">ASIDE.IO</h1>
+	        <ul class="we-create animated fadeInUp delay-1s">
+	        	<li style="font-size:30px;">blazing fast force.com development environment</li>
+	        	<li style="font-size:30px;margin-top:5px;">click below to login now</li>
+	        </ul>
+	        <a class="link animated fadeInUp delay-1s sandbox" style="width:250px;margin-bottom:5px;" id="sand-btn">Sandbox Login</a>
+	        <a class="link animated fadeInUp delay-1s production" style="width:250px;margin-bottom:5px;" id="prod-btn">Production Login</a>
+	        <div style="margin-top:20px;" class="animated fadeInUp delay-1s">
+	        	<a href="/new_instance" target="_blank" style="color:#555;">(or click here to deploy a new instance)</a>
+	        </div>
+	        <br />
+			<figure class="animated fadeInUp delay-1s btn btn-circle page-scroll" id="go-down" href="#service">
+				<i class="fa fa-angle-double-down animated"></i>
+			</figure>	
+		</div>
+    </div>
+</div>
+<div id="grass"></div>
+</header>
+
+
+<nav class="main-nav-outer" id="test">
+	<div class="container">
+        <ul class="main-nav" style="float:left;" id="main-left">
+        	<li><a class="link sandbox">Sandbox Login</a></li>
+            <li><a class="link production">Production Login</a></li>
+            <li><a class="link instance" href="/new_instance" target="_blank">New Instance</a></li>
+        </ul>
+        <ul class="main-nav" style="float:right;margin-top:28px;" id="main-right">
+        	<li class="hidden-btn"><a class="sandbox">Sandbox Login</a></li>
+        	<li class="hidden-btn"><a class="production">Production Login</a></li>
+            <li><a href="#service">Features</a></li>
+            <li><a href="#team">FAQ</a></li>
+            <li><a href="#header">Top</a></li>
+        </ul>
+        <a class="res-nav_click" href="#"><i class="fa-bars"></i></a>
+    </div>
+</nav>
+
+
+
+<section class="main-section" id="service">
+	<div class="container">
+    	<h2>What is ASIDE.IO?</h2>
+    	<h6>A free and full featured Salesforce IDE, up in the cloud.</h6>
+        <div class="row">
+        	<div class="col-lg-4 col-sm-6 wow fadeInLeft delay-05s">
+            	<div class="service-list">
+                	<div class="service-list-col1">
+                    	<i class="fa-code"></i>
+                    </div>
+                	<div class="service-list-col2">
+                        <h3 class="jumper-link" href="#ce-section">Code Editor</h3>
+                        <p>Create and edit Apex, Lightning, Visualforce, Static Resources, and Custom Objects.</p>
+                    </div>
+                </div>
+                <div class="service-list">
+                	<div class="service-list-col1">
+                    	<i class="fa-bug"></i>
+                    </div>
+                	<div class="service-list-col2">
+                        <h3 class="jumper-link" href="#tm-section">Test Monitor</h3>
+                        <p>Execute unit tests in multiple ways, view their results, and obtain code coverage.</p>
+                    </div>
+                </div>
+                <div class="service-list">
+                	<div class="service-list-col1">
+                    	<i class="fa-exchange"></i>
+                    </div>
+                	<div class="service-list-col2">
+                        <h3 class="jumper-link" href="#dm-section">Deploy Manager</h3>
+                        <p>Retrieve or deploy by dropping a package.xml or zip from your computer.</p>
+                    </div>
+                </div>
+                <div class="service-list">
+                	<div class="service-list-col1">
+                    	<i class="fa-database"></i>
+                    </div>
+                	<div class="service-list-col2">
+                        <h3 class="jumper-link" href="#qt-section">Query Tool</h3>
+                        <p>Run SOQL queries and view the results in a flexible data grid.</p>
+                    </div>
+                </div>
+            </div>
+            <figure class="col-lg-8 col-sm-6  text-right wow fadeInUp delay-02s">
+				<iframe style="margin-right:15%;" width="420" height="315" src="https://www.youtube.com/embed/4yoVrFgSfsw" frameborder="0" allowfullscreen>
+				</iframe>
+            </figure>
+        
+        </div>
+	</div>
+</section>
+
+<section class="main-section alabaster" id="ce-section">
+	<div class="container">
+    	<div class="row">
+    		<div style="height:100%;">
+				<figure class="col-lg-5 col-sm-4 wow fadeInLeft">
+	            	<a href="images/code.png" data-lightbox="code" data-title="Code Editor - Writing some Apex"><img  src="images/Optimized-code.png" class="pic-shadow"></a>
+	            	<a href="images/code2.png" data-lightbox="code2" data-title="Code Editor - Editing a Custom Object (in JSON!)"><img  src="images/Optimized-code2.png" class="pic-shadow"></a>
+	            </figure>
+            </div>
+        	<div class="col-lg-7 col-sm-8 featured-work" >
+            	<h2>code editor</h2>
+            	<P class="padding-b">Salesforce development is simplified with ASIDE's code editor. Saving is fast, the feel is familiar, and the feature set is robust including autocomplete, organization-wide code search, and on-screen unit test coverage information.</P>
+            	<div class="featured-box">
+                	<div class="featured-box-col1 wow fadeInRight delay-02s">
+                    	<i class="fa-dashboard"></i>
+                    </div>	
+                	<div class="featured-box-col2 wow fadeInRight delay-02s">
+                        <h3>fast saves</h3>
+                        <p>Saving code is uber fast and non-blocking, so no more staring at save dialogs.</p>
+                    </div>    
+                </div>
+                <div class="featured-box">
+                	<div class="featured-box-col1 wow fadeInRight delay-04s">
+                    	<i class="fa-gears"></i>
+                    </div>	
+                	<div class="featured-box-col2 wow fadeInRight delay-04s">
+                        <h3>fully customizable</h3>
+                        <p>Configure various aspects of the editor including color scheme, invisible characters, and autocomplete.</p>
+                    </div>    
+                </div>
+                <div class="featured-box">
+                	<div class="featured-box-col1 wow fadeInRight delay-06s">
+                    	<i class="fa-file-zip-o"></i>
+                    </div>	
+                	<div class="featured-box-col2 wow fadeInRight delay-06s">
+                        <h3>static resource support</h3>
+                        <p>Tired of downloading static resources to modify them? ASIDE lets you navigate and modify files within zipped resources.</p>
+                    </div>    
+                </div>
+                <a class="Learn-More" href="#">Learn More</a>
+            </div>
+        </div>
+	</div>
+</section>
+
+<section class="main-section" id="tm-section">
+	<div class="container">
+    	<div class="row">
+        	<div class="col-lg-7 col-sm-8 featured-work" >
+            	<h2>test monitor</h2>
+            	<P class="padding-b">View code coverage for your entire org, or a subset of it, at the click of a button. Advanced code coverage metrics explain not only coverage by class, but also which classes have the most potential for raising your organization's coverage.</P>
+            	<div class="featured-box">
+                	<div class="featured-box-col1 wow fadeInRight delay-02s">
+                    	<i class="fa-power-off"></i>
+                    </div>	
+                	<div class="featured-box-col2 wow fadeInRight delay-02s">
+                        <h3>execute unit tests</h3>
+                        <p>Run unit tests in three different ways: all at once, by query, or through individual selection.</p>
+                    </div>    
+                </div>
+                <div class="featured-box">
+                	<div class="featured-box-col1 wow fadeInRight delay-04s">
+                    	<i class="fa-eye"></i>
+                    </div>	
+                	<div class="featured-box-col2 wow fadeInRight delay-04s">
+                        <h3>view test results</h3>
+                        <p>See tests results in a clear, concise, and filtered format. Understand test failures with the stack trace parser.</p>
+                    </div>    
+                </div>
+                <div class="featured-box">
+                	<div class="featured-box-col1 wow fadeInRight delay-06s">
+                    	<i class="fa-bullseye"></i>
+                    </div>	
+                	<div class="featured-box-col2 wow fadeInRight delay-06s">
+                        <h3>understand code coverage</h3>
+                        <p>Run a code coverage report for all, or a set of classes, and share the results with teammates.</p>
+                    </div>    
+                </div>
+                <a class="Learn-More" href="#">Learn More</a>
+            </div>
+			<figure class="col-lg-5 col-sm-4 wow fadeInLeft">
+            	<a href="images/test.png" data-lightbox="test" data-title="Test Monitor - Displaying unit test results">
+            		<img  src="images/Optimized-test.png" class="pic-shadow">
+            	</a>
+            	<a href="images/test2.png" data-lightbox="test2" data-title="Test Monitor - Code coverage report">
+            		<img  src="images/Optimized-test2.png" class="pic-shadow">
+            	</a>
+            </figure>            
+        </div>
+	</div>
+</section>
+
+<section class="main-section alabaster" id="dm-section">
+	<div class="container">
+    	<div class="row">
+			<figure class="col-lg-5 col-sm-4 wow fadeInLeft">
+            	<a href="images/push.png" data-lightbox="push" data-title="Deploy Manager - Choosing files to retrieve">
+            		<img src="images/Optimized-push.png" class="pic-shadow">
+            	</a>
+            	<a href="images/push2.png" data-lightbox="push2" data-title="Deploy Manager - Deploy results (Successful!)">
+            		<img src="images/Optimized-push2.png" class="pic-shadow">
+            	</a>            	
+            </figure>
+        	<div class="col-lg-7 col-sm-8 featured-work" >
+            	<h2>deploy manager</h2>
+            	<P class="padding-b">Pull metadata down from the cloud and push it up with ease. ASIDE remembers the last time you retrieved and deployed, enabling retrieval of all the metadata that has changed since, for straight-forward deploys or commits to source control.</P>
+            	<div class="featured-box">
+                	<div class="featured-box-col1 wow fadeInRight delay-02s">
+                    	<i class="fa-cloud-download"></i>
+                    </div>	
+                	<div class="featured-box-col2 wow fadeInRight delay-02s">
+                        <h3>retrieve smart</h3>
+                        <p>Retrieve filters remove the tedium of building package.xml's and reduce chances of forgetting metadata.</p>
+                    </div>    
+                </div>
+                <div class="featured-box">
+                	<div class="featured-box-col1 wow fadeInRight delay-04s">
+                    	<i class="fa-rocket"></i>
+                    </div>	
+                	<div class="featured-box-col2 wow fadeInRight delay-04s">
+                        <h3>drag-n-drop deploy</h3>
+                        <p>Have a package.xml to retrieve? A zip to deploy? Dropping the file on ASIDE's push screen will perform the retrieve or deploy.</p>
+                    </div>    
+                </div>
+                <div class="featured-box">
+                	<div class="featured-box-col1 wow fadeInRight delay-06s">
+                    	<i class="fa-smile-o"></i>
+                    </div>	
+                	<div class="featured-box-col2 wow fadeInRight delay-06s">
+                        <h3>works well with others</h3>
+                        <p>Don't want to use ASIDE to execute your retrieve or deploy? It's also great for generating package.xml files!</p>
+                    </div>    
+                </div>
+                <a class="Learn-More" href="#">Learn More</a>
+            </div>
+        </div>
+	</div>
+</section>
+
+<section class="main-section" id="qt-section">
+	<div class="container">
+    	<div class="row">
+        	<div class="col-lg-7 col-sm-8 featured-work" >
+            	<h2>query tool</h2>
+            	<P class="padding-b">Administrate your organization's data with ASIDE's query tool. Perform SOQL queries, view their results, modify them, or create new records. Export query results to CSV or share a link to the query results with your colleagues.</P>
+            	<div class="featured-box">
+                	<div class="featured-box-col1 wow fadeInRight delay-02s">
+                    	<i class="fa-globe"></i>
+                    </div>	
+                	<div class="featured-box-col2 wow fadeInRight delay-02s">
+                        <h3>query everything</h3>
+                        <p>Execute SOQL queries against all standard objects, custom objects, as well as objects only visible to the Tooling API.</p>
+                    </div>    
+                </div>
+                <div class="featured-box">
+                	<div class="featured-box-col1 wow fadeInRight delay-04s">
+                    	<i class="fa-table"></i>
+                    </div>	
+                	<div class="featured-box-col2 wow fadeInRight delay-04s">
+                        <h3>flexible result grid</h3>
+                        <p>View query results in <a href="https://github.com/mleibman/SlickGrid" target="_blank">an awesome grid</a> supporting filtering, paging, sorting, and much more.</p>
+                    </div>    
+                </div>
+                <div class="featured-box">
+                	<div class="featured-box-col1 wow fadeInRight delay-06s">
+                    	<i class="fa-plus-square"></i>
+                    </div>	
+                	<div class="featured-box-col2 wow fadeInRight delay-06s">
+                        <h3>data manager</h3>
+                        <p>Edit rows and create new ones from within the query result grid. Delete, export, and share query results.</p>
+                    </div>    
+                </div>
+                <a class="Learn-More" href="#">Learn More</a>
+            </div>
+			<figure class="col-lg-5 col-sm-4 wow fadeInLeft">
+            	<a href="images/data.png" data-lightbox="data" data-title="Query Tool - Displaying and editing query results">
+            		<img  src="images/Optimized-data.png" class="pic-shadow">
+            	</a>
+            	<a href="images/data2.png" data-lightbox="data2" data-title="Query Tool - Query autocomplete in action">
+            		<img  src="images/Optimized-data2.png" class="pic-shadow">
+            	</a>            	
+            </figure>            
+        </div>
+	</div>
+</section>
+
+<section class="main-section team alabaster" id="team"><!--main-section team-start-->
+	<div class="container">
+        <h2>Frequently Asked Questions</h2>
+        <h6>Have something on your mind?</h6>
+        <h3 class="large-top-marg">What is ASIDE?</h3>
+        <p>ASIDE is full-featured Salesforce IDE built from the ground up for efficient delivery, design, and testing of Apex and Visualforce code.</p>
+        <h3 class="large-top-marg">Is there any documentation available?</h3>
+        <p>Check <a href="/help" target="_blank">here</a>.</p>            
+        <h3 class="large-top-marg">Is ASIDE open source?</h3>
+        <p>Yes it is!  View it's github repository <a href="https://github.com/fillip/aside-io" target="_blank">here</a>.</p>
+        <h3 class="large-top-marg">How do I spin up my own instance of ASIDE?</h3>
+        <p>You can do it by following the steps <a href="/new_instance" target="_blank">here</a>.</p>
+        <h3 class="large-top-marg">Do I need to give ASIDE my credentials?</h3>
+        <p>No, ASIDE never sees your credentials. Clicking the login button will redirect you to the Salesforce.com domain where you can securely authenticate.</p>        
+        <h3 class="large-top-marg">Does ASIDE store any of my Salesforce or personal data?</h3>
+        <p>No, ASIDE does not store any of this information.</p>
+        <h3 class="large-top-marg">How can I use source control in conjunction with ASIDE?</h3>
+        <p>Since ASIDE does not save copies of your code locally, you will need to perform a retrieve to pull the code out of your Salesforce org. To retrieve the files you will want to commit, while logged into ASIDE click <b>push ⟹ Select Retrieve Filter ⟹ Code Modified By Me Since Last Retrieve ⟹ Add All ⟹ retrieve</b>. This will retrieve (download) all the code you have modified since the last time you performed a retrieve from ASIDE. When the retrieve completes, expand the resulting zip file and commit the code to source control as you normally would.
+        </p>        
+        <h3 class="large-top-marg">I try to login with ASIDE, but receive the error,<span style="color:red;">"ip restricted or invalid login hours"</span>, can I still use ASIDE?</h3>
+        <p>If your organization has IP restrictions enabled it will not be possible to login in with ASIDE because it has a dynamic IP address.</p>
+        <h3 class="large-top-marg">Is there anything I can do if the login is working inconsistently or I am getting kicked out?</h3>
+        <p>If you are getting kicked out, or ASIDE is frequently showing the error recovery popup, you may need to disable the "Lock sessions to the IP address from which they originated" security setting found under <b>Security ⟹ Session Settings</b> within your salesforce organization. ASIDE will not work properly while this setting is enabled.</p>
+        <h3 class="large-top-marg">I broke ASIDE while modifying it's stylesheet.  How can I fix it?</h3>
+        <p>You can reset ASIDE to it's default stylesheet with <b>command + shift + \</b> on Macs or <b>control + shift + \</b> on PCs.</p>        
+        <h3 class="large-top-marg">What browsers do you recommend?</h3>
+        <p>It's highly recommended that you use Chrome or Firefox while using ASIDE. Safari has known issues 
+        related to retrieving and downloading not working properly.
+        </p>
+        <h3 class="large-top-marg">Where can I find information about the latest update?</h3>
+        <p>On <a href="/updates" target="_blank">the updates page</a>.</p>                 
+        <h3 class="large-top-marg">Who can I contact about questions/bugs/feature requests?</h3>
+        <p>Hit me up at <a href="mailto:admin@aside.io">admin@aside.io</a></p>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <span class="copyright">VERSION 1.0.2</span>
+    </div>
+</footer>
+
+
+<script type="text/javascript">
+    $(document).ready(function(e) {
+        $('#test').scrollToFixed();
+        $('.res-nav_click').click(function(){
+            $('.main-nav').slideToggle();
+            return false;
+        });
+    });
+</script>
+
+  <script>
+  
+    wow = new WOW(
+      {
+        animateClass: 'animated',
+        offset:       100
+      }
+    );
+    
+    wow.init();
+  </script>
+
+
+<script type="text/javascript">
+	$(window).load(function(){
+		
+		$('.main-nav li a, #go-down, .jumper-link').bind('click',function(event){
+			var $anchor = $(this);
+			
+			//- 102
+			
+			$('html, body').stop().animate({
+				scrollTop: $($anchor.attr('href')).offset().top - 32
+			}, 1500,'easeInOutExpo');
+			
+			/*
+			if you don't want to use the easing effects:
+			$('html, body').stop().animate({
+				scrollTop: $($anchor.attr('href')).offset().top
+			}, 1000);
+			*/
+			event.preventDefault();
+		});
+	})
+</script>
+
+<script type="text/javascript">
+
+function rand(start, stop) {
+	return Math.floor(Math.random() * stop) + start;
+}
+
+$('.cloud').each(function(idx, ui) {
+	$(ui).css({"marginLeft" : rand(1, 200) + '%'});
+});
+
+
+function positionLanding() {
+    var windowHeight = $(window).height() + 25;
+    var windowComparator = $(window).width() * 0.6;
+    
+    var $header = $('#header');
+    var containerHeight = $('div#cloudtent').height();
+    
+    if(windowHeight > containerHeight) {
+    	var positionScalar = windowHeight >= windowComparator ? 0.50 : 0.75;
+    	var newPad = parseInt((windowHeight - containerHeight) * positionScalar);
+    	$header.css({height : (windowHeight) + "px"}); //, paddingTop: newPad + "px"
+    	$('div#cloudtent').css({top:newPad + "px"});
+    } else {
+    	$header.height(containerHeight + 50);
+    }
+}
+
+positionLanding();
+$('div#grass').slideUp(0);
+$('div#grass').slideDown(1500);
+    
+$(window).load(function(){
+  
+  
+  var $container = $('.portfolioContainer'),
+      $body = $('body'),
+      colW = 375,
+      columns = null;
+
+  
+  $container.isotope({
+    // disable window resizing
+    resizable: true,
+    masonry: {
+      columnWidth: colW
+    }
+  });
+  
+  $(window).smartresize(function(){
+    // check if columns has changed
+    var currentColumns = Math.floor( ( $body.width() -30 ) / colW );
+    if ( currentColumns !== columns ) {
+      // set new column count
+      columns = currentColumns;
+      // apply width to container manually, then trigger relayout
+      $container.width( columns * colW )
+        .isotope('reLayout');
+    }
+    
+	positionLanding();
+    
+  }).smartresize(); // trigger resize to set container width
+  $('.portfolioFilter a').click(function(){
+        $('.portfolioFilter .current').removeClass('current');
+        $(this).addClass('current');
+ 
+        var selector = $(this).attr('data-filter');
+        $container.isotope({
+			
+            filter: selector,
+         });
+         return false;
+    });
+});
+
+</script>
+</body>
 </html>
