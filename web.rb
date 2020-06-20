@@ -59,11 +59,6 @@ get '/shortcuts' do
 	File.open('shortcuts.html', File::RDONLY)
 end
 
-# serve up shortcuts page
-get '/shutdown' do
-	File.open('shutdown.html', File::RDONLY)
-end
-
 # serve up instance page
 get '/new_instance' do
 	File.open('instance.html', File::RDONLY)
