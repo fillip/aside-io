@@ -1,13 +1,11 @@
-#      author: Phil Rymek
+# Copyright (c) 2020, Phil Rymek
+# All rights reserved.
+#
 #        date: 7.18.2012
 # description: Contains all sinatra related code.
 #			   Provides endpoits for all javascript-ruby communication.
 #			   ServerAction.js contains more info on how to utilize this code.
 
-# Copyright (c) 2020, salesforce.com, inc.
-# All rights reserved.
-# SPDX-License-Identifier: BSD-3-Clause
-# For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
 
 require 'sinatra'
 require './D3VController.rb'

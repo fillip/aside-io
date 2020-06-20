@@ -1,11 +1,8 @@
 /*
- @description apex dictionary in json
- @author phil rymek
- 
- Copyright (c) 2020, salesforce.com, inc.
+ Copyright (c) 2020, Phil Rymek
  All rights reserved.
- SPDX-License-Identifier: BSD-3-Clause
- For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
+
+ @description apex dictionary in json
 */
 
 var apexLang = {

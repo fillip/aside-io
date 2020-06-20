@@ -1,13 +1,9 @@
-#      author: Phil Rymek
+# Copyright (c) 2020, Phil Rymek
+# All rights reserved.
+#
 #        date: 5.21.2012
 # description: Contains all interaction with salesforce 
 #			   that d3v requires as well as some utility functions.
-
-# Copyright (c) 2020, salesforce.com, inc.
-# All rights reserved.
-# SPDX-License-Identifier: BSD-3-Clause
-# For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
-
 
 require 'rubygems'
 require 'soap/soap'
