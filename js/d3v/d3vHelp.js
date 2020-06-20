@@ -1,12 +1,9 @@
 /*
+ Copyright (c) 2020, Phil Rymek
+ All rights reserved.
+
  @description ASIDE.IO Help, About, Updates, Shortcuts code helpers
  @date 11.26.2016
- @author phil rymek
- 
- Copyright (c) 2020, salesforce.com, inc.
- All rights reserved.
- SPDX-License-Identifier: BSD-3-Clause
- For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
 */
 
 var ANIMATION_LENGTH = 350;

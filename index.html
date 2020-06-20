@@ -1,11 +1,7 @@
 <!doctype html>
 <!-- 
-@author Phil Rymek
-
-Copyright (c) 2020, salesforce.com, inc.
+Copyright (c) 2020, Phil Rymek
 All rights reserved.
-SPDX-License-Identifier: BSD-3-Clause
-For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause 
  -->
 <html>
 <head>
@@ -474,7 +470,7 @@ function positionLanding() {
     
     if(windowHeight > containerHeight) {
     	var positionScalar = windowHeight >= windowComparator ? 0.50 : 0.75;
-    	var newPad = parseInt((windowHeight - containerHeight) * positionScalar) - 40;
+    	var newPad = parseInt((windowHeight - containerHeight) * positionScalar) - 25;
     	$header.css({height : (windowHeight) + "px"}); //, paddingTop: newPad + "px"
     	$('div#cloudtent').css({top:newPad + "px"});
     } else {
