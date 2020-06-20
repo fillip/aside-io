@@ -101,7 +101,7 @@ After saving the Connected App, there will be two values available on the detail
 * Key: `SEC`; Value: < Salesforce Connected App `Consumer Secret` >
 * Key: `URL`; Value: < URL of your Heroku application.  E.g. https://my-aside.herokuapp.com >
 
-Save these values and wait 10 minutes, then you should be able to login to your instance of ASIDE!  If you can't login double check your configuration or see the [help](https://aside.io/help)
+Save these values and wait 10 minutes, then you should be able to login to your instance of ASIDE!  If you can't login double check your configuration or see the [help](https://fillip.github.io/aside-io/help.html)
 
 ## Built With
 
