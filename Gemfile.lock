@@ -16,13 +16,15 @@ GEM
       rack
       socksify
     json (2.2.0)
-    mini_portile2 (2.4.0)
+    mini_portile2 (2.5.1)
     mustermann (1.0.3)
-    nokogiri (1.10.5)
-      mini_portile2 (~> 2.4.0)
+    nokogiri (1.11.5)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
     nori (2.6.0)
     oauth (0.5.4)
     pg (1.1.4)
+    racc (1.5.2)
     rack (2.0.7)
     rack-protection (2.0.7)
       rack
