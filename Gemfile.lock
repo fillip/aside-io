@@ -1,74 +1,77 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    ci-queue (0.22.1)
-    citrus (3.0.2)
-    cutlass (0.3.0)
-      docker-api (>= 2.0)
-    dead_end (3.1.1)
-    diff-lcs (1.5.0)
-    docker-api (2.2.0)
-      excon (>= 0.47.0)
-      multi_json
-    erubis (2.7.0)
-    excon (0.92.4)
-    heroics (0.1.2)
-      erubis (~> 2.0)
-      excon
-      moneta
-      multi_json (>= 1.9.2)
-      webrick
-    heroku_hatchet (7.3.4)
-      excon (~> 0)
-      platform-api (~> 3)
-      rrrretry (~> 1)
-      thor (~> 1)
-      threaded (~> 0)
-    json (2.6.1)
-    moneta (1.0.0)
-    multi_json (1.15.0)
-    parallel (1.22.1)
-    parallel_tests (3.8.1)
-      parallel
-    platform-api (3.3.0)
-      heroics (~> 0.1.1)
-      moneta (~> 1.0.0)
-      rate_throttle_client (~> 0.1.0)
-    rake (13.0.6)
-    rate_throttle_client (0.1.2)
-    redis (4.6.0)
-    rrrretry (1.0.0)
-    rspec-core (3.11.0)
-      rspec-support (~> 3.11.0)
-    rspec-expectations (3.11.0)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.11.0)
-    rspec-retry (0.6.2)
-      rspec-core (> 3.3)
-    rspec-support (3.11.0)
-    thor (1.2.1)
-    threaded (0.0.4)
-    toml-rb (2.1.2)
-      citrus (~> 3.0, > 3.0)
-    webrick (1.7.0)
+    akami (1.3.1)
+      gyoku (>= 0.4.0)
+      nokogiri
+    builder (3.2.3)
+    daemons (1.3.1)
+    eventmachine (1.2.7)
+    facets (3.1.0)
+    gyoku (1.3.1)
+      builder (>= 2.1.2)
+    hpricot (0.8.6)
+    httpclient (2.8.3)
+    httpi (2.4.4)
+      rack
+      socksify
+    json (2.2.0)
+    mini_portile2 (2.4.0)
+    mustermann (1.0.3)
+    nokogiri (1.10.5)
+      mini_portile2 (~> 2.4.0)
+    nori (2.6.0)
+    oauth (0.5.4)
+    pg (1.1.4)
+    rack (2.0.7)
+    rack-protection (2.0.7)
+      rack
+    rack-ssl-enforcer (0.2.9)
+    rack-timeout (0.5.2)
+    rforce (0.14)
+      builder (~> 3.0)
+      oauth (~> 0.4)
+    savon (2.12.0)
+      akami (~> 1.2)
+      builder (>= 2.1.2)
+      gyoku (~> 1.2)
+      httpi (~> 2.3)
+      nokogiri (>= 1.8.1)
+      nori (~> 2.4)
+      wasabi (~> 3.4)
+    sinatra (2.0.7)
+      mustermann (~> 1.0)
+      rack (~> 2.0)
+      rack-protection (= 2.0.7)
+      tilt (~> 2.0)
+    soap4r-ng (2.0.4)
+    socksify (1.7.1)
+    thin (1.7.2)
+      daemons (~> 1.0, >= 1.0.9)
+      eventmachine (~> 1.0, >= 1.0.4)
+      rack (>= 1, < 3)
+    tilt (2.0.10)
+    wasabi (3.5.0)
+      httpi (~> 2.0)
+      nokogiri (>= 1.4.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  ci-queue
-  cutlass
-  dead_end
-  excon
-  heroku_hatchet
+  eventmachine
+  facets
+  hpricot
+  httpclient
   json
-  parallel_tests
-  rake
-  redis
-  rspec-core
-  rspec-expectations
-  rspec-retry
-  toml-rb
+  pg
+  rack-ssl-enforcer
+  rack-timeout
+  rforce
+  savon
+  sinatra
+  soap4r-ng
+  thin
 
 RUBY VERSION
    ruby 3.1.2p20
