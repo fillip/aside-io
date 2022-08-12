@@ -17,14 +17,14 @@ GEM
       socksify
     json (2.2.0)
     mini_portile2 (2.4.0)
-    mustermann (1.1.1)
+    mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
     nokogiri (1.10.5)
       mini_portile2 (~> 2.4.0)
     nori (2.6.0)
     oauth (0.5.4)
     pg (1.1.4)
-    rack (2.2.3)
+    rack (2.2.4)
     rack-protection (2.2.2)
       rack
     rack-ssl-enforcer (0.2.9)
