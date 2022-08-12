@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.5.7"
+ruby "3.3.7"
 
 gem 'sinatra'
 gem 'eventmachine'
