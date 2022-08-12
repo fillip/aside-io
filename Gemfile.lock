@@ -39,7 +39,7 @@ GEM
       nokogiri (>= 1.8.1)
       nori (~> 2.4)
       wasabi (~> 3.4)
-    sinatra (2.0.7)
+    sinatra (2.2.2)
       mustermann (~> 1.0)
       rack (~> 2.0)
       rack-protection (= 2.0.7)
