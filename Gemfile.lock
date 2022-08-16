@@ -27,8 +27,8 @@ GEM
     rack (2.2.4)
     rack-protection (2.2.2)
       rack
-    rack-ssl-enforcer (0.6.3)
-    rack-timeout (0.5.2)
+    rack-ssl-enforcer (0.2.9)
+    rack-timeout (0.6.3)
     rexml (3.2.5)
     rforce (0.15)
       builder (~> 3.0)
