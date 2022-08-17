@@ -17,12 +17,14 @@ GEM
       rack
     json (2.6.2)
     mini_portile2 (2.8.0)
-    mustermann (2.0.2)
+    racc 1.6.0
+    mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
-    nokogiri (1.10.5)
-      mini_portile2 (~> 2.4.0)
+    nokogiri (1.13.8)
+      mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
     nori (2.6.0)
-    oauth (0.5.4)
+    oauth (0.5.7)
     pg (1.4.3)
     rack (2.2.4)
     rack-protection (2.2.2)
