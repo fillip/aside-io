@@ -13,11 +13,10 @@ GEM
       rexml (~> 3.0)
     hpricot (0.8.6)
     httpclient (2.8.3)
-    httpi (2.4.4)
+    httpi (3.0.1)
       rack
-      socksify
     json (2.6.2)
-    mini_portile2 (2.4.0)
+    mini_portile2 (2.8.0)
     mustermann (2.0.2)
       ruby2_keywords (~> 0.0.1)
     nokogiri (1.10.5)
