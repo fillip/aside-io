@@ -421,6 +421,7 @@ end
 
 post '/start' do
 	resp = refresh(request, response, false)
+	console.log('Test '+resp)
 	resp = resp == '{ success : false }' ? request.cookies['d3vsid'] : resp
 	ctrl = D3VController.new(resp, request.cookies['d3vpep'], 
 							 request.cookies['d3vmep'], request.cookies['d3vaep'], request.cookies['d3vuid'])
