@@ -17,7 +17,7 @@ GEM
       rack (>= 0)
     json (2.6.2)
     mini_portile2 (2.8.0)
-      racc (1.6.0)
+    racc (1.6.0)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
     nokogiri (1.13.8)
