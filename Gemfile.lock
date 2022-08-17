@@ -77,6 +77,8 @@ DEPENDENCIES
   sinatra
   soap4r-ng
   thin
+  rexml
+  logger
 
 RUBY VERSION
    ruby 3.1.2
