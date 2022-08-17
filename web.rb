@@ -12,6 +12,7 @@ require './D3VController.rb'
 require 'json'
 require 'rack-ssl-enforcer'
 require 'rack-timeout'
+require 'logger'
 
 #use Rack::Timeout, service_timeout: 25
 #use Rack::SslEnforcer
@@ -421,7 +422,7 @@ end
 
 post '/start' do
 	resp = refresh(request, response, false)
-	console.log('Test '+resp)
+	logger.debug("I'm a debug log"+resp)
 	resp = resp == '{ success : false }' ? request.cookies['d3vsid'] : resp
 	ctrl = D3VController.new(resp, request.cookies['d3vpep'], 
 							 request.cookies['d3vmep'], request.cookies['d3vaep'], request.cookies['d3vuid'])
