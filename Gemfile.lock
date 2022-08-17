@@ -23,7 +23,7 @@ GEM
     nokogiri (1.10.5)
       mini_portile2 (~> 2.4.0)
     nori (2.6.0)
-    oauth (0.5.4)
+    oauth (0.5.10)
     pg (1.4.3)
     rack (2.2.4)
     rack-protection (2.2.2)
