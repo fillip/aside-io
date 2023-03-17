@@ -4,33 +4,37 @@ GEM
     akami (1.3.1)
       gyoku (>= 0.4.0)
       nokogiri
-    builder (3.2.3)
-    daemons (1.3.1)
+    builder (3.2.4)
+    daemons (1.4.1)
     eventmachine (1.2.7)
     facets (3.1.0)
-    gyoku (1.3.1)
+    gyoku (1.4.0)
       builder (>= 2.1.2)
+      rexml (~> 3.0)
     hpricot (0.8.6)
     httpclient (2.8.3)
-    httpi (2.4.4)
+    httpi (3.0.1)
       rack
-      socksify
-    json (2.2.0)
+    json (2.6.2)
+    racc (1.6.0)
     mini_portile2 (2.4.0)
-    mustermann (1.0.3)
+    mustermann (2.0.2)
+      ruby2_keywords (~> 0.0.1)
     nokogiri (1.10.5)
       mini_portile2 (~> 2.4.0)
     nori (2.6.0)
-    oauth (0.5.4)
-    pg (1.1.4)
-    rack (2.0.7)
-    rack-protection (2.0.7)
+    oauth (0.5.10)
+    pg (1.4.3)
+    rack (2.2.4)
+    rack-protection (2.2.2)
       rack
     rack-ssl-enforcer (0.2.9)
-    rack-timeout (0.5.2)
+    rack-timeout (0.6.3)
+    rexml (3.2.5)
     rforce (0.14)
       builder (~> 3.0)
       oauth (~> 0.4)
+    ruby2_keywords (0.0.5)
     savon (2.12.0)
       akami (~> 1.2)
       builder (>= 2.1.2)
@@ -39,18 +43,19 @@ GEM
       nokogiri (>= 1.8.1)
       nori (~> 2.4)
       wasabi (~> 3.4)
-    sinatra (2.0.7)
-      mustermann (~> 1.0)
-      rack (~> 2.0)
-      rack-protection (= 2.0.7)
+    sinatra (2.2.2)
+      mustermann (~> 2.0)
+      rack (~> 2.2)
+      rack-protection (= 2.2.2)
       tilt (~> 2.0)
     soap4r-ng (2.0.4)
     socksify (1.7.1)
-    thin (1.7.2)
+    thin (1.8.1)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
       rack (>= 1, < 3)
     tilt (2.0.10)
+    logger (1.5.1)
     wasabi (3.5.0)
       httpi (~> 2.0)
       nokogiri (>= 1.4.2)
@@ -72,9 +77,11 @@ DEPENDENCIES
   sinatra
   soap4r-ng
   thin
+  rexml
+  logger
 
 RUBY VERSION
-   ruby 2.5.7p206
+   ruby 3.1.2
 
 BUNDLED WITH
-   2.0.2
+   2.3.20

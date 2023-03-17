@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.5.7"
+ruby "3.1.2"
 
 gem 'sinatra'
 gem 'eventmachine'
@@ -14,3 +14,5 @@ gem 'pg'
 gem 'rack-ssl-enforcer'
 gem 'rack-timeout'
 gem 'httpclient'
+gem 'rexml'
+gem 'logger'

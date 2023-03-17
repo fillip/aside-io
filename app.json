@@ -2,5 +2,5 @@
 	"name" : "ASIDE.IO",
 	"description" : "A Salesforce IDE - fast, free, and open source",
 	"repository" : "https://github.com/fillip/aside-io",
-	"stack" : "heroku-18"
+	"stack" : "heroku-22"
 }
